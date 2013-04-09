@@ -1,7 +1,9 @@
-from flask import Flask, render_template
- 
-app = Flask(__name__)      
- 
+from flask import Flask, render_template, request, redirect, url_for, flash
+from flask.ext.login import (LoginManager, current_user, login_required, login_user, logout_user, UserMixin, AnonymousUser, confirm_login, fresh_login_required)
+import function
+
+app = Flask(__name__)
+
 @app.route('/')
 def home():
   return render_template('home.html')
@@ -9,6 +11,15 @@ def home():
 @app.route('/about')
 def about():
   return render_template('about.html')
- 
+
+@app.route('/login')
+def about():
+  return render_template('login.html')
+
+@app.route('/accueil')
+def about():
+  return render_template('accueil.html')
+
 if __name__ == '__main__':
 	app.run(host='0.0.0.0')
+
