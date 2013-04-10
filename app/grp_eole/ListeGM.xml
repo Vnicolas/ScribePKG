@@ -11,6 +11,11 @@
 				<Machine>cdi*</Machine>
 			</ListeMachines>
 			<ListeGestionnaires/>
+		</GM>	<GM nom="test">
+			<ListeMachines>
+				<Machine>test*</Machine>
+			</ListeMachines>
+			<ListeGestionnaires/>
 		</GM>
 	</ListeGM>
 	<numeroSerie>V2TEbf+79nOhpqv5lpTlPfeqcVI=</numeroSerie>	<ListeGestionnaires/>
