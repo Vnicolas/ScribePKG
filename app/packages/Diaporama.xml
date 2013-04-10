@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="Diaporama"
+    name="Diaporama - Logiciel de creation de diaporamas"
+    revision="%version%.2"
+    reboot="false"
+    priority="1110">
+    
+    <variable name="version" value="3.0.0.1" />
+    
+    <!-- http://softchris.free.fr/ZenAlbum/medias/file/diapo.zip -->
+    
+    <check type="uninstall" condition="exists" path="Diaporama version %version%" />
+    
+    <install cmd='"%SOFTWARE%\Diaporama\Diaporama_setup.exe" /VERYSILENT' />
+    
+    <upgrade cmd='"%SOFTWARE%\Diaporama\Diaporama_setup.exe" /VERYSILENT' />
+    
+    <remove cmd='"%PROGRAMFILES%\SoftChris\Diaporama\unins000.exe" /SILENT' />
+</package>
+</packages>

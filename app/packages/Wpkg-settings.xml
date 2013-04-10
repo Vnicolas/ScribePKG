@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="Wpkg-settings"
+    name="Mise à jour des paramètres du client WPKG"
+    revision="1"
+    priority="200"
+    reboot="false"
+    execute="once">
+    
+    <!-- Ajuster IP du serveur en conséquence -->
+    <variable name="wpkgserver" value="1.2.3.4" />
+
+    <install cmd='"%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE=\\%wpkgserver%\wpkg\settings.xml' />
+    <upgrade cmd='"%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE=\\%wpkgserver%\wpkg\settings.xml' />
+    <downgrade cmd='"%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE=\\%wpkgserver%\wpkg\settings.xml' />
+    <remove cmd='echo "nothing"' />
+
+</package>
+</packages>

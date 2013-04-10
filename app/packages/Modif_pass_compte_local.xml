@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="Modif_pass_compte_local"
+    name="Modification du mot de passe d'un utilisateur"
+    revision="2"
+    priority="201"
+    execute="once">
+
+    <variable name="login" value="prof" />
+    <variable name="pass" value="prof" />
+
+    <install cmd='cmd /c net user %login% %pass%' />
+
+</package>
+</packages>

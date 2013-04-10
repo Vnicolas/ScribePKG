@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="Proxycfg"
+    name="Permet d'appliquer le proxy AMON"
+    revision="1"
+    execute="once"
+    priority="100">
+    
+    <check type="registry" condition="exists" path="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Connections" />
+
+    <install cmd='regedit /S "%SOFTWARE%\winhttpsettings.reg"' />
+</package>
+</packages>

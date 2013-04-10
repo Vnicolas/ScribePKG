@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="ebeam"
+    name="Ebeam education suite - logiciel pour TBI Ebeam"
+    revision="%version%.2"
+    reboot="false"
+    priority="50">
+    
+    <variable name="version" value="2.4.1.16" />
+    
+    <check type="uninstall" condition="exists" path="eBeam Education Suite %version%" />
+    
+    <!-- dl=http://lcf1.s3.amazonaws.com/software/Software/eBeamEducationSuite_pc_%version%.exe -->
+    <!-- dl1=http://dev-eole.ac-dijon.fr/attachments/download/158/eBeam_Home.lnk -->
+    <!-- dl2=http://dev-eole.ac-dijon.fr/attachments/download/159/eBeam_Scrapbook.lnk -->
+    <!-- dl3=http://dev-eole.ac-dijon.fr/attachments/download/160/eBeam_Tool_Palette.lnk -->
+    
+    <install cmd='"%SOFTWARE%\ebeam\eBeamEducationSuite_pc_%version%.exe" /verysilent' />
+    
+    <upgrade include='install' />
+    <downgrade include='install' />
+    <remove cmd='"%PROGRAMFILES%\Luidia\eBeam Education Suite\unins000.exe" /verysilent' />
+
+</package>
+</packages>

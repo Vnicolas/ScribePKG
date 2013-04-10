@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="Creation_compte_admin_local"
+    name="Création de compte admin local avec définition du mot de passe"
+    revision="10"
+    priority="201"
+    execute="once">
+    
+    <variable name="login" value="adm" />
+    <variable name="pass" value="toto" />
+    
+    <!-- mot de passe n expire jamais pour les nouveaux comptes -->
+    <install cmd='cmd /c net accounts /maxpwage:unlimited' />
+    
+    <!-- création du compte avec mot de passe / mot de passe inchangeable / compte actif -->
+    <install cmd='cmd /c net user %login% %pass% /add' />
+    <install cmd='cmd /c net user %login% /passwordchg:no /active:yes' />
+    
+    <!-- le compte est ajouté au groupe administrateurs -->
+    <install cmd='cmd /c net localgroup administrateurs %login% /add' />
+
+</package>
+</packages>

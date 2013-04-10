@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- OpenSource -->
+<packages>
+<package
+    id="BlueGriffon"
+    name="BlueGriffon - Logiciel WYSIWYG Creation de pages html"
+    revision="%version%.1"
+    reboot="false"
+    priority="25">
+    
+    <variable name="version" value="1.3.1" />   
+    <variable name="PROGRAMFILES" value="%PROGRAMFILES%" architecture="x86"/>
+    <variable name="PROGRAMFILES" value="%PROGRAMFILES(X86)%" architecture="x64"/>
+    
+    <eoledl dl="http://bluegriffon.org/freshmeat/%version%/setup-bluegriffon.exe" destname="bluegriffon/setup-bluegriffon.exe" />
+    <!-- dl=http://bluegriffon.org/freshmeat/%version%/setup-bluegriffon.exe-->
+    <!-- attention supprimer l'ancien exe avant de télécharger avec wpkg-manage -->
+
+    <check type="uninstall" condition="exists" path="BlueGriffon version %version%" />
+
+    <install include="remove" />
+    <install cmd='"%SOFTWARE%\bluegriffon\setup-bluegriffon.exe" /VERYSILENT' />
+    
+    <!-- optimisation du temps d'ouverture en supprimant des paquets de langue -->
+    <install cmd='%COMSPEC% /C MOVE /Y "%PROGRAMFILES%\BlueGriffon\distribution\extensions\langpack-fr@bluegriffon.org.xpi" "%PROGRAMFILES%\BlueGriffon\distribution\langpack-fr@bluegriffon.org.xpi"' />
+    <install cmd='%COMSPEC% /C DEL /F /Q "%PROGRAMFILES%\BlueGriffon\distribution\extensions\langpack*.*"' />
+    <install cmd='%COMSPEC% /C DEL /F /Q "%PROGRAMFILES%\BlueGriffon\distribution\extensions\tipoftheday@bluegriffon.com.xpi"' />
+    <install cmd='%COMSPEC% /C MOVE /Y "%PROGRAMFILES%\BlueGriffon\distribution\langpack-fr@bluegriffon.org.xpi" "%PROGRAMFILES%\BlueGriffon\distribution\extensions\langpack-fr@bluegriffon.org.xpi"' />
+
+    <upgrade include="install" />
+    <downgrade include="install" /> 
+
+    <remove cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\BlueGriffon\unins000.exe" "%PROGRAMFILES%\BlueGriffon\unins000.exe" /VERYSILENT' />
+
+</package>
+</packages>

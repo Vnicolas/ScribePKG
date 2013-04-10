@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- OpenSource -->
+<packages>
+<package
+    id="Tuxpaint"
+    name="TuxPaint et Tampons additionnels - Logiciel de dessins"
+    revision="%version%"
+    reboot="false"
+    priority="1111">
+    
+    <variable name="version" value="0.9.21c" />
+    <variable name="version_stamps" value="2009-06-28" />
+    <variable name="version_dot_stamps" value="2009.06.28" />
+
+    <eoledl dl="http://sourceforge.net/projects/tuxpaint/files/tuxpaint/%version%/tuxpaint-%version%-win32-installer.exe/download" destname="tuxpaint\tuxpaint-%version%-win32-installer.exe" />
+    <eoledl dl="http://sourceforge.net/projects/tuxpaint/files/tuxpaint-stamps/%version_dot_stamps%/tuxpaint-stamps-%version_stamps%-win32-installer.exe/download" destname="tuxpaint\tuxpaint-stamps-%version_stamps%-win32-installer.exe" />
+    
+    <check type="file" condition="exists" path="%PROGRAMFILES%\TuxPaint\tuxpaint.exe" />
+    <check type="logical" condition="and">
+            <check type="uninstall" condition="exists" path="Tux Paint %version%" />
+            <check type="uninstall" condition="exists" path="Tux Paint Stamps %version_stamps%" />
+    </check>
+
+    <install cmd='"%SOFTWARE%\tuxpaint\tuxpaint-%version%-win32-installer.exe" /VERYSILENT' />
+    <install cmd='"%SOFTWARE%\tuxpaint\tuxpaint-stamps-%version_stamps%-win32-installer.exe" /VERYSILENT' />
+
+    <upgrade include="install" />
+    <downgrade include="install" />
+
+    <remove cmd='"%PROGRAMFILES%\TuxPaint\unins000.exe" /VERYSILENT' />
+    <remove cmd='"%PROGRAMFILES%\TuxPaint\unins001.exe" /SILENT' />
+
+</package>
+</packages>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="Sketchup"
+    name="Google SketchUp8"
+    revision="8"
+    reboot="false"
+    priority="10">
+    
+    <check type="uninstall" condition="exists" path="Google SketchUp 8" />
+    
+    <install cmd='msiexec /qn /i %SOFTWARE%\google\sketchup\GoogleSketchUp8.msi' />
+    <upgrade include='install' />
+    <downgrade include='install' />
+
+    <remove cmd='msiexec /qn /x %SOFTWARE%\google\sketchup\GoogleSketchUp8.msi' />
+</package>
+</packages>

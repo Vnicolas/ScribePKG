@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- OpenSource -->
+<packages>
+<package
+    id="GPLGhostScript"
+    name="GPL GhostScript : suite logicielle permettant le traitement des fichiers PostScript et PDF, indispensable a Scribus"
+    revision="%version%"
+    reboot="false"
+    priority="20" >
+
+    <variable name="version" value="9.06" />
+    <variable name="shortversion" value="906" />
+
+    <check architecture="x86" type="file" condition="exists" path="%PROGRAMFILES%\gs\gs%version%\bin\gswin32.exe"/>
+    <check architecture="x64" type="file" condition="exists" path="%PROGRAMFILES% (x86)\gs\gs%version%\bin\gswin32.exe"/>
+    <check architecture="x64" type="file" condition="exists" path="%PROGRAMFILES%\gs\gs%version%\bin\gswin64.exe"/>
+
+    <eoledl dl="http://switch.dl.sourceforge.net/project/ghostscript/GPL%20Ghostscript/%version%/gs%shortversion%w32.exe" destname="ghostscript\" />
+    <eoledl dl="http://switch.dl.sourceforge.net/project/ghostscript/GPL%20Ghostscript/%version%/gs%shortversion%w64.exe" destname="ghostscript\" />
+
+    <install cmd='%SOFTWARE%\ghostscript\gs%shortversion%w32.exe /S' />
+    <install architecture="x64" cmd='%SOFTWARE%\ghostscript\gs%shortversion%w64.exe /S' />
+
+    <!-- Remove the Ghostscript fonts installed separately by versions prior to 8.63 -->
+    <upgrade cmd='%COMSPEC% /c "IF EXIST "%ProgramFiles%\gs\fonts\uninstal.txt" "%PROGRAMFILES%\gs\uninstgs.exe" "%ProgramFiles%\gs\fonts\uninstal.txt"" -q' />
+    <!-- Uninstall Ghostscript 8.54 -->
+    <upgrade cmd='%COMSPEC% /c "IF EXIST "%PROGRAMFILES%\gs\gs8.54\uninstal.txt" "%PROGRAMFILES%\gs\uninstgs.exe" "%PROGRAMFILES%\gs\gs8.54\uninstal.txt"" -q' />
+    <!-- Uninstall Ghostscript 8.61 -->
+    <upgrade cmd='%COMSPEC% /c "IF EXIST "%PROGRAMFILES%\gs\gs8.61\uninstal.txt" "%PROGRAMFILES%\gs\uninstgs.exe" "%PROGRAMFILES%\gs\gs8.61\uninstal.txt"" -q' />
+    <!-- Uninstall Ghostscript 8.63 -->
+    <upgrade cmd='%COMSPEC% /c "IF EXIST "%PROGRAMFILES%\gs\gs8.63\uninstal.txt" "%PROGRAMFILES%\gs\uninstgs.exe" "%PROGRAMFILES%\gs\gs8.63\uninstal.txt"" -q' />
+    <!-- Remove redundant directory structure -->
+    <upgrade cmd='%COMSPEC% /c "IF EXIST "%PROGRAMFILES%\gs\nul.ext" rmdir "%PROGRAMFILES%\gs" /S"' />
+    <!-- Install -->
+    <upgrade include="install" />
+
+    <downgrade include="install" />
+
+    <!-- uninstall 32 on x86 host and 64 on x64 host -->
+    <remove cmd='%PROGRAMFILES%\gs\gs%version%\uninstgs.exe /S _?=%PROGRAMFILES%\gs\gs%version%' />
+    <!-- uninstall 32 on 64 -->
+    <remove architecture="x64" cmd='%PROGRAMFILES% (x86)\gs\gs%version%\uninstgs.exe /S _?=%PROGRAMFILES% (x86)\gs\gs%version%' />
+</package>
+</packages>

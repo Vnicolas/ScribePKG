@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- OpenSource -->
+<packages>
+<package
+    id="Firefox"
+    name="Mozilla Firefox %version%"
+    revision="%version%"
+    reboot="false"
+    priority="10">
+
+    <variable name="version" value="19.0" />
+    <variable architecture="x86" name="progfiles" value="%PROGRAMFILES%" />
+    <variable architecture="x64" name="progfiles" value="%PROGRAMFILES(X86)%" />
+
+    <!-- http://www.mozilla.org/en-US/firefox/all.html -->
+    <eoledl dl="http://download.mozilla.org/?product=firefox-%version%&amp;os=win&amp;lang=fr" destname="firefox/Firefox Setup %version%.exe" />
+
+    <check type="uninstall" condition="exists" path="Mozilla Firefox %version% (x86 fr)" />
+    <check type="file" condition="exists" path="%progfiles%\Mozilla Firefox\firefox.exe" />
+
+    <install cmd="taskkill /F /IM Firefox.exe">
+        <exit code="any" />
+    </install>
+    <install cmd='"%SOFTWARE%\firefox\Firefox Setup %version%.exe" -ms' />
+
+    <downgrade include="install" />
+    <upgrade include="install" />
+
+    <remove cmd="taskkill /F /IM Firefox.exe">
+        <exit code="any" />
+    </remove>
+    <remove timeout="300" cmd='"%progfiles%\Mozilla Firefox\uninstall\helper.exe" /S' />
+</package>
+</packages>

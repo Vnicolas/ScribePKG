@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- OpenSource -->
+
+<packages>
+<package id="Didapages" 
+    name="Didapages : Logiciel de creation de livres interactifs" 
+    revision="%version_point%"
+    priority="10" 
+    reboot="false" >
+    
+    <variable name="version" value="1-2" />
+    <variable name="version_point" value="1.2" />
+    
+    <!-- attention desinstallation impossible pour ce logiciel -->
+    <!-- http://www.didasystem.com/fichiers/dida1/telecharger/Didapages-1-2.zip -->
+    <eoledl dl="http://www.didasystem.com/fichiers/dida1/telecharger/Didapages-1-2.zip" destname="Didapages\Didapages-1-2.zip" unzip="1" />
+    
+    <check type="uninstall" condition="exists" path="Didapages %version_point%" />
+    
+    <install cmd="%SOFTWARE%\Didapages\Didapages-%version%-install.exe /S" />
+    
+    <upgrade cmd="%SOFTWARE%\Didapages\Didapages-%version%-install.exe /S" />
+    
+    <remove cmd="%PROGRAMFILES%\Didapages\uninst.exe /S" />
+     
+</package>
+</packages>

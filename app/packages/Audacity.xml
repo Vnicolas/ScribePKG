@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- OpenSource -->
+<packages>
+<package
+    id="Audacity"
+    name="Audacity + Lame"
+    revision="%version%"
+    reboot="false"
+    priority="0">
+    <variable name="version" value="2.0.3" />
+    <variable name="lame_version" value="3.99.3" />
+
+    <variable name="PROGRAMFILES" value="%PROGRAMFILES%" architecture="x86"/>
+    <variable name="PROGRAMFILES" value="%PROGRAMFILES(X86)%" architecture="x64"/>
+
+    <eoledl dl="http://audacity.googlecode.com/files/audacity-win-%version%.exe" destname="audacity/audacity-win-%version%.exe" />
+    <eoledl dl="http://lame1.buanzo.com.ar/Lame_v%lame_version%_for_Windows.exe" destname="audacity/Lame_v%lame_version%_for_Windows.exe" />
+
+    <check type="uninstall" condition="exists" path="Audacity %version%" />
+    <check type="uninstall" condition="exists" path="LAME v%lame_version%.*" />
+    <check type="file" condition="exists" path="%PROGRAMFILES%\Audacity\audacity.exe" />
+    <check type="file" condition="exists" path="%PROGRAMFILES%\Lame For Audacity\lame.exe" />
+
+    <install cmd='%SOFTWARE%\audacity\audacity-win-%version%.exe /sp- /silent /norestart' />
+    <install cmd='%SOFTWARE%\audacity\Lame_v%lame_version%_for_Windows.exe /sp- /verysilent /norestart' />
+
+    <upgrade include="install" />
+
+    <downgrade include="install" />
+
+    <remove timeout="300" cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\Audacity\unins000.exe %PROGRAMFILES%\Audacity\unins000.exe /verysilent' />
+    <remove timeout="300" cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\Lame for Audacity\unins000.exe %PROGRAMFILES%\Lame for Audacity\unins000.exe /verysilent' />
+    <remove cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\Audacity" rmdir /S /Q "%PROGRAMFILES%\Audacity"'/>
+    <remove cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\Lame for Audacity" rmdir /S /Q "%PROGRAMFILES%\Lame for Audacity"'/>
+</package>
+</packages>

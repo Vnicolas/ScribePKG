@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="XnView"
+    name="XnView : Logiciel de Gestion d'images"
+    revision="%version%.3"
+    reboot="false"
+    priority="10">
+    
+    <variable name="version" value="1.99.5" />
+    
+    <variable name="PKG_DESTINATION" value="%ProgramFiles%\XnView"      architecture="x86"/>
+    
+    <variable name="PKG_DESTINATION" value="%ProgramFiles(x86)%\XnView" architecture="x64"/>
+    
+    <check type="uninstall" condition="exists" path="XnView %version%" />
+    
+    <!-- dl=http://download.xnview.com/XnView-win.exe -->
+    <eoledl dl="http://download.xnview.com/XnView-win.exe" destname="XnView\XnView-win.exe" />
+    
+    <install cmd='%SOFTWARE%\xnview\xnview-win.exe /norestart /verysilent' />
+    
+    <upgrade include='install' />
+    <downgrade include='install' />
+    
+    <remove cmd='%ComSpec% /c if exist "%PKG_DESTINATION%\unins000.exe" "%PKG_DESTINATION%\unins000.exe /verysilent"' >
+        <exit code="1" reboot="false"/>
+    </remove>
+    <remove cmd='%ComSpec% /c if exist "%PKG_DESTINATION%" del /Q "%PKG_DESTINATION%"' />
+</package>
+</packages>
