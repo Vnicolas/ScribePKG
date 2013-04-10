@@ -1,10 +1,3 @@
-from xml.etree.ElementTree import ElementTree
-tree = ElementTree(file=open("grp_eole/_ListeUtilisateurs.xml"))
-root = tree.getroot()
-for GU in root.getiterator('GU'):
-	nom = GU.get('nom')
-	print nom
-
 def get_group():
 	grps=[]
 	from xml.etree.ElementTree import ElementTree
@@ -14,6 +7,17 @@ def get_group():
 		grp = GM.get('nom')
 		print  grp
 		grps.append(grp)
-
 	return grps
+
+
+
+def get_softwares():
+	import glob, re
+	softs = glob.glob('softwares/*')
+	for i in softs:
+		soft = re.sub(r'^.*/', "", i)
+		print soft "Probleme de boucle infinie"
+		softs.append(soft)
+	return soft
+
 

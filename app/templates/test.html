@@ -1,8 +1,14 @@
 {% extends "layout.html" %}
 {% block content %}
-<ul>
+<select multiple="multiple" size="25" id="ListeElement">
         {% for grp in grps %}
-        <li>{{ grp }}</li>
+        <option value="">{{ grp }}</option>
         {% endfor %}
-    </ul>
+</select>
+<select multiple="multiple" size="25" id="ListeElement">
+        {% for soft in softs %}
+        <option value="">{{ soft }}</option>
+        {% endfor %}
+</select>
+
 {% endblock %}
