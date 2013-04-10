@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- OpenSource -->
+<packages>
+<package
+    id="client_scribe"
+    name="Client Scribe"
+    revision="%version%"
+    reboot="true"
+    priority="0">
+
+    <variable name="version" value="2.3.0.12" />
+    <eoledl dl="http://localhost:8790/cliscribe-setup.exe" destname="eole\cliscribe-setup.exe" />
+    <eoledl dl="http://localhost:8790/install.ini" destname="eole\install.ini" />
+
+    <!--
+     ATTENTION !!!
+     Il faut copier le fichier "install.ini" à côté du fichier "%SOFTWARE%\eole\cliscribe-setup.exe"
+    -->
+
+    <!-- <check type="file" condition="versionequalto" path="%WINDIR%\Eole\cliscribe\confservscribe.exe" value="%version%" /> -->
+    <check type="uninstall" condition="versionequalto"      path="Client Scribe-2.2/2.3.*"    value="%version%" />
+    <check type="file" condition="exists" path="%WINDIR%\Eole\cliscribe\servscribe.exe" />
+
+    <install cmd='"%SOFTWARE%\eole\cliscribe-setup.exe" /SILENT /NORESTART'/>
+    <install cmd='%COMSPEC% /c copy /Y "%SOFTWARE%\eole\install.ini" "%WINDIR%\Eole\"'/>
+    <upgrade include='install' />
+    <remove timeout="300" cmd='%COMSPEC% /c IF EXIST "%WINDIR%\Eole\unins003.dat" "%WINDIR%\Eole\unins003.exe" /VERYSILENT' />
+    <remove timeout="300" cmd='%COMSPEC% /c IF EXIST "%WINDIR%\Eole\unins002.dat" "%WINDIR%\Eole\unins002.exe" /VERYSILENT' />
+    <remove timeout="300" cmd='%COMSPEC% /c IF EXIST "%WINDIR%\Eole\unins001.dat" "%WINDIR%\Eole\unins001.exe" /VERYSILENT' />
+    <remove timeout="300" cmd='%COMSPEC% /c IF EXIST "%WINDIR%\Eole\unins000.dat" "%WINDIR%\Eole\unins000.exe" /VERYSILENT' />
+
+</package>
+</packages>

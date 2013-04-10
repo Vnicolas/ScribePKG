@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="DvdShrink"
+    name="DvdShrink - Logiciel de compression DVD..."
+    revision="%version%.2"
+    reboot="false"
+    priority="11">
+    
+    <variable name="version" value="3.2.0.16" />
+    <variable name="version_court" value="3.2" />
+    
+    <!-- http://www.clubic.com/telecharger-fiche11021-dvdshrink.html -->
+    
+    <check type="uninstall" condition="exists" path="DVD Shrink %version_court%" />
+    
+    <install cmd='"%SOFTWARE%\dvdshrink\dvdshrink32setup_FR.exe" /VERYSILENT' />
+    
+    <upgrade include="install" />
+    
+    <remove cmd='"%PROGRAMFILES%\DVD Shrink\unins000.exe" /VERYSILENT' />
+</package>
+</packages>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="Chroma"
+    name="Chroma : Logiciel traitant de colorimetrie"
+    revision="%version%"
+    reboot="false"
+    priority="2">
+    
+    <variable name="version" value="3.6.2" />
+    <variable name="version_court" value="3.6" />
+    
+    <!-- Plus d'infos http://www.sciences-edu.net/physique/chroma/chroma.htm -->
+    <!-- dl=http://www.sciences-edu.net/physique/chroma/setup_chroma.exe -->
+    <eoledl dl="http://www.sciences-edu.net/physique/chroma/setup_chroma.exe" destname="chroma\setup_chroma-%version%.exe" />
+    
+    <check type="uninstall" condition="exists" path="Chroma v.%version_court%" />
+    
+    <install cmd='%SOFTWARE%\chroma\setup_chroma-%version%.exe /verysilent' />
+    <install cmd="regsvr32 /s %SYSTEMROOT%\system32\SYSINFO.OCX"/>
+    <install cmd="regsvr32 /s %SYSTEMROOT%\system32\comctl32.ocx"/>
+    
+    <!-- <install cmd="regsvr32 /s %SYSTEMROOT%\system32\mscomct2.OCX"/> -->
+    
+    <upgrade cmd='%SOFTWARE%\chroma\setup_chroma-%version%.exe /verysilent' />
+    <upgrade cmd="regsvr32 /s %SYSTEMROOT%\system32\SYSINFO.OCX"/>
+    <upgrade cmd="regsvr32 /s %SYSTEMROOT%\system32\comctl32.ocx"/>
+    <!-- ajout du exit code 1 car cela fonctionne mais windows met ce message -->
+    <remove cmd='"%ProgramFiles%\Serge_LAGIER\Chroma\unins000.exe" /verysilent' ><exit code='1' /></remove>
+    <remove cmd='%ComSpec% /c if exist "%PROGRAMFILES%\Serge_LAGIER\Chroma" rmdir /S /Q "%PROGRAMFILES%\Serge_LAGIER\Chroma"' />
+</package>
+</packages>

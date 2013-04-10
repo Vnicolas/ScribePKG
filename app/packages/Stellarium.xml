@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package 
+    id="Stellarium"
+    name="Stellarium : Planetarium 3D open-source"
+    revision="%version%"
+    priority="0"
+    reboot="false">
+    
+    <!-- dl=http://sourceforge.net/projects/stellarium/files/Stellarium-win32/%version%/stellarium-%version%-win32.exe/download--> 
+    
+    <variable name="version" value="0.11.4" />
+    <!-- declaration des variables generales - merci se3 -->
+    <variable name="PROGRAMFILES" value="%PROGRAMFILES%" architecture="x86"/>
+    <variable name="PROGRAMFILES" value="%PROGRAMFILES(X86)%" architecture="x64"/>
+    <variable name="ComSpec" value="%SystemRoot%\System32\cmd.exe" architecture="x86"/>
+    <variable name="ComSpec" value="%SystemRoot%\SysWOW64\cmd.exe" architecture="x64"/>
+    
+    
+    <check type="uninstall" condition="exists" path="Stellarium %version%"/>
+    
+    <install cmd="%SOFTWARE%\Stellarium\stellarium-%version%-win32.exe /VERYSILENT"/>
+    
+    <upgrade include='install'/>
+    <downgrade include='install'/>
+    
+    <remove cmd="%ProgramFiles%\Stellarium\unins000.exe /VERYSILENT"/>
+</package>
+</packages>

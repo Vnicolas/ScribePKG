@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="Marble"
+    name="Marble : Globe Virtuel et Atlas Mondial Open-Source"
+    revision="%version%.2"
+    reboot="false"
+    priority="50"> 
+    
+    <variable name="version" value="1.4.1" /> 
+    
+    <check type="file" condition="sizeequals" path="%PROGRAMFILES%\Marble\marble.exe" value="511488" />
+    
+    <!--  dl=http://files.kde.org/marble/downloads/windows/marble-setup-%version%.exe --> 
+    <eoledl dl="http://files.kde.org/marble/downloads/windows/marble-setup-%version%.exe" destname="marble\marble-setup-%version%.exe" />
+    
+    <install cmd='%SOFTWARE%\marble\unattended.cmd'/>
+    
+    <upgrade cmd='%SOFTWARE%\marble\unattended.cmd'/>
+    
+    <remove cmd='%SOFTWARE%\marble\unattended-uninstall.cmd'/>
+</package>
+</packages>

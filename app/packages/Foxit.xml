@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- FreeWare -->
+<packages>
+<package
+    id="foxit-reader"
+    name="Foxit Reader"
+    revision="%version%"
+    reboot="false"
+    priority="0">
+
+    <variable name="version" value="5.4.5.0114" />
+    <variable name="short_version" value="545.0114" />
+    <variable name="major_version" value="5.4" />
+    <!-- pour désactiver la vue dans le navigateur et obliger le télécahrgement du fichier, passer les deux options suivantes à "0"-->
+    <variable name="DISPLAYINBROWSER" value="1" />
+    <variable name="VIEWINBROWSER" value="1" />
+
+    <eoledl dl="http://cdn04.foxitsoftware.com/pub/foxit/reader/desktop/win/5.x/%major_version%/enu/EnterpriseFoxitReader%short_version%_enu.msi" destname="foxit/EnterpriseFoxitReader%short_version%_enu.msi" />
+    
+    <check type="logical" condition="or">
+        <check type='file' condition='versiongreaterorequal' path='%PROGRAMFILES%\Foxit Software\Foxit Reader\Foxit Reader.exe' value='%version%' />
+        <check type='file' condition='versiongreaterorequal' path='%PROGRAMFILES(x86)%\Foxit Software\Foxit Reader\Foxit Reader.exe' value='%version%' />
+    </check>
+
+    <install cmd='%COMSPEC% /c if exist "%PROGRAMFILES%\Foxit Software\Foxit Reader\unins000.exe" "%PROGRAMFILES%\Foxit Software\Foxit Reader\unins000.exe" /SILENT' />
+    <install cmd='msiexec /i "%SOFTWARE%\foxit\EnterpriseFoxitReader%short_version%_enu.msi" DISPLAYINBROWSER="%DISPLAYINBROWSER%" VIEWINBROWSER="%VIEWINBROWSER%" /qn /norestart' />
+
+    <downgrade include="install" />
+    <upgrade include="install" />
+
+    <remove cmd='msiexec /x "%SOFTWARE%\foxit\EnterpriseFoxitReader%short_version%_enu.msi" /passive /norestart' >
+        <exit code="any" />
+    </remove>
+</package>
+</packages>

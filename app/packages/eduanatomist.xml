@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package 
+    id="eduanatomist"
+    name="EduAnatomist : logiciel de visualisation d images cerebrales "
+    revision="%version%.1"
+    reboot="false"
+    priority="100">
+    
+    <variable name="version" value="1.1.3" />
+    <variable name="version2" value="1_1_3" />
+    
+    <!-- dl=http://acces.inrp.fr/logiciels/EduAnatomist/EduAnaInstall_1_1_3.exe -->
+    
+    <!-- declaration des variables generales - merci se3 -->
+    <variable name="PROGRAMFILES" value="%PROGRAMFILES%" architecture="x86"/>
+    <variable name="PROGRAMFILES" value="%PROGRAMFILES(X86)%" architecture="x64"/>
+    <variable name="ComSpec" value="%SystemRoot%\System32\cmd.exe" architecture="x86"/>
+    <variable name="ComSpec" value="%SystemRoot%\SysWOW64\cmd.exe" architecture="x64"/>
+    
+    <check type="uninstall" condition="exists" path="EduAnatomist version %version%" />
+    
+    <install cmd='"%SOFTWARE%\svt\eduanatomist\EduAnaInstall_%version2%.exe" /VERYSILENT' />
+    
+    <upgrade include='install' />
+    
+    <remove cmd='"%PROGRAMFILES%\EduAnatomist\unins000.exe" /verysilent' />
+    <remove cmd='%ComSpec% /C if exist "%PROGRAMFILES%\EduAnatomist" rd /S /Q "%PROGRAMFILES%\EduAnatomist"' />
+</package>
+</packages>

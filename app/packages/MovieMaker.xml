@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="MovieMaker"
+    name="Movie Maker"
+    revision="%version%"
+    reboot="false"
+    priority="1" >
+    
+    <variable name="version" value="2.24.8a" />
+    <variable name="version_long" value="2.24.8-2011-12-03a" />
+    
+    <eoledl dl="http://download.microsoft.com/download/2/e/3/2e33cda0-9eea-4308-b5a6-2e31abad6523/MM26_FR.msi" destname="microsoft\MM26_FR.msi" />
+    
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\GTK2-Runtime\bin\libgtk-win32-2.0-0.dll" value="%version%"/>
+    
+    <install cmd='msiexec /qn /norestart /i "%SOFTWARE%\microsoft\MM26_FR.msi"' />
+    <upgrade cmd='msiexec /qn /norestart /i "%SOFTWARE%\microsoft\MM26_FR.msi"' />
+    <remove cmd='msiexec /passive /norestart /x {XXXXXXXXXXXXXXX}' />
+</package>
+</packages>

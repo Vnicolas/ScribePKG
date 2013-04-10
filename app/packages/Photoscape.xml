@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Freeware -->
+<packages>
+<package
+    id="photoscape"
+    name="Photoscape"
+    revision="%version%"
+    reboot="false"
+    priority="0">
+
+    <variable name="version" value="3.6.2" />
+    <variable name="fileversion" value="1.0.0.1298" />
+    <variable architecture="x86" name="progfiles" value="%PROGRAMFILES%" />
+    <variable architecture="x64" name="progfiles" value="%PROGRAMFILES(X86)%" />
+    
+    <eoledl dl="http://lfiles3.brothersoft.com/photo_image/digital_photo_tools/PhotoScape_V%version%.exe" destname="photoscape/PhotoScape_V%version%.exe" />
+
+    <check type="file" condition="versionequalto" path="%progfiles%\PhotoScape\PhotoScape.exe" value="%fileversion%" />
+    
+    <install cmd='"%SOFTWARE%\photoscape\PhotoScape_V%version%.exe" /S'/>
+    <upgrade cmd='"%SOFTWARE%\photoscape\PhotoScape_V%version%.exe" /S'/>
+    <remove cmd='"%progfiles%\PhotoScape\uninstall.exe" /S' />
+</package>
+</packages>

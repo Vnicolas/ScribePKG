@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="Geogebra"
+    name="GeoGebra : logiciel de geometrie dynamique"
+    revision="%version%.1"
+    reboot="false"
+    priority="100">
+    
+    <variable name="version" value="4.2.4.0" />
+    <variable name="versionexe" value="4-2-4-0" />
+    
+    <depends package-id="Java" />
+    
+    <!-- dl=http://geogebra.googlecode.com/files/GeoGebra-Windows-Installer-%versionexe%.msi -->
+    <eoledl dl="http://geogebra.googlecode.com/files/GeoGebra-Windows-Installer-%versionexe%.msi" destname="math\geogebra\GeoGebra-Windows-Installer-%versionexe%.msi" />
+    
+    <variable name="PROGRAMFILES" value="%PROGRAMFILES%" architecture="x86"/>
+    <variable name="PROGRAMFILES" value="%PROGRAMFILES(X86)%" architecture="x64"/>
+    <variable name="BDR" value="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" architecture="x86"/>
+    <variable name="BDR" value="HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall" architecture="x64"/>
+    
+    <check type="registry" condition="equals" path="%BDR%\{D44FFF47-306C-4198-9899-832C1DAA4566}\DisplayVersion" value="%version%" />
+    
+    <!-- menage ancienne version 3.0 si elle existe -->
+    <install cmd='%COMSPEC% /C if exist "%ProgramFiles%\GeoGebra\uninstaller.exe" "%ProgramFiles%\GeoGebra\uninstaller.exe" /S' />
+    <!-- desinstallation de la precedente version (4.0), sinon msi error 1638 avec sortie 1605 si la version n existe pas -->
+    <install cmd='MsiExec.exe /passive /X {D44FFF47-306C-4198-9899-832C1DAA4566}' ><exit code='0' /><exit code='1605' /></install>
+    <!-- installation silencieuse -->
+    
+    <install cmd='msiexec /qn /i "%SOFTWARE%\math\geogebra\GeoGebra-Windows-Installer-%versionexe%.msi" ' />
+    <!-- suppression d'une possible mise a jour -->
+    <install architecture="x86" cmd='reg add "HKEY_LOCAL_MACHINE\SOFTWARE\JavaSoft\Prefs\geogebra" /v "version_check_allow" /d "false" /t REG_SZ /f' /> 
+    <install architecture="x64" cmd='reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\JavaSoft\Prefs\geogebra" /v "version_check_allow" /d "false" /t REG_SZ /f' /> 
+    
+    <upgrade include="install" />
+    
+    <!-- desinstallation version 4.2 -->
+    <remove cmd='MsiExec.exe /passive /X {D44FFF47-306C-4198-9899-832C1DAA4566}' />
+    <remove architecture="x86" cmd='reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\JavaSoft\Prefs\geogebra" /f' /> 
+    <remove architecture="x64" cmd='reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\JavaSoft\Prefs\geogebra" /f' /> 
+</package>
+</packages>

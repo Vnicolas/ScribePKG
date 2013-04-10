@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="uphclean"
+    name="User Profile Hive Cleanup Service 1.6g : Service qui aide a la fermeture de session lente et des problèmes de profil."
+    revision="%version%"
+    reboot="false"
+    priority="0">
+
+    <variable name="version" value="1.6.7.5" />
+
+    <eoledl dl="http://www.microsoft.com/downloads/info.aspx?na=46&amp;SrcFamilyId=1B286E6D-8912-4E18-B570-42470E2F3582&amp;SrcDisplayLang=fr&amp;u=http%3a%2f%2fdownload.microsoft.com%2fdownload%2f1%2fa%2f0%2f1a079ef1-a6e2-489c-b58f-a58f05870fcd%2fUPHClean-Setup.msi" destname="microsoft/UPHClean-Setup.msi" />
+
+    <check type="file" condition="versionequalto" path="%PROGRAMFILES%\UPHClean\uphclean.exe" value="1.6.36.0" />
+
+    <install cmd='msiexec /i "%SOFTWARE%\UPHClean-Setup.msi" /qn /norestart' />
+
+    <upgrade include="install" />
+    <downgrade include="install" />
+ 
+    <remove cmd='msiexec /x {71CFCDA8-ADDC-4B86-80CC-CEC4A9FB2BB1} /passive /norestart' />
+
+</package>
+</packages>

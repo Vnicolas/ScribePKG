@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="Risbee" 
+    name="Risbee - Programmation graphique de robots" 
+    revision="%version%.1"
+    priority="10" 
+    reboot="false" >
+    
+    <!-- dl=http://www.pob-technology.com/upload/softwares/risbee-%version%-setup.exe -->
+    <eoledl dl="http://www.pob-technology.com/upload/softwares/risbee-%version%-setup.exe" destname="risbee\risbee-%version%-setup.exe" />
+    
+    <!-- pour un upgrade, il faut modifier aussi une ligne dans unattended.com -->
+    
+    <variable name="version" value="3.1.1" />
+    
+    <check type="uninstall" condition="exists" path="Risbee" />
+    
+    <install cmd='%SOFTWARE%\risbee\unattended.cmd' /> 
+    
+    <upgrade cmd='%SOFTWARE%\risbee\unattended.cmd' /> 
+    
+    <remove cmd='%SOFTWARE%\risbee\unattended-uninstall.cmd' />
+</package>
+</packages>

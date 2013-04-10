@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+    <package
+        id="libreoffice-help-pack35"
+        name="LibreOffice 3.5 Help Pack"
+        revision="%version_long%"
+        reboot="false"
+        priority="3">
+        <depends package-id="libreoffice35"/>
+        <variable name="version_long" value="3.5.7" />
+        <variable name="version" value="3.5" />
+        <variable name="version_short" value="35" />
+        <check type="uninstall" condition="exists" path="LibreOffice %version% Help Pack (French)" />
+        <eoledl dl="http://download.documentfoundation.org/libreoffice/old/%version_long%/win/x86/LibO_%version_long%_Win_x86_helppack_fr.msi" destname="libreoffice/LibO_%version_long%_Win_x86_helppack_fr.msi" />
+        <install cmd='msiexec /qn /package "%SOFTWARE%\libreoffice\LibO_%version_long%_Win_x86_helppack_fr.msi"'/>
+        <downgrade cmd='msiexec /qn /package "%SOFTWARE%\libreoffice\LibO_%version_long%_Win_x86_helppack_fr.msi"'/>
+        <upgrade cmd='msiexec /qn /package "%SOFTWARE%\libreoffice\LibO_%version_long%_Win_x86_helppack_fr.msi"'/>
+        <!-- 'msiexec /qn /X "%SOFTWARE%\libreoffice\LibO_%version_long%_Win_x86_install_multi.msi"' -->
+        <remove cmd='msiexec /qn /x "%SOFTWARE%\libreoffice\LibO_%version_long%_Win_x86_helppack_fr.msi"'/>
+        <!-- <remove cmd='msiexec /qn /uninstall {BB21B808-F784-4883-A4D4-B1473384C1C6}'/> -->
+    </package>
+</packages>

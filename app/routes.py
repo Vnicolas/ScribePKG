@@ -22,9 +22,9 @@ def home():
 
 @app.route('/test')
 def test():
-	softs = function.get_softwares()
+	packs = function.get_packages()
 	grps = function.get_group()
-	return render_template('test.html', grps=grps, softs=softs)
+	return render_template('test.html', grps=grps, packs=packs)
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', debug=True)

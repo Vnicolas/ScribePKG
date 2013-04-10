@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="Java" name="Java Runtime Environnement 6 : ensemble d outils permettant l execution de programmes Java" revision="%version%.1" reboot="false" priority="201" >
+    
+    <variable name="version" value="38" />
+    <!-- declaration des variables generales - merci se3 -->
+    <variable name="PROGRAMFILES" value="%PROGRAMFILES%" architecture="x86"/>
+    <variable name="PROGRAMFILES" value="%PROGRAMFILES(X86)%" architecture="x64"/>
+    <variable name="ComSpec" value="%SystemRoot%\System32\cmd.exe" architecture="x86"/>
+    <variable name="ComSpec" value="%SystemRoot%\SysWOW64\cmd.exe" architecture="x64"/>
+    
+    <!-- suite message liste wpkg_users ajout d un check -->
+    <check type="file" condition="exists" path="%programfiles%\Java\jre6\lib\rt.jar" />
+    <check type="uninstall" condition="exists" path="Java(TM) 6 Update %version%" />
+    
+    <!-- u38 : http://javadl.sun.com/webapps/download/AutoDL?BundleId=71310 -->
+    
+    <!-- pour mettre à jour, modifier la valeur de la variable version ET ajouter une ligne aux install en ajoutant le numéro de version précedent {26A24AE4-039D-4CA4-87B4-2F832160%VERSION-1%FF} -->
+    
+    <!-- prise en compte des versions precedentes -->
+    <!-- supprimer uniquement les versions qui sont sur vos postes de travail - dans le doute, laissez tout -->
+    
+    <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216030FF}'><exit code='0' /><exit code='1605' /></install> <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216031FF}'><exit code='0' /><exit code='1605' /></install> <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216035FF}'><exit code='0' /><exit code='1605' /></install> <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216037FF}'><exit code='0' /><exit code='1605' /></install>
+    
+    <!-- suppression de la version que l on essaie d installer conseil de la liste wpkg -->
+    <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F832160%version%FF}'><exit code='0' /><exit code='1605' /></install>
+    
+    <!-- suppression du processus Java -->
+    <install cmd='taskkill /f /im jqs.exe /im iexplore.exe /im firefox.exe'><exit code='0' /><exit code='1' /><exit code='128' /></install>
+    
+    <!-- installation de la derniere version -->
+    <install cmd='%SOFTWARE%\jre\jre-6u%version%-windows-i586.exe /s REBOOT=Suppress' />
+    <!-- suppression du Java Quick Start sur 32 puis 64 bits -->
+    <install cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\Java\jre6\bin\jqs.exe" "%PROGRAMFILES%\Java\jre6\bin\jqs.exe" -unregister'>
+    <exit code='1' />
+    </install>
+    
+    <!-- Suppression du paquet qui propose les mises a jours -->
+    <install cmd='msiexec /qn /x {4A03706F-666A-4037-7777-5F2748764D10}' > <exit code='0' /> <exit code='1605' /> <exit code='1327' /> </install> 
+    <upgrade include="install" />
+    <remove cmd='msiexec /qn /x {26A24AE4-039D-4CA4-87B4-2F832160%version%FF}' />
+</package>
+</packages>

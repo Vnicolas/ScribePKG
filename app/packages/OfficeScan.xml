@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="OfficeScan"
+    name="Trend OfficeScan 10.5 : client antivirus"
+    revision="1"
+    reboot="false"
+    priority="10">
+
+    <variable name="PROGRAMFILES" value="%PROGRAMFILES%" architecture="x86"/>
+    <variable name="PROGRAMFILES" value="%PROGRAMFILES(X86)%" architecture="x64"/>
+
+    <check type="uninstall" condition="exists" path="Trend Micro OfficeScan Client" />
+
+    <install cmd='msiexec /norestart /i "%SOFTWARE%\antivirus\client_officescan.msi" /q' />
+
+    <upgrade include='remove' />
+    <upgrade include='install' />
+
+    <!-- modifier le mot de passe de désinstallation ci-dessous  -->
+    <remove cmd='msiexec /qn /x {ECEA7878-2100-4525-915D-B09174E36971} uninstall_password=monpass' />
+    
+</package>
+</packages>

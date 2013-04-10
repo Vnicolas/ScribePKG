@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="OpenERP"
+    name="OpenERP Client"
+    revision="%version%.1"
+    reboot="false"
+    priority="10"> 
+    
+    <variable name="version" value="6.1" />
+    
+    <!-- declaration des variables generales - merci se3 -->
+    <variable name="PROGRAMFILES" value="%PROGRAMFILES%" architecture="x86"/>
+    <variable name="PROGRAMFILES" value="%PROGRAMFILES(X86)%" architecture="x64"/>
+    <variable name="ComSpec" value="%SystemRoot%\System32\cmd.exe" architecture="x86"/>
+    <variable name="ComSpec" value="%SystemRoot%\SysWOW64\cmd.exe" architecture="x64"/>
+    <variable name="CommonFiles" value="%PROGRAMFILES%\Fichiers communs" architecture="x86"/>
+    <variable name="CommonFiles" value="%PROGRAMFILES%\Common Files" architecture="x64"/>
+    
+    <!-- A telecharger la http://www.openerp.com/downloads/contact?param=stable/win32/openerp-client-6.1-1.exe --> 
+    <eoledl dl="http://www.openerp.com/downloads/contact?param=stable/win32/openerp-client-%version%-1.exe" destname="openerp/openerp-client-%version%-1.exe" />
+    
+    <check type="uninstall" condition="exists" path="OpenERP GTK Client %version%" />
+    
+    
+    <install cmd='%SOFTWARE%\openerp\unattended.cmd'/>
+    
+    <upgrade include='install' />
+    
+    <remove cmd='%SOFTWARE%\openerp\unattended-uninstall.cmd'/>
+</package>
+</packages>

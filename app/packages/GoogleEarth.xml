@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="GoogleEarth"
+    name="Google Earth permet une visualisation de la Terre en 3d"
+    revision="%version%"
+    reboot="false"
+    priority="10">
+    
+    <!-- Suivre la procedure se trouvant sur http://rezotice.ac-lyon.fr/fluxbb/ -->
+    <variable name="version" value="7.0.1.8244" />  
+    <variable name="PROGRAMFILES" value="%PROGRAMFILES%" architecture="x86"/>
+    <variable name="PROGRAMFILES" value="%PROGRAMFILES(X86)%" architecture="x64"/>
+
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\Google\Google Earth\client\googleearth.exe" value="%version%" />
+
+    <install cmd='%COMSPEC% /C "md %SystemDrive%\netinst\logs\"' >  <!-- installation echoue si le dossier n existe pas -->
+            <exit code="0" />
+            <exit code="1" />  <!-- dossier existe deja -->
+    </install>
+    <install include="remove" />
+    <install cmd='msiexec /qb /l* %SystemDrive%\netinst\logs\googleearth.txt /i "%SOFTWARE%\google\googleearth\Google Earth.msi" ALLUSERS=1' />
+
+    <upgrade include="remove" />
+    <upgrade include="install" />
+    
+    <!-- on enleve les version precedentes : 4.1 / 4.2.198.245 / 4.2.205.5730 / 4.3.7284.3916 / 5.0.11337.1968 / 5.1.3509.4636 et 6.2.1.6014 -->
+    <!-- Merci a SE3 :) -->     
+    <!--  Pour les autres version, il faut trouver le productCode dans le fichier setup.ini dispo a cote du .msi -->
+
+    <remove cmd="msiexec.exe /norestart /qn /x {407B9B5C-DAC5-4F44-A756-B57CAB4E6A8B}"><exit code="0" /><exit code="1605" /></remove>
+    <remove cmd="msiexec.exe /norestart /qn /x {1E04F83B-2AB9-4301-9EF7-E86307F79C72}"><exit code="0" /><exit code="1605" /></remove>
+    <remove cmd="msiexec.exe /norestart /qn /x {1D14373E-7970-4F2F-A467-ACA4F0EA21E3}"><exit code="0" /><exit code="1605" /></remove>
+    <remove cmd="msiexec.exe /norestart /qn /x {548EAC70-EE00-11DD-908C-005056806466}"><exit code="0" /><exit code="1605" /></remove>
+    <remove cmd="msiexec.exe /norestart /qn /x {3A05B900-A3E7-11DE-A9B7-005056806466}"><exit code="0" /><exit code="1605" /></remove>
+    <remove cmd='msiexec.exe /norestart /qn /x {7A25D130-4EC8-11E1-BEA4-B8AC6F97B88E}'><exit code="0" /><exit code="1605" /></remove>
+    <!-- desinstallation de la version en cours --> 
+    <remove cmd='msiexec.exe /norestart /qn /x {3E8A20E1-223F-11E2-9116-B8AC6F98CCE3}'><exit code="0" /><exit code="1605" /></remove>
+    
+</package>
+</packages>
+

@@ -11,13 +11,16 @@ def get_group():
 
 
 
-def get_softwares():
-	import glob, re
-	softs = glob.glob('softwares/*')
-	for i in softs:
-		soft = re.sub(r'^.*/', "", i)
-		print soft "Probleme de boucle infinie"
-		softs.append(soft)
-	return soft
+def get_packages():
+	packs=[]
+	import glob, os
+	pack = glob.glob('packages/*.xml')
+	for i in pack:
+		os.path.split(i)
+		(filepath, filename) = os.path.split(i)
+		(shortname, extension) = os.path.splitext(filename)
+		print shortname 
+		packs.append(shortname)
+	return packs
 
 

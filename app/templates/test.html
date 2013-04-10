@@ -1,14 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
+<div class="jumbo">
 <select multiple="multiple" size="25" id="ListeElement">
         {% for grp in grps %}
         <option value="">{{ grp }}</option>
         {% endfor %}
 </select>
-<select multiple="multiple" size="25" id="ListeElement">
-        {% for soft in softs %}
-        <option value="">{{ soft }}</option>
+<div style="height:401px;display:inline-block;overflow:auto">
+        {% for shortname in packs %}
+        <input type="checkbox">{{ shortname }}<br>
         {% endfor %}
-</select>
+        </div>
+    </div>
+
 
 {% endblock %}

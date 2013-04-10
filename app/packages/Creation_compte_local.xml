@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="Creation_compte_local"
+    name="Création de compte local avec définition du mot de passe"
+    revision="1"
+    priority="210"
+    execute="once">
+    
+    <variable name="login" value="prof" />
+    <variable name="pass" value="prof" />
+    
+    <!-- création du compte défini au dessus avec mot de passe defini au dessus -->    
+    <install cmd='cmd /c net user %login% %pass% /add' />
+    
+    <!-- le mot de passe ne doit pas être changé et compte actif -->
+    <install cmd='cmd /c net user %login% /passwordchg:no /active:yes' />
+    
+</package>
+</packages>

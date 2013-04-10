@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- OpenSource -->
+<packages>
+<package
+    id="Aller"
+    name="Aller - Logiciel leterrier"
+    revision="%version%"
+    reboot="false"
+    priority="1100">
+
+    <depends package-id="Tcl-Tk"/>
+
+    <variable name="version" value="4.0.0.1" />
+    <variable architecture="x86" name="progfiles" value="%PROGRAMFILES%" />
+    <variable architecture="x64" name="progfiles" value="%PROGRAMFILES(X86)%" />
+
+    <eoledl dl="https://redmine.ryxeo.com/attachments/download/656/leterrier-aller-%version%-setup.exe" destname="leterrier\leterrier-aller-%version%-setup.exe" />
+
+    <check type="file" condition="exists" path="%progfiles%\AbulEdu\Aller\aller.tcl" />
+    <check type="uninstall" condition="exists" path="Le Terrier d'AbulEdu - Aller %version%" />
+
+    <install cmd='"%SOFTWARE%\leterrier\leterrier-aller-%version%-setup.exe" /VERYSILENT' />
+
+    <upgrade cmd='"%SOFTWARE%\leterrier\leterrier-aller-%version%-setup.exe" /VERYSILENT' />
+
+    <remove cmd='"%progfiles%\AbulEdu\Aller\unins000.exe" /SILENT' />
+
+
+</package>
+</packages>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="LibO_OooHG"
+    name="Extension HistoireGeo pour LibreOffice"
+    revision="%version%.2"
+    priority="1">
+    
+    <variable name="version" value="9.12" />
+    <variable name="version_libreoffice" value="3.6" />
+    
+    <variable name="PROGRAMFILES" value="%PROGRAMFILES%" architecture="x86"/>
+    <variable name="PROGRAMFILES" value="%PROGRAMFILES(X86)%" architecture="x64"/>
+    
+    <!-- <depends package-id="Libreoffice"/> -->
+    
+    <check type="file" condition="exists" path="%PROGRAMFILES%\LibreOffice %version_libreoffice%\share\gallery\Geo\Europe\1_EuroFond.gif" />
+    
+    <install cmd='%COMSPEC% /C XCOPY "%PROGRAMFILES%\LibreOffice %version_libreoffice%\share\gallery\*" "%PROGRAMFILES%\LibreOffice %version_libreoffice%\share\gallery_defaut\*" /S /E /Y /Q /R' />
+    <install cmd='%COMSPEC% /C XCOPY "%SOFTWARE%\ooohg\*" "%PROGRAMFILES%\LibreOffice %version_libreoffice%\share\gallery\" /S /E /Y /Q /R' />
+    
+    <upgrade cmd='%COMSPEC% /C XCOPY "%SOFTWARE%\ooohg\*" "%PROGRAMFILES%\LibreOffice %version_libreoffice%\share\gallery\" /S /E /Y /Q /R' />
+    
+    <remove cmd='%COMSPEC% /C RMDIR /S /Q "%PROGRAMFILES%\LibreOffice %version_libreoffice%\share\gallery\"' />
+    <remove cmd='%COMSPEC% /C MOVE /Y "%PROGRAMFILES%\LibreOffice %version_libreoffice%\share\gallery_defaut" "%PROGRAMFILES%\LibreOffice %version_libreoffice%\share\gallery"' />
+</package>
+</packages>

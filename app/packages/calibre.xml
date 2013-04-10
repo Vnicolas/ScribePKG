@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="calibre"
+    name="calibre"
+    revision='%version%'
+    priority='0' 
+    reboot='false' >
+    <variable name="version" value="0.8.38" />
+    <!-- dl=http://status.calibre-ebook.com/dist/win32 -->
+    <eoledl dl="http://status.calibre-ebook.com/dist/win32" destname="calibre\calibre-%version%.msi" />
+    
+    <check type="uninstall" condition="exists" path="calibre" />
+    
+    <install cmd='msiexec.exe /qn /i "%SOFTWARE%\calibre\calibre-%version%.msi"' />
+   
+    <upgrade cmd='msiexec.exe /qn /i "%SOFTWARE%\calibre\calibre-%version%.msi"' />
+   
+    <remove cmd='msiexec /x "%SOFTWARE%\calibre\calibre-%version%.msi" /qn' />
+ 
+ </package>
+</packages>

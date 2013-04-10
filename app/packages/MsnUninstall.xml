@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<packages>
+<package
+    id="uninstall-msmsgs"
+    name="Windows Messenger Uninstall"
+    execute="always">
+
+    <install cmd='%SOFTWARE%\internet\msn-uninstall.bat' />
+</package>
+</packages>

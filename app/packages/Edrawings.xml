@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="Edrawings" 
+    name="Edrawings - logiciel de visualisation de fichiers 3D" 
+    revision="%version%.3"
+    priority="70" 
+    reboot="false" >
+    
+    <variable name="version" value="2012" />
+    
+    <!-- programme à télécharger sur http://www.edrawingsviewer.fr/pages/products/eDrawingsViewerpage.html puis à décompresser dans %software%/edrawings/ -->
+    
+    <!-- Plus d'infos : http://files.solidworks.com/Supportfiles/eDrawings_Installation_Guide/2012/French/install_eDrawings.htm -->
+    
+    <!-- le programme s'installe dans C:\Program Files\Fichiers communs\eDrawings2012, raccourci à faire depuis le fichier EModelViewer.exe -->
+    
+    <check type="uninstall" condition="exists" path="SolidWorks eDrawings %version%" />
+    
+    <install cmd='msiexec /i "%SOFTWARE%\edrawings\eDrawings.msi" ADDLOCAL=All TRANSFORMS=1036.mst ENABLECHKFORUPDATE=0 /qn' />
+    
+    <upgrade cmd='msiexec /i "%SOFTWARE%\edrawings\eDrawings.msi" ADDLOCAL=All TRANSFORMS=1036.mst ENABLECHKFORUPDATE=0 /qn' />
+    
+    <remove cmd='msiexec /x "%SOFTWARE%\edrawings\eDrawings.msi" /qn' />
+</package>
+</packages>

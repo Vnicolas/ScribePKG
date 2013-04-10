@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+<package
+    id="Xcas"
+    name="Xcas : Le couteau suisse des Mathematiques"
+    revision="%version%.1"
+    priority="50"
+    reboot="false">
+    
+    <variable name="version" value="0.9.9" />    
+    
+    <!--  dl=http://www-fourier.ujf-grenoble.fr/~parisse/giac/xcasinst.exe -->
+    <eoledl dl="http://www-fourier.ujf-grenoble.fr/~parisse/giac/xcasinst.exe" destname="math\xcas\xcasinst.exe" />
+    
+    <check type="file" condition="sizeequals" path="%PROGRAMFILES%\xcas\xcas.exe" value="18609803" />
+    
+    <install include='remove' />
+    <install cmd='%SOFTWARE%\math\xcas\unattended.cmd'/>
+    
+    <upgrade include='install' />
+    
+    <downgrade include='install' />
+    
+    <remove cmd='%SOFTWARE%\math\xcas\unattended-uninstall.cmd'/>
+</package>
+</packages>
