@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ESU_LGM>
+	<ListeGM>
+		<GM nom="grp_eole">
+			<ListeMachines>
+				<Machine>*</Machine>
+			</ListeMachines>
+			<ListeGestionnaires/>
+		</GM>	<GM nom="cdi">
+			<ListeMachines>
+				<Machine>cdi*</Machine>
+			</ListeMachines>
+			<ListeGestionnaires/>
+		</GM>
+	</ListeGM>
+	<numeroSerie>V2TEbf+79nOhpqv5lpTlPfeqcVI=</numeroSerie>	<ListeGestionnaires/>
+</ESU_LGM>

@@ -1,13 +1,25 @@
 {% extends "layout.html" %}
   
 {% block content %}
+<div class="jumbo">
   <h2>Login</h2>
   <form action="" method=post>
-    <ul class="loginform">
-            <li> Login : <input type="text" name="username" size="15" /></li>
-            <li> Mot de passe : <input type="password" name="password" size="15" /></li>
-            <li><input type="submit" value="Connexion"></li>
-          </ul>
+  	<center>
+  		<table>
+          	<tr>
+          		<td>Login : </td>
+          		<td><input type="text" name="username" size="15" /></td>
+          </tr>
+          <tr>
+          		<td>Mot de passe : </td>
+          		<td><input type="password" name="password" size="15" /></td>
+          </tr>
+          <tr>
+          	<td colspan="2"><center><input type="submit" value="Connexion"></center></td>
+          </tr>
+      </table>
+  </center>
   </form>
+</div>
 
 {% endblock %}

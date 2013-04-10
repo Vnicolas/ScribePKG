@@ -13,13 +13,19 @@ def about():
   return render_template('about.html')
 
 @app.route('/login')
-def about():
+def login():
   return render_template('login.html')
 
-@app.route('/accueil')
-def about():
-  return render_template('accueil.html')
+@app.route('/home')
+def home():
+  return render_template('home.html')
+
+@app.route('/test')
+def test():
+	grps = function.get_group()
+	return render_template('test.html', grps=grps)
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0')
+	app.run(host='0.0.0.0', debug=True)
+
 

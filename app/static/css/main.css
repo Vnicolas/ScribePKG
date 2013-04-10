@@ -67,21 +67,21 @@ h3 {
  * Display navigation links inline
  */
  
-.loginform {
+.menu {
   float: right;
   margin: 8px;
 }
  
-.loginform li {
+.menu li {
   display: inline;
   color: #FFF;
 }
  
-.loginform li + li {
+.menu li + li {
   margin-left: 35px;
 }
  
-.loginform li a {
+.menu li a {
   color: #999;
   text-decoration: none;
 }
