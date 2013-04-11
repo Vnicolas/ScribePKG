@@ -23,4 +23,10 @@ def get_packages():
 		packs.append(shortname)
 	return packs
 
+def get_xml():
+	from xml.dom import minidom
+	xmldoc = minidom.parse('packages/Gimp.xml')
+	ficxml = xmldoc.toxml()
+	print ficxml
+	return ficxml
 
