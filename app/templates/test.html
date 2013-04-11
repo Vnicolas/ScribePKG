@@ -10,8 +10,18 @@
         {% for shortname in packs %}
         <input type="checkbox">{{ shortname }}<br>
         {% endfor %}
-        </div>
-    </div>
+</div>
+<div id="editor">{{ ficxml }}
+
+</div>
+    
+<script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/chrome");
+    editor.getSession().setMode("ace/mode/xml");
+</script>
+</div>
 
 
 {% endblock %}
