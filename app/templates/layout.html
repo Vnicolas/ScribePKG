@@ -2,7 +2,23 @@
 <html>
   <head>
     <title>Flask App</title> 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">;   
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">;
+    <script language="Javascript">
+// ==================
+//  Activations - Désactivations
+// ==================
+function GereControle(Controleur, Controle, Masquer) {
+var objControleur = document.getElementById(Controleur);
+var objControle = document.getElementById(Controle);
+
+  if (Masquer=='1')
+    objControle.style.visibility=(objControleur.checked==true)?'visible':'hidden';
+  else
+    objControle.disabled=(objControleur.checked==true)?false:true;
+  return true;
+}
+</script>
+
   </head>
   <body>
   

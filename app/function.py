@@ -5,28 +5,27 @@ def get_group():
 	root = tree.getroot()
 	for GM in root.getiterator('GM'):
 		grp = GM.get('nom')
-		print  grp
 		grps.append(grp)
 	return grps
 
-
-
 def get_packages():
 	packs=[]
+	global shortname, n, i
 	import glob, os
 	pack = glob.glob('packages/*.xml')
 	for i in pack:
 		os.path.split(i)
 		(filepath, filename) = os.path.split(i)
 		(shortname, extension) = os.path.splitext(filename)
-		print shortname 
 		packs.append(shortname)
-	return packs
+		pack.index(i)
+
+	return packs, shortname, i
+
 
 def get_xml():
 	from xml.dom import minidom
 	xmldoc = minidom.parse('packages/Gimp.xml')
 	ficxml = xmldoc.toxml()
-	print ficxml
 	return ficxml
 
