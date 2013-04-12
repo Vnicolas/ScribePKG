@@ -1,5 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
+<script language="Javascript">
+function incrementer()
+{
+document.getElementById('iden').value=parseInt(document.getElementById('iden').value)+ 1;
+}
+</script>
 <div class="jumbo">
 <select multiple="multiple" size="25" id="ListeElement">
         {% for grp in grps %}
@@ -8,10 +14,17 @@
 </select>
 <div style="height:401px;display:inline-block;overflow:auto">
         {% for shortname in packs %}
-        <input type="checkbox">{{ shortname }}<br>
+        <input type="checkbox">{{ shortname }}<input type="radio" value="" name="nom" id="{{ packs.index(shortname) }}"><br>
         {% endfor %}
+
 </div>
-<div id="editor">{{ ficxml }}
+<input type="radio" id="radio_10" name="radios_0" onClick="GereControle('radio_10', 'editor', '1');" CHECKED>&nbsp;<label for="radio_10">Active éditeur</label>
+<br />
+<input type="radio" id="radio_20" name="radios_0" onClick="GereControle('radio_10', 'editor', '1');">&nbsp;<label for="radio_20">Désactive éditeur</label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<div id="editor">
+	{{ ficxml }}
 
 </div>
     
