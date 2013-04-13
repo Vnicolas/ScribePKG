@@ -1,32 +1,38 @@
 {% extends "layout.html" %}
 {% block content %}
-<script language="Javascript">
-function incrementer()
-{
-document.getElementById('iden').value=parseInt(document.getElementById('iden').value)+ 1;
-}
-</script>
+
 <div class="jumbo">
 <select multiple="multiple" size="25" id="ListeElement">
         {% for grp in grps %}
         <option value="">{{ grp }}</option>
         {% endfor %}
 </select>
-<div style="height:401px;display:inline-block;overflow:auto">
+<div id="logiciels">
+
         {% for shortname in packs %}
-        <input type="checkbox">{{ shortname }}<input type="radio" value="" name="nom" id="{{ packs.index(shortname) }}"><br>
+        <input type="checkbox" >{{ shortname }}<br>
         {% endfor %}
 
 </div>
-<input type="radio" id="radio_10" name="radios_0" onClick="GereControle('radio_10', 'editor', '1');" CHECKED>&nbsp;<label for="radio_10">Active éditeur</label>
-<br />
-<input type="radio" id="radio_20" name="radios_0" onClick="GereControle('radio_10', 'editor', '1');">&nbsp;<label for="radio_20">Désactive éditeur</label>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-<div id="editor">
-	{{ ficxml }}
+<div id="contenu">
 
+{% for i in pack %}
+
+        <input type="radio" id="{{ pack.index(i) }}" OnClick="javascript:document.getElementById('editor').value=javascript:document.getElementById('{{ pack.index(i) }}').value;";  name="nom" >{{ i }}<br>
+
+        {% endfor %}
 </div>
+
+<input type="radio" id="radio_10" name="radios_0" onClick="GereControle('radio_10', 'editor', '1');" CHECKED>&nbsp;<label for="radio_10">Active éditeur</label>
+<input type="radio" id="radio_20" name="radios_0" onClick="GereControle('radio_10', 'editor', '1');">&nbsp;<label for="radio_20">Désactive éditeur</label>
+
+
+<div id="editor" >{% if ficxml is defined %}
+value of ficxml: {{ ficxml|get_xml() }}
+{% else %}
+variable is not defined
+{% endif %}</div>
     
 <script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
@@ -34,6 +40,7 @@ document.getElementById('iden').value=parseInt(document.getElementById('iden').v
     editor.setTheme("ace/theme/chrome");
     editor.getSession().setMode("ace/mode/xml");
 </script>
+
 </div>
 
 

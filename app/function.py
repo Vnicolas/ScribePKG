@@ -10,7 +10,9 @@ def get_group():
 
 def get_packages():
 	packs=[]
-	global shortname, n, i
+	pack=[]
+	i=[]
+	global shortname, i
 	import glob, os
 	pack = glob.glob('packages/*.xml')
 	for i in pack:
@@ -20,12 +22,8 @@ def get_packages():
 		packs.append(shortname)
 		pack.index(i)
 
-	return packs, shortname, i
+	return packs, shortname, i, pack
 
 
-def get_xml():
-	from xml.dom import minidom
-	xmldoc = minidom.parse('packages/Gimp.xml')
-	ficxml = xmldoc.toxml()
-	return ficxml
+
 

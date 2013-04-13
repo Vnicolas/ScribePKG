@@ -20,12 +20,17 @@ def login():
 def home():
   return render_template('home.html')
 
+@app.template_filter('get_xml')
+def get_xml(ficxml):
+	ofi = open(ficxml, 'r')
+	ficxml = ofi.read()
+	return ficxml
+
 @app.route('/test')
 def test():
-	packs,shortname, i = function.get_packages()
-	ficxml = function.get_xml()
+	packs,shortname, i, pack = function.get_packages()
 	grps = function.get_group()
-	return render_template('test.html', grps=grps, packs=packs, ficxml=ficxml, shortname=shortname, i=i)
+	return render_template('test.html', grps=grps, packs=packs, shortname=shortname, i=i, pack=pack)
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', debug=True)

@@ -102,3 +102,18 @@ margin-top: 0;
 margin-left: 5px;
 
 }
+
+#logiciels{
+
+  height:401px;
+  display:inline-block;
+  overflow:auto;
+}
+
+#contenu{
+
+  height:401px;
+  display:inline-block;
+  overflow:auto;
+  width: 330px;
+}
