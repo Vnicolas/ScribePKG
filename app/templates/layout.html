@@ -3,6 +3,7 @@
   <head>
     <title>Flask App</title> 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">;
+    <script type=text/javascript src="{{ url_for('static', filename='js/jquery-1.9.1.min.js') }}"></script>
     <script language="Javascript">
 // ==================
 //  Activations - Désactivations
@@ -18,9 +19,20 @@ var objControle = document.getElementById(Controle);
   return true;
 }
 </script>
+<script type=text/javascript>
+$(function() {
+  {% for i in pack %}
+  $("input#{{pack.index(i)}}").click(function ()  {
+      editor.setValue("{{ i }}"); // or session.setValue
+      editor.getValue(); // or session.getValue
+    });{% endfor %}
+  });
+
+
+</script>
 
   </head>
-  <body onLoad='xml()'>
+  <body>
   
     <header>
       <div class="container">

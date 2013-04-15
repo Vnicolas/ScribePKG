@@ -19,7 +19,7 @@
 
 {% for i in pack %}
 
-        <input type="radio" id="{{ pack.index(i) }}" OnClick="javascript:document.getElementById('editor').value=javascript:document.getElementById('{{ pack.index(i) }}').value;";  name="nom" >{{ i }}<br>
+        <input type="button" id="{{ pack.index(i) }}"  onClick ="change()" name="nom" value="{{ i }}"><br>
 
         {% endfor %}
 </div>
@@ -27,21 +27,21 @@
 <input type="radio" id="radio_10" name="radios_0" onClick="GereControle('radio_10', 'editor', '1');" CHECKED>&nbsp;<label for="radio_10">Active éditeur</label>
 <input type="radio" id="radio_20" name="radios_0" onClick="GereControle('radio_10', 'editor', '1');">&nbsp;<label for="radio_20">Désactive éditeur</label>
 
-
-<div id="editor" >{% if ficxml is defined %}
-value of ficxml: {{ ficxml|get_xml() }}
-{% else %}
-variable is not defined
-{% endif %}</div>
+<div id="editor" ></div>
     
 <script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/chrome");
     editor.getSession().setMode("ace/mode/xml");
+    //{% for i in pack %}
+    //function change() {
+  //editor.setValue("{{ i }}"); // or session.setValue
+  //editor.getValue(); // or session.getValue
+ // };
+  {% endfor %}
 </script>
 
-</div>
 
 
 {% endblock %}
