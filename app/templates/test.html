@@ -19,27 +19,20 @@
 
 {% for i in pack %}
 
-        <input type="button" id="{{ pack.index(i) }}"  onClick ="change()" name="nom" value="{{ i }}"><br>
-
+        <a href="{{ url_for('editor') }}">{{ i }}</a><br>
         {% endfor %}
 </div>
 
 <input type="radio" id="radio_10" name="radios_0" onClick="GereControle('radio_10', 'editor', '1');" CHECKED>&nbsp;<label for="radio_10">Active éditeur</label>
 <input type="radio" id="radio_20" name="radios_0" onClick="GereControle('radio_10', 'editor', '1');">&nbsp;<label for="radio_20">Désactive éditeur</label>
 
-<div id="editor" ></div>
+<div id="editor" >{{ real }}</div>
     
 <script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/chrome");
     editor.getSession().setMode("ace/mode/xml");
-    //{% for i in pack %}
-    //function change() {
-  //editor.setValue("{{ i }}"); // or session.setValue
-  //editor.getValue(); // or session.getValue
- // };
-  {% endfor %}
 </script>
 
 

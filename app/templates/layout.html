@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <title>Flask App</title> 
+    <title>Scribe-WPKG</title> 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">;
     <script type=text/javascript src="{{ url_for('static', filename='js/jquery-1.9.1.min.js') }}"></script>
     <script language="Javascript">
@@ -23,24 +23,30 @@ var objControle = document.getElementById(Controle);
 $(function() {
   {% for i in pack %}
   $("input#{{pack.index(i)}}").click(function ()  {
-      editor.setValue("{{ i }}"); // or session.setValue
-      editor.getValue(); // or session.getValue
+      editor.setValue("{{ real }}"); // or session.setValue
+      editor.getValue();// or session.getValue
     });{% endfor %}
   });
-
 
 </script>
 
   </head>
   <body>
-  
     <header>
       <div class="container">
         <h1 class="logo">Scribe-WPKG</h1>
         <nav>
           <ul class="menu">
-            <li><a href="{{ url_for('login') }}">Se connecter</a></li>
+              {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
             <li><a href="{{ url_for('home') }}">Accueil</a></li>
+            <li><a href="{{ url_for('login') }}">Se connecter</a></li>
+            <li><a href="{{ url_for('logout') }}">Se déconnecter</a></li>
           </ul>
         </nav>
       </div>

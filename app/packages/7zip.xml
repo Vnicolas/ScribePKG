@@ -1,24 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- OpenSource -->
-<packages>
-<package id="7zip"
-        name="7-Zip"
-        revision="%version%"
-        reboot="false"
-        priority="0">
-        <variable name="version" value="922" />
-        <variable name="longversion" value="9.22" />
-        <variable architecture="x86" name="platf" value="" />
-        <variable architecture="x64" name="platf" value="-x64" />
-        <check type="logical" condition="or">
-            <check type="file" condition="versionequalto" path="%PROGRAMFILES%\7-Zip\7zFM.exe" value="%longversion%.0.0" />
-            <check type="file" condition="versionequalto" path="%PROGRAMFILES(x86)%\7-Zip\7zFM.exe" value="%longversion%.0.0" />
-        </check>
-    
-        <eoledl dl="http://sourceforge.net/projects/sevenzip/files/7-Zip/%longversion%/7z%version%.msi/download" destname="7zip/7z%version%.msi" />
-        <eoledl dl="http://sourceforge.net/projects/sevenzip/files/7-Zip/%longversion%/7z%version%-x64.msi/download" destname="7zip/7z%version%-x64.msi" />
-        <install cmd='msiexec /qn /norestart /i "%SOFTWARE%\7zip\7z%version%%platf%.msi"' />
-        <upgrade cmd='msiexec /qn /norestart /i "%SOFTWARE%\7zip\7z%version%%platf%.msi"' />
-        <remove cmd='msiexec /qn /x "%SOFTWARE%\7zip\7z%version%%platf%.msi"' />
-</package>
-</packages>
+﻿<?xml version="1.0" encoding="ISO-8859-1"?> <!-- OpenSource --> <packages> 
+<package id="7zip" name="7-Zip" revision="%version%" reboot="false" priority="0">
+	<variable name="version" value="922" />
+	<variable name="longversion" value="9.22" />
+	<variable architecture="x86" name="platf" value="" />
+	<variable architecture="x64" name="platf" value="-x64" />
+	<check type="logical" condition="or">
+	<check type="file" condition="versionequalto" path="%PROGRAMFILES%\7-Zip\7zFM.exe" value="%longversion%.0.0" />
+	<check type="file" condition="versionequalto" path="%PROGRAMFILES(x86)%\7-Zip\7zFM.exe" value="%longversion%.0.0" /></check>
+	<eoledl dl="http://sourceforge.net/projects/sevenzip/files/7-Zip/%longversion%/7z%version%.msi/download" destname="7zip/7z%version%.msi" />
+	<eoledl dl="http://sourceforge.net/projects/sevenzip/files/7-Zip/%longversion%/7z%version%-x64.msi/download" destname="7zip/7z%version%-x64.msi" />
+	<install cmd='msiexec /qn /norestart /i "%SOFTWARE%\7zip\7z%version%%platf%.msi"' />         <upgrade cmd='msiexec /qn /norestart /i "%SOFTWARE%\7zip\7z%version%%platf%.msi"' />
+	<remove cmd='msiexec /qn /x "%SOFTWARE%\7zip\7z%version%%platf%.msi"' /> 
+</package> 
+</packages> 
