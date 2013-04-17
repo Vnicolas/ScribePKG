@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+<form method=post>
+<div id="editor" >{{ real }}</div>
+<input type="submit" value="Enregistrer">
+    </form>
+<script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/chrome");
+    editor.getSession().setMode("ace/mode/xml");
+</script>
+
+
+
+{% endblock %}

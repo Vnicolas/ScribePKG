@@ -24,6 +24,11 @@ def get_packages():
 
 	return packs, shortname, i, pack
 
-
+def get_xml():
+	global real
+	ofi = open('packages/RealAlternative.xml', 'r')
+	real = ofi.read()
+	real = real.decode('utf-8', 'xmlcharrefreplace')
+	return real
 
 
