@@ -1,7 +1,20 @@
 {% extends "layout.html" %}
 {% block content %}
-  <div class="jumbo">
-    <h2>Welcome to the Flask app<h2>
-    <h3>This is the home page for the Flask app<h3>
-  </div>
+
+<div class="jumbo">
+
+	<h2>Tableau de bord</h2>
+	{% for grp in grps %}
+	<FIELDSET id ="grpmachine">
+		<LEGEND align=top><b>{{ grp }}</b></LEGEND>
+		<div id="logiciels2">
+			{% for soft in softs %}
+			<input type="checkbox" >{{ soft }}<br>
+			{% endfor %}
+</div>
+	</FIELDSET>
+	{% endfor %}
+
+</div>
+
 {% endblock %}
