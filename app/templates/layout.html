@@ -20,6 +20,10 @@ var objControle = document.getElementById(Controle);
 }
 </script>
 <script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+
+<script type=text/javascript>
 $(function() {
   {% for i in pack %}
   $("input#{{pack.index(i)}}").click(function ()  {
@@ -27,7 +31,22 @@ $(function() {
       editor.getValue();// or session.getValue
     });{% endfor %}
   });
+</script>
 
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+
+<script type=text/javascript>
+  $(document).ready(function(){
+    $("select").change(function(){
+      $.getJSON($SCRIPT_ROOT + '/_getprofiles', {
+      lgrp: $("select#Listegrp").val()
+      }, function(data){
+        alert($("select#Listegrp").val());
+      });
+    });
+  });
 </script>
 
   </head>
@@ -45,6 +64,7 @@ $(function() {
   {% endif %}
 {% endwith %}
             <li><a href="{{ url_for('home') }}">Accueil</a></li>
+            <li><a href="{{ url_for('test') }}">Test</a></li>
             <li><a href="{{ url_for('login') }}">Se connecter</a></li>
             <li><a href="{{ url_for('logout') }}">Se déconnecter</a></li>
           </ul>

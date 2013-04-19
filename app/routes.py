@@ -1,8 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, session, escape
+from flask import Flask, render_template, request, redirect, url_for, flash, json, jsonify, session, escape
 from flask.ext.login import (LoginManager, current_user, login_required, login_user, logout_user, UserMixin, AnonymousUser, confirm_login, fresh_login_required)
 import function, sys
 
+UPLOAD_FOLDER = '/root/flaskapp/app/packages'
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = 'some_secret'
 
 
@@ -10,6 +12,7 @@ app.secret_key = 'some_secret'
 def accueil():
 	if 'username' in session:
 		return 'Logged in as %s' % escape(session['username'])
+		return redirect(url_for('home'))
 	else:
 		return redirect(url_for('login'))
 
@@ -19,7 +22,9 @@ def about():
 
 @app.route('/home')
 def home():
-  return render_template('home.html')
+	softs, soft, n, LM = function.get_softinstalled()
+	grps = function.get_group()
+	return render_template('home.html', grps=grps, softs=softs, soft=soft, LM=LM, n=n)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -43,10 +48,6 @@ def logout():
 def editor():
 	real = function.get_xml()
 	return render_template('editor.html', real=real)
-	if request.method == 'POST':
-		flash('test')
-		return redirect(url_for('editor'))
-
 
 @app.route('/test')
 def test():
@@ -54,6 +55,12 @@ def test():
 	packs,shortname, i, pack = function.get_packages()
 	grps = function.get_group()
 	return render_template('test.html', grps=grps, packs=packs, shortname=shortname, i=i, pack=pack, real=real)
+
+@app.route('/_getprofiles')
+def getprofiles():
+    a = request.args.get('lgrp')
+    print a
+    return jsonify(profile=function.get_profile(a))
 
 
 if __name__ == '__main__':

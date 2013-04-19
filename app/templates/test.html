@@ -2,39 +2,25 @@
 {% block content %}
 
 <div class="jumbo">
-<select multiple="multiple" size="25" id="ListeElement">
+
+<select multiple="multiple" size="25" id="Listegrp">
         {% for grp in grps %}
-        <option value="">{{ grp }}</option>
+        <option value="{{ grp }}" name="{{ grp }}">{{ grp }}</option>
         {% endfor %}
 </select>
+
 <div id="logiciels">
-
-        {% for shortname in packs %}
-        <input type="checkbox" >{{ shortname }}<br>
-        {% endfor %}
-
+    {% for shortname in packs %}
+    <input type="checkbox" >{{ shortname }}<br>
+    {% endfor %}
 </div>
 
 <div id="contenu">
-
-{% for i in pack %}
-
-        <a href="{{ url_for('editor') }}">{{ i }}</a><br>
-        {% endfor %}
+    {% for i in pack %}
+    <a href="{{ url_for('editor') }}">{{ i }}</a><br>
+    {% endfor %}
 </div>
 
-<input type="radio" id="radio_10" name="radios_0" onClick="GereControle('radio_10', 'editor', '1');" CHECKED>&nbsp;<label for="radio_10">Active éditeur</label>
-<input type="radio" id="radio_20" name="radios_0" onClick="GereControle('radio_10', 'editor', '1');">&nbsp;<label for="radio_20">Désactive éditeur</label>
-
-<div id="editor" >{{ real }}</div>
-    
-<script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-<script>
-    var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/chrome");
-    editor.getSession().setMode("ace/mode/xml");
-</script>
-
-
+</div>
 
 {% endblock %}

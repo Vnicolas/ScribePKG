@@ -46,6 +46,7 @@ div.jumbo {
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
           border-radius: 6px;
+          
 }
  
 h2 {
@@ -82,19 +83,19 @@ h3 {
 }
  
 .menu li a {
-  color: #999;
-  text-decoration: none;
+color: #999;
+text-decoration: none;
 }
 
 #editor { 
-        margin-top : 30px;
-        height: 500px;
-        width: 940px;
-        border-style: solid;
-        border-width: 1px;
-        border-color: #000;
-        position:absolute;
-    }
+margin-top : 30px;
+height: 500px;
+width: 940px;
+border-style: solid;
+border-width: 1px;
+border-color: #000;
+position:absolute;
+}
 
 #screenxml{
 position: absolute;
@@ -105,15 +106,36 @@ margin-left: 5px;
 
 #logiciels{
 
-  height:401px;
-  display:inline-block;
-  overflow:auto;
+height:401px;
+display:inline-block;
+overflow:auto;
+}
+
+#logiciels2{
+
+display:inline-block;
+overflow:auto;
 }
 
 #contenu{
 
-  height:401px;
-  display:inline-block;
-  overflow:auto;
-  width: 330px;
+height:401px;
+display:inline-block;
+overflow:auto;
+width: 330px;
+}
+
+#grpmachine{
+padding-bottom: 20px;
+display: block;
+
+}
+
+#listesoft{
+position: absolute;
+float: right;
+margin-left: 20px;
+width: 30px;
+height: 20px;
+
 }

@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<profiles>
+<profile id="grp_eole">
+<package package-id="Firefox"/><package package-id="7zip"/>
+</profile>
+</profiles>
