@@ -38,15 +38,31 @@ $(function() {
 </script>
 
 <script type=text/javascript>
+jQuery.ajaxSettings.traditional = true;
   $(document).ready(function(){
     $("select").change(function(){
       $.getJSON($SCRIPT_ROOT + '/_getprofiles', {
       lgrp: $("select#Listegrp").val()
       }, function(data){
-        alert($("select#Listegrp").val());
+        alert(data.profile);
       });
     });
   });
+  $(document).ready(function() {
+    $('#cocheTout').click(function() { // clic sur la case cocher/decocher
+            
+        var cases = $("#logiciels").find(':checkbox'); // on cherche les checkbox qui dépendent de la liste 'cases'
+        if(this.checked){ // si 'cocheTout' est coché
+            cases.attr('checked', true); // on coche les cases
+            $('#cocheText').html('Tout decocher'); // mise à jour du texte de cocheText
+        }else{ // si on décoche 'cocheTout' 
+            cases.attr('checked', false);// on coche les cases
+            $('#cocheText').html('Cocher tout');// mise à jour du texte de cocheText
+        }           
+                
+    });
+
+});
 </script>
 
   </head>

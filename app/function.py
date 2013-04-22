@@ -1,5 +1,6 @@
 import os
 from xml.etree.ElementTree import ElementTree
+from lxml import etree
 
 def get_group():
 	grps=[]
@@ -38,7 +39,6 @@ def get_softinstalled():
 	softs=[]
 	LM=[]
 	global LM, n
-	from xml.etree.ElementTree import ElementTree
 	import glob
 	LM = glob.glob('profiles/*.xml')
 	for n in LM:
@@ -66,7 +66,7 @@ def get_profile(grp):
         for group in xml.getiterator('package'):
             profiles.append(group.get('package-id'))
     else:
-        set_profile(grp, True)
+        set_profile(grp)
     print profiles
     return profiles
 
