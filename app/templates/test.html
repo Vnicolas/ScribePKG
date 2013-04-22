@@ -11,18 +11,20 @@
 
 <div id="logiciels">
     {% for shortname in packs %}
-    <label><input type="checkbox" >{{ shortname }}</label><br>
+    <label><input type="checkbox" id="{{ shortname }}" >{{ shortname }}</label><br>
     {% endfor %}
 </div>
+
 <input type='checkbox' id='cocheTout'/>
 <span id='cocheText'>Cocher tout</span>
+
+<input type="button" id="alpha" value="Ordre alphabétique">
 
 <div id="contenu">
     {% for i in pack %}
     <a href="{{ url_for('editor') }}">{{ i }}</a><br>
     {% endfor %}
 </div>
-
 </div>
 
 {% endblock %}
