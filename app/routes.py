@@ -51,16 +51,21 @@ def editor():
 
 @app.route('/test')
 def test():
-	real = function.get_xml()
 	packs,shortname, i, pack = function.get_packages()
 	grps = function.get_group()
-	return render_template('test.html', grps=grps, packs=packs, shortname=shortname, i=i, pack=pack, real=real)
+	return render_template('test.html', grps=grps, packs=packs, shortname=shortname, i=i, pack=pack)
 
 @app.route('/_getprofiles')
 def getprofiles():
     a = request.args.get('lgrp')
     print a
     return jsonify(profile=function.get_profile(a))
+
+@app.route('/_getxml')
+def getxml():
+    b = request.args.get('xml')
+    print b
+    return jsonify(xml=function.get_xml(b))
 
 
 if __name__ == '__main__':

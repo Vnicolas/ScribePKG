@@ -22,9 +22,20 @@
 
 <div id="contenu">
     {% for i in pack %}
-    <a href="{{ url_for('editor') }}">{{ i }}</a><br>
+    <input type="button" id="{{ pack.index(i) }}" name="nom" value="{{ i }}"><br>
     {% endfor %}
 </div>
+
+<form method=post>
+<div id="editor" name="editor" >{{ real }}</div>
+<input type="submit" value="Enregistrer">
+    </form>
+<script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/chrome");
+    editor.getSession().setMode("ace/mode/xml");
+</script>
 </div>
 
 {% endblock %}
