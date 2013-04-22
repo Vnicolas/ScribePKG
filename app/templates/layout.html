@@ -4,10 +4,9 @@
     <title>Scribe-WPKG</title> 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">;
     <script type=text/javascript src="{{ url_for('static', filename='js/jquery-1.9.1.min.js') }}"></script>
-    <script language="Javascript">
-// ==================
-//  Activations - Désactivations
-// ==================
+
+<script language="Javascript">
+
 function GereControle(Controleur, Controle, Masquer) {
 var objControleur = document.getElementById(Controleur);
 var objControle = document.getElementById(Controle);
@@ -18,20 +17,6 @@ var objControle = document.getElementById(Controle);
     objControle.disabled=(objControleur.checked==true)?false:true;
   return true;
 }
-</script>
-<script type=text/javascript>
-  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-</script>
-
-<script type=text/javascript>
-$(function() {
-  {% for i in pack %}
-  $("input#{{pack.index(i)}}").click(function ()  {
-      editor.setValue("{{ real }}"); // or session.setValue
-      editor.getValue();// or session.getValue
-    });{% endfor %}
-  });
-
 </script>
 
 <script type=text/javascript>
@@ -125,6 +110,27 @@ $("#alpha").click(function() {
     });
   });
 });
+{% for i in pack %}
+$(document).ready(function(){
+    $("input#{{pack.index(i)}}").click(function(){
+      $.getJSON($SCRIPT_ROOT + '/_getxml', {
+      xml: $("input#{{ pack.index(i) }}").val()
+      }, function(data){
+        var code = data.xml;
+        editor.setValue(code);
+      });
+    });
+  });
+{% endfor %}
+</script>
+<script type=text/javascript>
+$(function() {
+  {% for i in pack %}
+  $("input#{{pack.index(i)}}").click(function ()  {
+      editor.setValue("{{ real }}"); // or session.setValue
+      editor.getValue();// or session.getValue
+    });{% endfor %}
+  });
 </script>
 
   </head>

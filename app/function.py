@@ -28,29 +28,12 @@ def get_packages():
 
 	return packs, shortname, i, pack
 
-def get_xml():
+def get_xml(xml):
 	global real
-	ofi = open('packages/RealAlternative.xml', 'r')
+	ofi = open(xml, 'r')
 	real = ofi.read()
-	real = real.decode('utf-8', 'xmlcharrefreplace')
-	return real
-
-def get_softinstalled():
-	softs=[]
-	LM=[]
-	global LM, n
-	import glob
-	LM = glob.glob('profiles/*.xml')
-	for n in LM:
-		tree = ElementTree(file=open(n))
-		root = tree.getroot()
-		sroot = root.getiterator('package')
-		for GS in sroot:
-			soft = GS.get('package-id')
-			softs.append(soft)
-
-	return softs, soft, LM, n
-
+	xml = real.decode('utf-8', 'xmlcharrefreplace')
+	return xml
 
 def get_profile(grp):
     """
