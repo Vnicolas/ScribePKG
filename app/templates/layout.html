@@ -6,17 +6,16 @@
     <script type=text/javascript src="{{ url_for('static', filename='js/jquery-1.9.1.min.js') }}"></script>
 
 <script language="Javascript">
-
-function GereControle(Controleur, Controle, Masquer) {
-var objControleur = document.getElementById(Controleur);
-var objControle = document.getElementById(Controle);
-
-  if (Masquer=='1')
-    objControle.style.visibility=(objControleur.checked==true)?'visible':'hidden';
-  else
-    objControle.disabled=(objControleur.checked==true)?false:true;
-  return true;
-}
+  $(document).ready(function(){
+    $("input#save").click(function(){
+      $.getJSON($SCRIPT_ROOT + '/_savefile', {
+      code: editor.getValue(),
+      path: 'packages/Scribus.xml'
+      }, function(data){
+        alert('blabla');
+      });
+    });
+  });
 </script>
 
 <script type=text/javascript>
@@ -118,20 +117,14 @@ $(document).ready(function(){
       }, function(data){
         var code = data.xml;
         editor.setValue(code);
+        editor.gotoLine(1);
+        $("#dossier").html('{{ i }}');
       });
     });
   });
 {% endfor %}
 </script>
-<script type=text/javascript>
-$(function() {
-  {% for i in pack %}
-  $("input#{{pack.index(i)}}").click(function ()  {
-      editor.setValue("{{ real }}"); // or session.setValue
-      editor.getValue();// or session.getValue
-    });{% endfor %}
-  });
-</script>
+
 
   </head>
   <body>

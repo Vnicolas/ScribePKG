@@ -67,3 +67,8 @@ def set_profile(grp):
     xmlfp.write('</profile>\n')
     xmlfp.write('</profiles>\n')
     xmlfp.close()
+
+def save_file(code, path):
+    f = open(path, 'w')
+    f.write(code)
+    f.close
