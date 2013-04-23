@@ -56,23 +56,21 @@ def test():
 @app.route('/_getprofiles')
 def getprofiles():
     a = request.args.get('lgrp')
-    print a
     return jsonify(profile=function.get_profile(a))
 
 @app.route('/_getxml')
 def getxml():
     b = request.args.get('xml')
-    print b
     return jsonify(xml=function.get_xml(b))
 
 @app.route('/_savefile')
 def savefile():
     c = request.args.get('code')
     d = request.args.get('path')
-    print d
     f = open(d, 'w')
     f.write(c)
     f.close
+    return '0'
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', debug=True)
