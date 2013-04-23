@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, json, jsonify, session, escape
 from flask.ext.login import (LoginManager, current_user, login_required, login_user, logout_user, UserMixin, AnonymousUser, confirm_login, fresh_login_required)
-import function, sys
+import function, sys, os
 
 UPLOAD_FOLDER = '/root/flaskapp/app/packages'
 app = Flask(__name__)
@@ -22,9 +22,7 @@ def about():
 
 @app.route('/home')
 def home():
-	softs, soft, n, LM = function.get_softinstalled()
-	grps = function.get_group()
-	return render_template('home.html', grps=grps, softs=softs, soft=soft, LM=LM, n=n)
+	return render_template('home.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -67,6 +65,14 @@ def getxml():
     print b
     return jsonify(xml=function.get_xml(b))
 
+@app.route('/_savefile')
+def savefile():
+    c = request.args.get('code')
+    d = request.args.get('path')
+    print d
+    f = open(d, 'w')
+    f.write(c)
+    f.close
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', debug=True)

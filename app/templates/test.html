@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 
+
 <div class="jumbo">
 
 <select multiple="multiple" size="25" id="Listegrp">
@@ -11,25 +12,25 @@
 
 <div id="logiciels">
     {% for shortname in packs %}
-    <label><input type="checkbox" id="{{ shortname }}" >{{ shortname }}</label><br>
+    <label><input type="checkbox" id="{{ shortname }}" ><span>  {{ shortname }}</span></label>
     {% endfor %}
 </div>
-
-<input type='checkbox' id='cocheTout'/>
-<span id='cocheText'>Cocher tout</span>
-
-<input type="button" id="alpha" value="Ordre alphabétique">
 
 <div id="contenu">
     {% for i in pack %}
     <input type="button" id="{{ pack.index(i) }}" name="nom" value="{{ i }}"><br>
     {% endfor %}
 </div>
+<input type='checkbox' id='cocheTout'/>
+<span id='cocheText'>Cocher tout</span>
 
-<form method=post>
-<div id="editor" name="editor" >{{ real }}</div>
-<input type="submit" value="Enregistrer">
-    </form>
+<input type="button" id="alpha" value="Ordre alphabétique">
+
+
+    <div id="dossier"></div>
+    <div id="editor" name="editor" ></div>
+    <input id="save" type="submit" value="Enregistrer">
+
 <script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var editor = ace.edit("editor");
