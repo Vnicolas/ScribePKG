@@ -42,11 +42,6 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('home'))
 
-@app.route('/editor', methods=['GET', 'POST'])
-def editor():
-	real = function.get_xml()
-	return render_template('editor.html', real=real)
-
 @app.route('/test')
 def test():
 	packs,shortname, i, pack = function.get_packages()
