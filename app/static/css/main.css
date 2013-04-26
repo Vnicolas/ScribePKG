@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #444;
+  color: #FFF;
 }
  
 /*
@@ -41,11 +41,7 @@ header h1.logo:hover {
 }
  
 div.jumbo {
-  padding: 10px 0 30px 0;
-  background-color: #eeeeee;
-  -webkit-border-radius: 6px;
-     -moz-border-radius: 6px;
-          border-radius: 6px;
+  background-color: rgb(54, 126, 83);
           
 }
  
@@ -95,12 +91,18 @@ border-width: 1px;
 border-color: #000;
 }
 
-#logiciels{
+#editeur{
 
+  display: none;
+}
+
+#logiciels{
 height:401px;
-width: 400px;
+width: 430px;
 display:inline-block;
 overflow:auto;
+margin-left: 110px;
+margin-top: 5px;
 }
 
 #logiciels2{
@@ -156,16 +158,18 @@ label input {
 width: 100px;
 overflow: auto;
 margin-left: 5px;
+margin-top: 5px;
+position: absolute;
 }
 
 #dossier{
   text-align: center;
-  height: 15px;
   color: white;
   border: 1px;
   border-style: solid;
   border-color: black;
-  background-color: black; 
+  background-color: black;
+  padding: 3px;
 }
 
 #edit{
@@ -184,4 +188,76 @@ margin-left: 5px;
   border: 1px #000;
   border-style: solid;
   visibility: hidden;
+}
+
+.boutonsave {
+  padding:6px 0 6px 0;
+  font:bold 13px Helvetica;
+  background:#f5f5f5;
+  color:#555;
+  border-radius:2px;
+  width:100px;
+  border:1px solid #ccc;
+  margin-left: 45%;
+  cursor: pointer;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.boutonsave:hover {
+  background:#d34836;
+  color: #FFF;
+}
+
+.boutonedit {
+  font:bold 13px Helvetica;
+  background:#f5f5f5;
+  color:#555;
+  border-radius:2px;
+  width:100px;
+  border:1px solid #ccc;
+  cursor: pointer;
+  margin-left: 2px;
+}
+
+.boutonedit:hover {
+  background:#DA8626;
+  color: #FFF;
+}
+
+#vuediteur{
+
+  height: 45px;
+  width: 110px;
+  display: inline;
+  float: right;
+}
+
+#radioedit{
+  font: bold 12px Helvetica;
+  background:#f5f5f5;
+  color:#555;
+  cursor: pointer;
+  margin-left: 2px;
+  text-align: center;
+}
+
+#radioedit:hover {
+  background:#DA8626;
+  color: #FFF;
+}
+
+#radioedit2{
+  font: bold 12px Helvetica;
+  background:#f5f5f5;
+  color:#555;
+  cursor: pointer;
+  margin-left: 2px;
+  text-align: center;
+  display: none;
+}
+
+#radioedit2:hover {
+  background:#DA8626;
+  color: #FFF;
 }
