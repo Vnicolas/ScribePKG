@@ -98,7 +98,7 @@ border-color: #000;
 #logiciels{
 
 height:401px;
-width: 495px;
+width: 400px;
 display:inline-block;
 overflow:auto;
 }
@@ -133,6 +133,7 @@ height: 20px;
 }
 
 label {
+    height: 21px;
     display: block;
     padding-left: 15px;
     text-indent: -15px;
@@ -150,13 +151,11 @@ label input {
     *overflow: hidden;
 }
 
-:checked + span {
-  background: yellow;
-}
 
 #Listegrp{
 width: 100px;
 overflow: auto;
+margin-left: 5px;
 }
 
 #dossier{
@@ -175,3 +174,14 @@ overflow: auto;
   margin-top: -18px;
 }
 
+#loader{
+  position: fixed;
+  z-index: 10;
+  margin-left: 30%;
+  top: 40%;
+  padding: 20px;
+  background-color: #FFF;
+  border: 1px #000;
+  border-style: solid;
+  visibility: hidden;
+}

@@ -50,7 +50,6 @@ def get_profile(grp):
             profiles.append(group.get('package-id'))
     else:
         set_profile(grp)
-    print profiles
     return profiles
 
 def set_profile(grp):

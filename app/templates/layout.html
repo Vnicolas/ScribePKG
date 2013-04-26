@@ -2,10 +2,30 @@
 <html lang="fr">
   <head>
     <title>Scribe-WPKG</title> 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">;
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">;
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script type=text/javascript src="{{ url_for('static', filename='js/jquery-1.9.1.min.js') }}"></script>
     <script type=text/javascript src="{{ url_for('static', filename='js/jquery.tablesorter.min.js') }}"></script>
+
+
+<script>
+$(document).ready(function(){
+  {% for shortname in packs %}
+    $("#{{ shortname }}").change(function(){
+
+if (document.getElementById('{{ shortname }}').checked == true)
+        {
+        document.getElementById('nomlogiciel{{ packs.index(shortname) }}').style.backgroundColor='rgb(114, 182, 114)';
+        }
+else
+        {
+        document.getElementById('nomlogiciel{{ packs.index(shortname) }}').style.backgroundColor='#FFF';
+        }
+});
+    {% endfor %}
+});
+</script>
+
 
 <script language="Javascript">
 $(document).ready(function() 
@@ -16,10 +36,12 @@ $(document).ready(function()
 jQuery.ajaxSettings.traditional = true;
   $(document).ready(function(){
     $("input#save").click(function(){
+      $("#loader").css('visibility','visible');
       $.getJSON($SCRIPT_ROOT + '/_savefile', {
       code: editor.getValue(),
       path: $("#dossier").text()
       }, function(data){
+        $("#loader").css('visibility','hidden');
         alert('Texte enregistré');
       });
     });
@@ -44,24 +66,12 @@ jQuery.ajaxSettings.traditional = true;
         {
           val = soft[i];
           $('#'+val).attr('checked', true);
+
         };
       });
     });
   });
 
-  $(document).ready(function() {
-    $('#cocheTout').click(function() { // clic sur la case cocher/decocher
-            
-        var cases = $("#logiciels").find(':checkbox'); // on cherche les checkbox qui dépendent de la liste 'cases'
-        if(this.checked){ // si 'cocheTout' est coché
-            cases.attr('checked', true); // on coche les cases
-            $('#cocheText').html('Tout decocher'); // mise à jour du texte de cocheText
-        }else{ // si on décoche 'cocheTout' 
-            cases.attr('checked', false);// on coche les cases
-            $('#cocheText').html('Cocher tout');// mise à jour du texte de cocheText
-        }                  
-    });
-});
 
 </script>
 <script type="text/javascript">
@@ -69,7 +79,7 @@ jQuery.ajaxSettings.traditional = true;
 $(document).ready(function(){
     $("input#{{pack.index(i)}}").click(function(){
       $.getJSON($SCRIPT_ROOT + '/_getxml', {
-      xml: $("input#{{ pack.index(i) }}").val()
+      xml: $("input#{{ pack.index(i) }}").attr("name")
       }, function(data){
         var code = data.xml;
         editor.setValue(code);
