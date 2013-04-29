@@ -7,40 +7,23 @@
     <script type=text/javascript src="{{ url_for('static', filename='js/jquery-1.9.1.min.js') }}"></script>
     <script type=text/javascript src="{{ url_for('static', filename='js/jquery.tablesorter.min.js') }}"></script>
 
-
-<script>
-$(document).ready(function(){
-  {% for shortname in packs %}
-    $("#{{ shortname }}").change(function(){
-
-if (document.getElementById('{{ shortname }}').checked == true)
-        {
-        document.getElementById('nomlogiciel{{ packs.index(shortname) }}').style.backgroundColor='rgb(114, 182, 114)';
-        }
-else
-        {
-        document.getElementById('nomlogiciel{{ packs.index(shortname) }}').style.backgroundColor='#FFF';
-        }
-});
-    {% endfor %}
-});
-</script>
-
-
 <script language="Javascript">
 $(document).ready(function() 
     { 
-        $("#myTable").tablesorter(); 
+        $("#myTable").tablesorter();
+        $("#myTable2").tablesorter();
     } 
 );
 jQuery.ajaxSettings.traditional = true;
   $(document).ready(function(){
     $("input#save").click(function(){
+      $("#block").css('visibility','visible');
       $("#loader").css('visibility','visible');
       $.getJSON($SCRIPT_ROOT + '/_savefile', {
       code: editor.getValue(),
       path: $("#dossier").text()
       }, function(data){
+        $("#block").css('visibility','hidden');
         $("#loader").css('visibility','hidden');
         alert('Texte enregistré');
       });
@@ -60,13 +43,12 @@ jQuery.ajaxSettings.traditional = true;
       lgrp: $("select#Listegrp").val()
       }, function(data){
         var soft = data.profile;
-        var cases = $("#logiciels").find(':checkbox');
-        cases.attr('checked', false);
+        var text = document.getElementById('installed2');
+        text.innerHTML='';
+        var n=0;
         for(var i= 0; i < soft.length; i++)
         {
-          val = soft[i];
-          $('#'+val).attr('checked', true);
-
+          text.innerHTML ="<tr><td class='nomlogiciel'>" + soft[i-1] + "</td></tr>" + "<tr><td class='nomlogiciel'>" + soft[i] + "</td></td>";
         };
       });
     });
@@ -100,12 +82,12 @@ $(document).ready(function(){
         <nav>
           <ul class="menu">
               {% with messages = get_flashed_messages() %}
-  {% if messages %}
-    {% for message in messages %}
-      <li>{{ message }}</li>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
+              {% if messages %}
+              {% for message in messages %}
+              <li>{{ message }}</li>
+              {% endfor %}
+              {% endif %}
+              {% endwith %}
             <li><a href="{{ url_for('home') }}">Accueil</a></li>
             <li><a href="{{ url_for('test') }}">Test</a></li>
             <li><a href="{{ url_for('login') }}">Se connecter</a></li>

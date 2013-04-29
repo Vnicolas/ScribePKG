@@ -2,11 +2,21 @@
 {% block content %}
 
 <div class="jumbo">
-<select multiple="multiple" size="25" id="Listegrp">
-        {% for grp in grps %}
-        <option value="{{ grp }}" name="{{ grp }}">{{ grp }}</option>
-        {% endfor %}
-</select>
+    <div id="block"></div>
+        <div id="installed">
+            <table id="myTable2" class="tablesorter"> 
+<thead> 
+<tr> 
+    <th>Logiciels installés</th>
+</tr> 
+</thead> 
+<tbody id="installed2">
+
+</tbody> 
+</table>
+                
+        </div>
+
 <div id="logiciels">
     <table id="myTable" class="tablesorter"> 
 <thead> 
@@ -18,25 +28,34 @@
 <tbody>
 {% for shortname in packs %} 
 <tr> 
-    <td id="nomlogiciel{{ packs.index(shortname) }}" class="nomlogiciel"><label><input type="checkbox" id="{{ shortname }}" ><span>  {{ shortname }}</span></label></td> 
-    <td><input type="button" class="boutonedit" id="{{ packs.index(shortname) }}" name="packages/{{ shortname }}.xml" value="Editer"></td> 
+    <td id="nomlogiciel{{ packs.index(shortname) }}" class="nomlogiciel"><label><span>&nbsp;&nbsp;{{ shortname }}</span></label></td> 
+    <td><input type="button" class="boutonadd" id="" name="ajouter" value="Ajouter" >
+    <input type="button" class="boutonsupp" id="" name="supprimer" value="Supprimer" >
+    <input type="button" class="boutonedit" id="{{ packs.index(shortname) }}" name="packages/{{ shortname }}.xml" value="XML" >
+</td> 
 </tr>
 {% endfor %}
 </tbody> 
 </table>  
 </div>
+<select multiple="multiple" size="25" id="Listegrp">
+        {% for grp in grps %}
+        <option value="{{ grp }}" name="{{ grp }}">{{ grp }}</option>
+        {% endfor %}
+</select>
 <div id="vuediteur">
 <label id="radioedit">Afficher éditeur</label>
 <label id="radioedit2">Masquer éditeur</label>
 </div>
 
 <div id="editeur">
-    <div id="dossier">--> Editeur XML : cliquez sur le bouton " Editer " correspondant au logiciel que vous voulez modifier</div>
-    <div id="editor" name="editor" ></div>
+    <div id="dossier"></div>
+    <div id="editor" name="editor" >--> Editeur XML : cliquez sur le bouton " Editer " correspondant au logiciel que vous voulez modifier</div>
     <input id="save" class="boutonsave"  type="submit" value="Enregistrer">
 </div>
 
-<div id="loader"><img src="{{ url_for('static', filename='img/ajax-loader.gif') }}"><div>
+<div id="loader"><img src="{{ url_for('static', filename='img/ajax-loader.gif') }}"></div>
+
 
 <script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
