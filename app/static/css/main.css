@@ -3,17 +3,13 @@ body {
   padding: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #FFF;
+  overflow-y: scroll; /* Evite un déclage des élements à gauche quand la scrollbar apparaît */
 }
- 
-/*
- * Create dark grey header with a white logo
- */
-  
+
 header {
-  background-color: #2B2B2B;
+  background-color: #000;
   height: 35px;
   width: 100%;
-  opacity: .9;
   margin-bottom: 10px;
 }
  
@@ -30,10 +26,6 @@ header h1.logo:hover {
   color: #fff;
   text-decoration: none;
 }
- 
-/*
- * Center the body content
- */
   
 .container {
   width: 940px;
@@ -60,10 +52,7 @@ h3 {
   letter-spacing: -1px;
   color: #999;
 }
-/*
- * Display navigation links inline
- */
- 
+
 .menu {
   float: right;
   margin: 8px;
@@ -83,6 +72,12 @@ color: #999;
 text-decoration: none;
 }
 
+.menu li a:hover {
+color: #FFF;
+text-decoration: underline;
+}
+
+
 #editor { 
 height: 500px;
 width: 938px;
@@ -98,10 +93,10 @@ border-color: #000;
 
 #logiciels{
 height:401px;
-width: 430px;
+width: 450px;
 display:inline-block;
 overflow:auto;
-margin-left: 110px;
+margin-left: 5px;
 margin-top: 5px;
 }
 
@@ -140,6 +135,7 @@ label {
     padding-left: 15px;
     text-indent: -15px;
     padding-top: 4px;
+    font-size: 12px;
 }
 
 label input {
@@ -156,6 +152,7 @@ label input {
 
 #Listegrp{
 width: 100px;
+height: 401px;
 overflow: auto;
 margin-left: 5px;
 margin-top: 5px;
@@ -170,6 +167,7 @@ position: absolute;
   border-color: black;
   background-color: black;
   padding: 3px;
+  height: 15px;
 }
 
 #edit{
@@ -181,7 +179,7 @@ position: absolute;
 #loader{
   position: fixed;
   z-index: 10;
-  margin-left: 30%;
+  margin-left: 28.7%;
   top: 40%;
   padding: 20px;
   background-color: #FFF;
@@ -205,7 +203,7 @@ position: absolute;
 }
 
 .boutonsave:hover {
-  background:#d34836;
+  background:#FF483D;
   color: #FFF;
 }
 
@@ -214,7 +212,6 @@ position: absolute;
   background:#f5f5f5;
   color:#555;
   border-radius:2px;
-  width:100px;
   border:1px solid #ccc;
   cursor: pointer;
   margin-left: 2px;
@@ -225,12 +222,41 @@ position: absolute;
   color: #FFF;
 }
 
-#vuediteur{
+.boutonsupp{
+  font:bold 13px Helvetica;
+  background:#f5f5f5;
+  color:#555;
+  border-radius:2px;
+  border:1px solid #ccc;
+  cursor: pointer;
+  margin-left: 2px;
+}
 
-  height: 45px;
+.boutonsupp:hover {
+  background:rgb(164, 25, 25);
+  color: #FFF;
+}
+
+.boutonadd{
+  font:bold 13px Helvetica;
+  background:#f5f5f5;
+  color:#555;
+  border-radius:2px;
+  border:1px solid #ccc;
+  cursor: pointer;
+  margin-left: 2px;
+}
+
+.boutonadd:hover {
+  background:rgb(22, 124, 18);
+  color: #FFF;
+}
+
+#vuediteur{
   width: 110px;
-  display: inline;
+  display: block;
   float: right;
+  margin-top: 384px;
 }
 
 #radioedit{
@@ -260,4 +286,60 @@ position: absolute;
 #radioedit2:hover {
   background:#DA8626;
   color: #FFF;
+}
+
+#block{
+position: absolute;
+background: rgb(0, 0, 0);
+opacity: 0.65;
+z-index: 9;
+height: 970px;
+width: 940px;
+visibility: hidden;
+}
+
+:checked + span {
+background-color: yellow;
+}
+
+#installed {
+  height: 300px;
+  width: 150px;
+  position: absolute;
+  background-color: #FFF;
+  color: #FFF;
+  margin-left: 565px;
+  margin-top: 5px;
+  text-align: left;
+  overflow: auto;
+}
+
+#installed::-webkit-scrollbar {
+ 
+  width: 5px; /*largeur de la scrollbar verticale*/
+  height: 5px; /*hauteur de la scrollbar horizontale*/
+}
+
+#installed::-webkit-scrollbar-track { 
+  background-color: #FFFFFF; /*couleur du fond de la scrollbar*/
+}
+
+#installed::-webkit-scrollbar-thumb { /*la petite bande qui monte/descend*/
+  background-color: #000000 ; 
+  
+}
+
+::-webkit-scrollbar {
+ 
+  width: 8px; /*largeur de la scrollbar verticale*/
+  height: 5px; /*hauteur de la scrollbar horizontale*/
+}
+
+::-webkit-scrollbar-track { 
+  background-color: #FFFFFF; /*couleur du fond de la scrollbar*/
+}
+
+::-webkit-scrollbar-thumb { /*la petite bande qui monte/descend*/
+  background-color: #000000 ; 
+  
 }

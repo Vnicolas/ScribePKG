@@ -13,6 +13,7 @@ table.tablesorter thead tr th, table.tablesorter tfoot tr th {
 	padding: 4px;
 	color: #444;
 }
+
 table.tablesorter thead tr .header {
 	background-image: url(../img/bg.gif);
 	background-repeat: no-repeat;
@@ -25,14 +26,6 @@ table.tablesorter tbody td {
 	background-color: #FFF;
 	vertical-align: top;
 }
-.nomlogiciel:hover {
-  background-color: rgb(114, 182, 114);
-}
-
-.nomlogiciel2 {
-  background-color: rgb(114, 182, 114);
-}
-
 
 table.tablesorter tbody tr.odd td {
 	background-color:#F0F0F6;
