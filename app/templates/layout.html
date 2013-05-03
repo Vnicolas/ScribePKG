@@ -5,76 +5,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script type=text/javascript src="{{ url_for('static', filename='js/jquery-1.9.1.min.js') }}"></script>
+    <script type=text/javascript src="{{ url_for('static', filename='js/mainjava.js') }}"></script>
     <script type=text/javascript src="{{ url_for('static', filename='js/jquery.tablesorter.min.js') }}"></script>
-
-<script language="Javascript">
-$(document).ready(function() 
-    { 
-        $("#myTable").tablesorter();
-        $("#myTable2").tablesorter();
-        $("#myTable3").tablesorter();
-    } 
-);
-jQuery.ajaxSettings.traditional = true;
-  $(document).ready(function(){
-    $("input#save").click(function(){
-      $("#block").css('visibility','visible');
-      $("#loader").css('visibility','visible');
-      $.getJSON($SCRIPT_ROOT + '/_savefile', {
-      code: editor.getValue(),
-      path: $("#dossier").text()
-      }, function(data){
-        $("#block").css('visibility','hidden');
-        $("#loader").css('visibility','hidden');
-        alert('Texte enregistré');
-      });
-    });
-  });
-</script>
-
-<script type=text/javascript>
-  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-</script>
-
-<script type=text/javascript>
-jQuery.ajaxSettings.traditional = true;
-  $(document).ready(function(){
-    $("select").change(function(){
-      $.getJSON($SCRIPT_ROOT + '/_getprofiles', {
-      lgrp: $("select#Listegrp").val()
-      }, function(data){
-        var soft = data.profile;
-        var text = document.getElementById('installed2');
-        text.innerHTML='';
-        var n=0;
-        for(var i= 0; i < soft.length; i++)
-        {
-          text.innerHTML ="<tr><td class='nomlogiciel'>" + soft[i-1] + "</td></tr>" + "<tr><td class='nomlogiciel'>" + soft[i] + "</td></td>";
-        };
-      });
-    });
-  });
-
-
-</script>
-<script type="text/javascript">
-{% for i in pack %}
-$(document).ready(function(){
-    $("input#{{pack.index(i)}}").click(function(){
-      $.getJSON($SCRIPT_ROOT + '/_getxml', {
-      xml: $("input#{{ pack.index(i) }}").attr("name")
-      }, function(data){
-        var code = data.xml;
-        editor.setValue(code);
-        editor.gotoLine(1);
-        $("#dossier").html('{{ i }}');
-      });
-    });
-  });
-{% endfor %}
-</script>
-
-
   </head>
   <body>
     <header>

@@ -1,5 +1,22 @@
 {% extends "layout.html" %}
 {% block content %}
+<script type="text/javascript">
+{% for i in pack %}
+$(document).ready(function(){
+    $("input#{{pack.index(i)}}").click(function(){
+      $.getJSON($SCRIPT_ROOT + '/_getxml', {
+      xml: $("input#{{ pack.index(i) }}").attr("name")
+      }, function(data){
+        var code = data.xml;
+        editor.setValue(code);
+        editor.gotoLine(1);
+        $("#dossier").html('{{ i }}');
+      });
+    });
+  });
+{% endfor %}
+</script>
+
 
 <div class="jumbo">
     <div id="block"></div>
@@ -14,7 +31,7 @@
             <tbody>
                 {% for shortname in packs %}
                 <tr>
-                    <td id="nomlogiciel{{ packs.index(shortname) }}" class="nomlogiciel"><label>&nbsp;&nbsp;{{ shortname }}</label><input type="button" class="boutonedit" id="{{ packs.index(shortname) }}" name="packages/{{ shortname }}.xml" value="XML" ></td>
+                    <td id="nomlogiciel{{ packs.index(shortname) }}" class="nomlogiciel"><label><input type="checkbox" id="{{ shortname }}" ><span>&nbsp;&nbsp;{{ shortname }}</span></label><input type="button" class="boutonedit" id="{{ packs.index(shortname) }}" name="packages/{{ shortname }}.xml" value="XML" ></td>
                 </tr>
                 {% endfor %}
             </tbody>
