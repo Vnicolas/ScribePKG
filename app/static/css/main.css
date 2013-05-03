@@ -92,18 +92,12 @@ border-color: #000;
 }
 
 #logiciels{
-height:401px;
-width: 450px;
-display:inline-block;
-overflow:auto;
-margin-left: 5px;
+height: 390px;
+width: 250px;
+display: block;
+overflow: auto;
 margin-top: 5px;
-}
-
-#logiciels2{
-
-display:inline-block;
-overflow:auto;
+position: absolute;
 }
 
 #contenu{
@@ -136,27 +130,16 @@ label {
     text-indent: -15px;
     padding-top: 4px;
     font-size: 12px;
+    font-weight:bold;
 }
-
-label input {
-    width: 13px;
-    height: 13px;
-    padding: 0;
-    margin:0;
-    vertical-align: bottom;
-    position: relative;
-    top: -1px;
-    *overflow: hidden;
-}
-
 
 #Listegrp{
 width: 100px;
-height: 401px;
+height: 420px;
 overflow: auto;
 margin-left: 5px;
 margin-top: 5px;
-position: absolute;
+margin-bottom: 5px;
 }
 
 #dossier{
@@ -215,6 +198,9 @@ position: absolute;
   border:1px solid #ccc;
   cursor: pointer;
   margin-left: 2px;
+  display: inline;
+  float: right;
+  margin-top: -22px;
 }
 
 .boutonedit:hover {
@@ -223,13 +209,17 @@ position: absolute;
 }
 
 .boutonsupp{
-  font:bold 13px Helvetica;
-  background:#f5f5f5;
-  color:#555;
-  border-radius:2px;
-  border:1px solid #ccc;
-  cursor: pointer;
-  margin-left: 2px;
+font: bold 12px Helvetica;
+background: #f5f5f5;
+color: #555;
+cursor: pointer;
+margin-left: 75px;
+margin-top: 395px;
+padding-left: 25px;
+padding-right: 10px;
+border-top-style: solid;
+border-top-width: 1px;
+border-top-color: rgb(5, 2, 2);
 }
 
 .boutonsupp:hover {
@@ -238,13 +228,17 @@ position: absolute;
 }
 
 .boutonadd{
-  font:bold 13px Helvetica;
-  background:#f5f5f5;
-  color:#555;
-  border-radius:2px;
-  border:1px solid #ccc;
-  cursor: pointer;
-  margin-left: 2px;
+font: bold 12px Helvetica;
+background: #f5f5f5;
+color: #555;
+cursor: pointer;
+margin-left: 189px;
+margin-top: 395px;
+padding-left: 25px;
+padding-right: 10px;
+border-top-style: solid;
+border-top-width: 1px;
+border-top-color: rgb(5, 2, 2);
 }
 
 .boutonadd:hover {
@@ -253,10 +247,9 @@ position: absolute;
 }
 
 #vuediteur{
-  width: 110px;
-  display: block;
-  float: right;
-  margin-top: 384px;
+width: 110px;
+display: block;
+float: right;
 }
 
 #radioedit{
@@ -303,15 +296,15 @@ background-color: yellow;
 }
 
 #installed {
-  height: 300px;
-  width: 150px;
-  position: absolute;
-  background-color: #FFF;
-  color: #FFF;
-  margin-left: 565px;
-  margin-top: 5px;
-  text-align: left;
-  overflow: auto;
+height: 390px;
+width: 150px;
+position: absolute;
+background-color: #FFF;
+color: #FFF;
+margin-left: 5px;
+margin-top: 5px;
+text-align: left;
+overflow: auto;
 }
 
 #installed::-webkit-scrollbar {
@@ -342,4 +335,15 @@ background-color: yellow;
 ::-webkit-scrollbar-thumb { /*la petite bande qui monte/descend*/
   background-color: #000000 ; 
   
+}
+
+
+#supp{
+  position: absolute;
+  margin-left: 105px;
+}
+
+#add{
+  position: absolute;
+  margin-left: 265px;
 }
