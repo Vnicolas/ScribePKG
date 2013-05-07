@@ -17,7 +17,6 @@ $(document).ready(function(){
 {% endfor %}
 </script>
 
-
 <div class="jumbo">
     <div id="block"></div>
     <div id="add">
@@ -25,19 +24,19 @@ $(document).ready(function(){
         <table id="myTable" class="tablesorter">
             <thead>
                 <tr>
-                    <th>Nom logiciel</th>
+                    <th>Logiciels</th>
                 </tr>
             </thead>
             <tbody>
                 {% for shortname in packs %}
                 <tr>
-                    <td id="nomlogiciel{{ packs.index(shortname) }}" class="nomlogiciel"><label><input type="checkbox" id="{{ shortname }}" ><span>&nbsp;&nbsp;{{ shortname }}</span></label><input type="button" class="boutonedit" id="{{ packs.index(shortname) }}" name="packages/{{ shortname }}.xml" value="XML" ></td>
+                    <td id="nomlogiciel{{ packs.index(shortname) }}" class="nomlogiciel"><label><input type="checkbox" id="{{ shortname }}" ><span> {{ shortname }}</span></label><input type="button" class="boutonedit" id="{{ packs.index(shortname) }}" name="packages/{{ shortname }}.xml" value="XML" ></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-    <label class="boutonadd">Ajouter</label>
+    <label class="boutonadd"><span class="icon">&oplus;</span>Ajouter à la liste</label>
     </div>
 
     <div id="vuediteur">
@@ -46,7 +45,7 @@ $(document).ready(function(){
     </div>
     <div id="supp">
         <div id="installed">
-        <table id="myTable2" class="tablesorter">
+        <table id="Table2" class="tablesorter">
             <thead>
                 <tr>
                     <th>Logiciels installés</th>
@@ -57,8 +56,9 @@ $(document).ready(function(){
         </table>
         
     </div>
-    <label class="boutonsupp">Supprimer</label>
+    <label class="boutonsupp"><span class="icon">&#8854;</span>Supprimer de la liste</label>
     </div>
+    <div id="results">Pour ajouter des logiciels au groupe sélectionné, cocher la case correspondante et cliquer sur "Ajouter".</div>
 
     <select multiple="multiple" size="25" id="Listegrp">
         {% for grp in grps %}
@@ -84,17 +84,19 @@ $(document).ready(function(){
     <script type="text/javascript">
             var oui = document.getElementById("radioedit");
             var non = document.getElementById("radioedit2");
+            var editeur = document.getElementById("editeur");
             oui.onclick = function() {
                 oui.style.display = "none";
-                document.getElementById("editeur").style.display = "block";
+                editeur.style.display = "block";
                 non.style.display = "block";
             };
             non.onclick = function() {
                 non.style.display = "none";
-                document.getElementById("editeur").style.display = "none";
+                editeur.style.display = "none";
                 oui.style.display = "block";
             };
             </script>
+
 </div>
 
 {% endblock %}
