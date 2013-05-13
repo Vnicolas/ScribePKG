@@ -19,12 +19,44 @@ $(document).ready(function(){
 
 <div class="jumbo">
     <div id="block"></div>
-    <div id="add">
+    <div id="lien">&#128279;</div>
+    <div id="lien2">&#58541;</div>
+    <div id="results">1) Sélectionner le groupe<br>
+                        2) Cocher les logiciels à installer<br>
+                        3) Confirmer les changements<br>
+                        <label class="appliquer"><span class="icon">&#128229;</span>Appliquer</label></div>
+    <div id="groupe">
+    <div class="groupeicon">&#128101;</div><span class="texticon">GRP</span>
+    <select multiple="multiple" size="25" id="Listegrp">
+        {% for grp in grps %}
+        <option value="{{ grp }}" name="{{ grp }}">{{ grp }}</option>
+        {% endfor %}
+    </select>
+    </div>
+
+
+    <div id="supp">
+        <div class="installedicon">&#128193;</div><span class="texticon">Logiciels installés</span>
+        <div id="installed">
+        <table id="Table2" class="tablesorter">
+            <thead>
+                <tr>
+                    <th>Noms</th>
+                </tr> 
+            </thead>
+            <tbody id="installed2">
+            </tbody>
+        </table>
+        
+    </div>
+    <label class="boutonsupp"><span class="icon">&#8854;</span>Supprimer</label>
+    </div>
+    <div id="add"><div class="addicon">&#59392;</div><span class="texticon">Logiciels</span>
     <div id="logiciels">
         <table id="myTable" class="tablesorter">
             <thead>
                 <tr>
-                    <th>Logiciels</th>
+                    <th>Noms</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,35 +68,13 @@ $(document).ready(function(){
             </tbody>
         </table>
     </div>
-    <label class="boutonadd"><span class="icon">&oplus;</span>Ajouter à la liste</label>
+    <label class="boutonadd"><span class="icon">&oplus;</span>Ajouter</label>
     </div>
 
     <div id="vuediteur">
         <label id="radioedit">Afficher éditeur</label>
         <label id="radioedit2">Masquer éditeur</label>
     </div>
-    <div id="supp">
-        <div id="installed">
-        <table id="Table2" class="tablesorter">
-            <thead>
-                <tr>
-                    <th>Logiciels installés</th>
-                </tr> 
-            </thead>
-            <tbody id="installed2">
-            </tbody>
-        </table>
-        
-    </div>
-    <label class="boutonsupp"><span class="icon">&#8854;</span>Supprimer de la liste</label>
-    </div>
-    <div id="results">Pour ajouter des logiciels au groupe sélectionné, cocher la case correspondante et cliquer sur "Ajouter".</div>
-
-    <select multiple="multiple" size="25" id="Listegrp">
-        {% for grp in grps %}
-        <option value="{{ grp }}" name="{{ grp }}">{{ grp }}</option>
-        {% endfor %}
-    </select>
     
     <div id="editeur">
         <div id="dossier"></div>

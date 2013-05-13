@@ -13,7 +13,7 @@ body {
   padding: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #FFF;
-  overflow-y: scroll; /* Evite un déclage des élements à gauche quand la scrollbar apparaît car déjà présente */
+  overflow-y: scroll; /* Scrollbar déjà présente -> Evite un déclage des élements à gauche  */
 }
 
 header {
@@ -45,7 +45,9 @@ header h1.logo:hover {
  
 div.jumbo {
   background-color: rgb(54, 126, 83);
-          
+height: 454px;
+width: 940px;
+}  
 }
  
 h2 {
@@ -98,16 +100,18 @@ border-color: #000;
 }
 
 #editeur{
-
   display: none;
+  position: absolute;
+  background-color: rgb(54, 126, 83);
+  margin-top: 6px;
 }
 
 #logiciels{
-height: 395px;
+height: 370px;
 width: 275px;
 display: block;
 overflow: auto;
-margin-top: 5px;
+margin-top: 30px;
 position: absolute;
 }
 
@@ -151,15 +155,15 @@ label {
 #Listegrp{
 font-size: 12px;
 width: 100px;
-height: 420px;
+height: 395px;
 overflow: auto;
-margin-left: 5px;
-margin-top: 5px;
-margin-bottom: 5px;
+margin-top: 30px;
 }
+
 
 #dossier{
   text-align: center;
+  font-size: 15px;
   color: white;
   border: 1px;
   border-style: solid;
@@ -229,7 +233,7 @@ font: bold 12px Helvetica;
 background: #f5f5f5;
 color: #555;
 cursor: pointer;
-margin-left: 78px;
+margin-left: 130px;
 margin-top: 400px;
 padding-left: 50px;
 padding-right: 10px;
@@ -249,7 +253,7 @@ font: bold 12px Helvetica;
 background: #f5f5f5;
 color: #555;
 cursor: pointer;
-margin-left: 139px;
+margin-left: 189px;
 margin-top: 400px;
 padding-left: 50px;
 padding-right: 10px;
@@ -267,7 +271,7 @@ visibility: hidden;
 width: 110px;
 display: block;
 float: right;
-margin-top: 405px;
+margin-top: 429px;
 }
 
 #radioedit{
@@ -316,17 +320,15 @@ background-color: yellow;
 }
 
 #installed {
-height: 395px;
+height: 370px;
 width: 235px;
 position: absolute;
 background-color: #FFF;
 color: #000;
-margin-left: 5px;
-margin-top: 5px;
+margin-top: 30px;
 text-align: left;
 overflow: auto;
 }
-
 #installed::-webkit-scrollbar {
  
   width: 5px; /*largeur de la scrollbar verticale*/
@@ -358,18 +360,22 @@ overflow: auto;
 }
 
 #supp{
-  position: absolute;
-  margin-left: 105px;
+display: inline-block;
+margin-top: 5px;
+margin-left: 34px;
+border-radius: 10px;
+padding: 5px;
 }
 
 #add{
-  position: absolute;
-  margin-left: 350px;
+  display: inline-block;
+  margin-left: 38px;
 }
 
 input[type="checkbox"] {
 margin: 3px 3px 3px 4px;
 vertical-align: middle;
+display: inline;
 }
 
 span {
@@ -378,14 +384,14 @@ span {
 
 #results {
 font-size: 12px;
-height: 384px;
+height: 263px;
 background-color: #fff;
 position: absolute;
-width: 208px;
+width: 193px;
 color: rgb(0, 0, 0);
 border: 2px solid black;
-margin-left: 713px;
-margin-top: 5px;
+margin-left: 726px;
+margin-top: 43px;
 padding: 5px;
 }
 
@@ -396,4 +402,86 @@ line-height: 0px;
 position: absolute;
 font-weight: normal;
 margin-left: -10px;
+}
+
+.groupeicon{
+font-family: "entypo";
+font-size: 60px;
+line-height: 0px;
+font-weight: normal;
+height: 20px;
+width: 100px;
+margin-left: 3px;
+position: absolute;
+}
+
+.installedicon{
+font-family: "entypo";
+font-size: 61px;
+line-height: 0px;
+font-weight: normal;
+height: 20px;
+width: 100px;
+margin-left: 3px;
+position: absolute;
+}
+
+#groupe{
+display: inline-block;
+margin: 5px;
+border-radius: 10px;
+padding: 5px;
+}
+
+.texticon{
+ position: absolute;
+margin-left: 50px;
+margin-top: 5px;
+font-size: 20px;
+font-weight: bold;
+}
+
+#lien{
+font-family: "entypo";
+font-size: 61px;
+position: absolute;
+margin-left: 120px;
+margin-top: 10%;
+}
+
+#lien2{
+font-family: "entypo";
+font-size: 61px;
+position: absolute;
+margin-left: 404px;
+margin-top: 10%;
+}
+
+.appliquer{
+font: bold 14px Helvetica;
+text-align: center;
+text-indent: -18px;
+background: #f5f5f5;
+color: rgb(0, 0, 0);
+margin-top: 192px;
+padding-left: 50px;
+padding-right: 10px;
+border-top-style: solid;
+border-top-width: 1px;
+}
+
+.appliquer:hover{
+background-color: #000;
+color: #fff;
+cursor: pointer;
+}
+
+.addicon{
+font-family: "entypo";
+font-size: 61px;
+line-height: 0px;
+font-weight: normal;
+height: 20px;
+width: 100px;
+position: absolute;
 }
