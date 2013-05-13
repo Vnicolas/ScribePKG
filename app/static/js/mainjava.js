@@ -55,10 +55,11 @@ var log= logiciel.split(" ");
   for(var i=1; i<log.length; i++){
     text.innerHTML = text.innerHTML 
     +"<tr><td style='background-color:#4BB5C1;' class='nomlogiciel'><label><input type='checkbox' ><span>" 
+    + " " 
     + log[i]
     + "</span></label></td></tr>";
 }
-          $("#myTable input:checked").removeAttr("checked");
+          $("#myTable input:checked").removeAttr("checked").attr('disabled', 'disabled');
           $('.boutonsupp').css('visibility','visible');
     });
   });
@@ -69,8 +70,10 @@ var supp = document.getElementsByClassName('boutonsupp');
 var text = document.getElementById('installed2');
 $(supp).click(function(){
 var logicielsupp = $("#Table2 input:checked").next('span').text();
-var logsupp= logicielsupp.split(" ");
-$("#Table2 input:checked").closest('tr').fadeOut();
-$("#Table2 input:checked").removeAttr("checked");
+var logsupp = logicielsupp.split(" ");
+for(var i=1; i<logsupp.length; i++){
+  $("#"+logsupp[i]+"").removeAttr('disabled');
+}
+$("#Table2 input:checked").closest('tr').remove();
 });
 });
