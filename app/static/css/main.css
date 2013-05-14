@@ -229,12 +229,13 @@ margin-top: 30px;
 }
 
 .boutonsupp{
+position: absolute;
 font: bold 12px Helvetica;
 background: #f5f5f5;
 color: #555;
 cursor: pointer;
 margin-left: 130px;
-margin-top: 400px;
+margin-top: -27px;
 padding-left: 50px;
 padding-right: 10px;
 border-top-style: solid;
@@ -369,7 +370,7 @@ padding: 5px;
 
 #add{
   display: inline-block;
-  margin-left: 38px;
+  margin-left: 248px;
 }
 
 input[type="checkbox"] {
@@ -484,4 +485,38 @@ font-weight: normal;
 height: 20px;
 width: 100px;
 position: absolute;
+}
+
+#allsupp{
+height: 21px;
+width: 0px;
+display: inline-block;
+font: bold 12px Helvetica;
+background: #f5f5f5;
+color: #555;
+cursor: pointer;
+margin-top: 400px;
+padding-left: 17px;
+padding-right: 8px;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #000;
+visibility: hidden;
+}
+
+#addall{
+height: 21px;
+width: 0px;
+position: absolute;
+font: bold 12px Helvetica;
+background: #f5f5f5;
+color: #555;
+cursor: pointer;
+margin-top: 400px;
+padding-left: 17px;
+padding-right: 8px;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #000;
+visibility: hidden;
 }

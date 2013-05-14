@@ -30,7 +30,9 @@ jQuery.ajaxSettings.traditional = true;
       }, function(data){
         var soft = data.profile;
         var text = document.getElementById('installed2');
+        $('#addall').css('visibility','visible');
         $('.boutonadd').css('visibility','visible');
+        $("#myTable input:checkbox").removeAttr('disabled');
         text.innerHTML='';
         for(var i= 0; i < soft.length; i++)
         {
@@ -54,13 +56,15 @@ var logiciel = $("#myTable input:checked").next('span').text();
 var log= logiciel.split(" ");
   for(var i=1; i<log.length; i++){
     text.innerHTML = text.innerHTML 
-    +"<tr><td style='background-color:#4BB5C1;' class='nomlogiciel'><label><input type='checkbox' ><span>" 
+    +"<tr><td style='background-color:#4BB5C1;' class='nomlogiciel'><label><input type='checkbox' name='choixsupp' ><span>" 
     + " " 
     + log[i]
     + "</span></label></td></tr>";
 }
           $("#myTable input:checked").removeAttr("checked").attr('disabled', 'disabled');
+          $("#addall input:checked").removeAttr("checked");
           $('.boutonsupp').css('visibility','visible');
+          $('#allsupp').css('visibility','visible');
     });
   });
 
@@ -74,6 +78,23 @@ var logsupp = logicielsupp.split(" ");
 for(var i=1; i<logsupp.length; i++){
   $("#"+logsupp[i]+"").removeAttr('disabled');
 }
+$("#allsupp input:checked").removeAttr("checked");
 $("#Table2 input:checked").closest('tr').remove();
 });
 });
+
+function suppcocher(etat) {
+  var inputs = document.getElementById('Table2').getElementsByTagName('input');
+  for(i = 0; i < inputs.length; i++) {
+    if(inputs[i].type == 'checkbox')
+      inputs[i].checked = etat;
+  }
+}
+
+function addcocher(etat) {
+  var inputs = document.getElementById('myTable').getElementsByTagName('input');
+  for(i = 0; i < inputs.length; i++) {
+    if((inputs[i].type == 'checkbox' && inputs[i].disabled == false))
+      inputs[i].checked = etat;
+  }
+}
