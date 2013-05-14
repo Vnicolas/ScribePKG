@@ -49,9 +49,11 @@ $(document).ready(function(){
         </table>
         
     </div>
+    <label id="allsupp"><input type="checkbox" onclick="suppcocher(this.checked)"></label>
     <label class="boutonsupp"><span class="icon">&#8854;</span>Supprimer</label>
+
     </div>
-    <div id="add"><div class="addicon">&#59392;</div><span class="texticon">Logiciels</span>
+    <div id="add"><div class="addicon">&#59392;</div><span class="texticon">Répertoire</span>
     <div id="logiciels">
         <table id="myTable" class="tablesorter">
             <thead>
@@ -62,12 +64,13 @@ $(document).ready(function(){
             <tbody>
                 {% for shortname in packs %}
                 <tr>
-                    <td id="nomlogiciel{{ packs.index(shortname) }}" class="nomlogiciel"><label><input type="checkbox" id="{{ shortname }}" ><span> {{ shortname }}</span></label><input type="button" class="boutonedit" id="{{ packs.index(shortname) }}" name="packages/{{ shortname }}.xml" value="XML" ></td>
+                    <td id="nomlogiciel{{ packs.index(shortname) }}" class="nomlogiciel"><label><input type="checkbox" disabled="false" name="choix "id="{{ shortname }}" ><span> {{ shortname }}</span></label><input type="button" class="boutonedit" id="{{ packs.index(shortname) }}" name="packages/{{ shortname }}.xml" value="XML" ></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
+    <label id="addall"><input type="checkbox" onclick="addcocher(this.checked)"></label>
     <label class="boutonadd"><span class="icon">&oplus;</span>Ajouter</label>
     </div>
 
