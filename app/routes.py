@@ -5,7 +5,7 @@ from StringIO import StringIO
 import zipfile
 import shutil
 import os
-
+import dl
 from lxml import etree
 
 WPKG_PATH = '/home/wpkg'
@@ -43,7 +43,7 @@ def load_user(id):
     return USERS.get(int(id))
 
 
-login_manager.setup_app(app)
+login_manager.init_app(app)
 
 @app.route("/secret")
 @fresh_login_required
@@ -130,6 +130,12 @@ def savefile():
 def set_profile():
     ids = request.args.get('ids')
     return jsonify(ids=function.set_profile(ids))
+
+@app.route('/_dl')
+def dl():
+    xmlfile=request.args.get('xmlfile')
+    return jsonify(dl=dl.get_installers(xmlfile))
+
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', debug=True)
