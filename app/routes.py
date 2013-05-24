@@ -63,7 +63,7 @@ def savefile():
     c = request.args.get('code')
     d = request.args.get('path')
     f = open(d, 'w')
-    f.write(c)
+    f.write(c.encode('utf-8'))
     f.close
     return '0'
 

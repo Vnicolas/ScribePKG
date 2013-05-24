@@ -21,15 +21,16 @@ $(document).ready(function(){
     <div id="block"></div>
     <div id="lien">&#128279;</div>
     <div id="lien2">&#58541;</div>
-    <div id="results">1) Sélectionner le groupe<br>
-                        2) Cocher les logiciels à installer<br>
-                        3) Confirmer les changements<br>
-                        <label class="appliquer"><span class="icon">&#128229;</span>Appliquer</label></div>
+    <div id="results"><span1>1) Sélectionner le groupe</span1><br><br>
+                        <span2>2) Cocher les logiciels à installer</span2><br><br>
+                        <span3>3) Confirmer les changements</span3><br><br>
+                        <label class="appliquer"><span class="icon">&#59256;</span>Appliquer</label>
+    </div>
     <div id="groupe">
     <div class="groupeicon">&#128101;</div><span class="texticon">GRP</span>
-    <select multiple="multiple" size="25" id="Listegrp">
+    <select size="25" id="Listegrp">
         {% for grp in grps %}
-        <option value="{{ grp }}" name="{{ grp }}">{{ grp }}</option>
+        <option value="{{ grp }}" name="{{ grp }}">  {{ grp }}</option>
         {% endfor %}
     </select>
     </div>
