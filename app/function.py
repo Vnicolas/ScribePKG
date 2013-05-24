@@ -69,9 +69,6 @@ def set_profile(ids):
         xmlfp.write('<profile id="' + j + '">\n')
     xmlfp.write('</profile>\n')
     xmlfp.write('</profiles>\n')
-<<<<<<< HEAD
-    xmlfp.close()
-=======
     xmlfp.close()
 
 def save_file(code, path):
@@ -114,4 +111,3 @@ def login(username,password):
         print 'Internal error'
         return False
 
->>>>>>> origin/master
