@@ -6,6 +6,37 @@ UPLOAD_FOLDER = '/root/flaskapp/app/packages'
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = 'some_secret'
+class User(UserMixin):
+    def __init__(self, name, id, active=True):
+        self.name = name
+        self.id = id
+        self.active = active
+    
+    def is_active(self):
+        return self.active
+
+class Anonymous(AnonymousUser):
+    name = u"Anonymous"
+
+
+login_manager = LoginManager()
+
+login_manager.anonymous_user = Anonymous
+login_manager.login_view = "login"
+login_manager.login_message = u"Please log in to access this page."
+login_manager.refresh_view = "reauth"
+@login_manager.user_loader
+def load_user(id):
+    return USERS.get(int(id))
+
+
+login_manager.setup_app(app)
+
+@app.route("/secret")
+@fresh_login_required
+def secret():
+    return render_template("secret.html")
+
 
 
 @app.route('/')
@@ -28,21 +59,35 @@ def home():
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['username'] != 'admin' or \
-                request.form['password'] != 'secret':
+        if not function.login(request.form['username'],request.form['password']):
             error = 'Invalid credentials'
         else:
             flash("Connecte en tant que : " + request.form['username'])
             return redirect(url_for('home'))
     return render_template('login.html', error=error)
 
-@app.route('/logout')
+
+@app.route("/reauth", methods=["GET", "POST"])
+@login_required
+def reauth():
+    if request.method == "POST":
+        confirm_login()
+        flash(u"Reauthenticated.")
+        return redirect(request.args.get("next") or url_for("index"))
+    return render_template("reauth.html")
+
+
+@app.route("/logout")
+@login_required
 def logout():
-    # remove the username from the session if it's there
-    session.pop('username', None)
-    return redirect(url_for('home'))
+    logout_user()
+    flash("Logged out.")
+    return redirect(url_for("index"))
+
+
 
 @app.route('/test')
+@login_required
 def test():
 	packs,shortname, i, pack = function.get_packages()
 	grps = function.get_group()
