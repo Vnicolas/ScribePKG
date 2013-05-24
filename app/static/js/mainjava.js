@@ -78,7 +78,8 @@ jQuery.ajaxSettings.traditional = true;
         text.innerHTML='';
         for(var i= 0; i < soft.length ; i++)
         {
-          text.innerHTML= text.innerHTML +"<tr><td class='nomlogiciel'><label class='prime'><span style='font-style: italic;'>" 
+          text.innerHTML= text.innerHTML +"<tr><td class='nomlogiciel'><label class='prime'><span style='font-style: italic;'>"
+          + " "
           + soft[i]
           + "</span></label><input class='boutonsupplogiciel'  type='submit' value='Supprimer'></td></tr>";
         };
@@ -103,10 +104,10 @@ var log= logiciel.split(" ");
     + " " 
     + log[i]
     + "</span></label></td></tr>";
-}
-          $("#myTable input:checked").removeAttr("checked").attr('disabled', 'disabled');
-          $("#addall input:checked").removeAttr("checked");
-          $(".appliquer").css('visibility','visible');
+}   
+    $("#myTable input:checked").removeAttr("checked").attr('disabled', 'disabled');
+    $("#addall input:checked").removeAttr("checked");
+    $(".appliquer").css('visibility','visible');
     });
   });
 

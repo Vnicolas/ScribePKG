@@ -52,22 +52,18 @@ def get_profile(grp):
         set_profile(grp)
     return profiles
 
-def set_profile(grp):
+def set_profile(ids):
     """
     creation fichiers contenant les applis pour un group
     """
     if not os.path.exists('/home/wpkg/profiles/'):
         os.makedirs('/home/wpkg/profiles/')
-    filename = u'/home/wpkg/profiles/' + grp + '.xml'
+    filename = u'/home/wpkg/profiles/' + ids + '.xml'
     xmlfp = open(filename, "w")
     xmlfp.write('<?xml version="1.0" encoding="UTF-8"?>\n')
     xmlfp.write('<profiles>\n')
-    xmlfp.write('<profile id="' + grp + '">\n')
+    for j in ids:
+        xmlfp.write('<profile id="' + j + '">\n')
     xmlfp.write('</profile>\n')
     xmlfp.write('</profiles>\n')
     xmlfp.close()
-
-def save_file(code, path):
-    f = open(path, 'w')
-    f.write(code)
-    f.close
