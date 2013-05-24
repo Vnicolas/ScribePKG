@@ -117,8 +117,9 @@ def savefile():
 
 @app.route('/_setprofile')
 def set_profile():
-    ids = request.args.get('ids')
-    return jsonify(ids=function.set_profile(ids))
+    g = request.args.get('ids')
+    h = request.args.get('grp')
+    return jsonify(ids=function.set_profile(g, h))
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', debug=True)

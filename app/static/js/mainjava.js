@@ -94,22 +94,27 @@ $(document).ready(function(){
 var add = document.getElementsByClassName('boutonadd');
 var text = document.getElementById('installed2');
 $(add).click(function(){
-var installed = $("#installed2 span").text();
-var install= installed.split(" ");
-var logiciel = $("#myTable input:checked").next('span').text();
-var log= logiciel.split(" ");
-  for(var i=1; i<log.length; i++){
-    text.innerHTML = text.innerHTML 
-    +"<tr><td style='background-color:#4BB5C1;' class='nomlogiciel'><label><input type='checkbox' name='choixsupp' ><span>" 
-    + " " 
-    + log[i]
-    + "</span></label></td></tr>";
-}   
-    $("#myTable input:checked").removeAttr("checked").attr('disabled', 'disabled');
-    $("#addall input:checked").removeAttr("checked");
-    $(".appliquer").css('visibility','visible');
+  $.getJSON($SCRIPT_ROOT + '/_setprofile', {
+      ids: $("#installed2 span").text() + $("#myTable input:checked").next('span').text(),
+      grp: $("select#Listegrp").val()
+      }, function(data){
+          var installed = $("#installed2 span").text();
+          var install= installed.split(" ");
+          var logiciel = $("#myTable input:checked").next('span').text();
+          var log= logiciel.split(" ");
+          for(var i=1; i<log.length; i++){
+          text.innerHTML = text.innerHTML 
+          +"<tr><td style='background-color:#4BB5C1;' class='nomlogiciel'><label><input type='checkbox' name='choixsupp' ><span>" 
+          + " " 
+          + log[i]
+          + "</span></label></td></tr>";
+          }   
+          $("#myTable input:checked").removeAttr("checked").attr('disabled', 'disabled');
+          $("#addall input:checked").removeAttr("checked");
+          $(".appliquer").css('visibility','visible');
     });
   });
+});
 
 // Supprime les logiciels sélectionnés
 
