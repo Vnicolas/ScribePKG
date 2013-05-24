@@ -1,6 +1,17 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, json, jsonify, session, escape
 from flask.ext.login import (LoginManager, current_user, login_required, login_user, logout_user, UserMixin, AnonymousUser, confirm_login, fresh_login_required)
 import function, sys, os
+from StringIO import StringIO
+import zipfile
+import shutil
+import os
+
+from lxml import etree
+
+WPKG_PATH = '/home/wpkg'
+PACKAGES_PATH = os.path.join(WPKG_PATH, 'packages')
+SOFTWARE_PATH = os.path.join(WPKG_PATH, 'softwares')
+
 
 UPLOAD_FOLDER = '/root/flaskapp/app/packages'
 app = Flask(__name__)
@@ -64,7 +75,7 @@ def login():
         if not function.login(request.form['username'],request.form['password']):
             error = 'Invalid credentials'
         else:
-            if login_user(USER_NAMES[request.form['username']]):
+            if login_user(USER_NAMES[request.form['username']],remember=True):
                 flash("Connecte en tant que : " + request.form['username'])
                 return redirect(request.args.get("next") or url_for("accueil"))
     return render_template('login.html', error=error)
