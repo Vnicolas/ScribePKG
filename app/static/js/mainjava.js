@@ -2,8 +2,46 @@ $(document).ready(function()
     { 
         $("#myTable").tablesorter();
         $("#Table2").tablesorter();
+
+// surbrillance GROUPE
+
+        var span1 = document.getElementById('results').getElementsByTagName('span1');
+        $(span1).mouseover(function(){
+        $('#Listegrp').addClass("run-animation");
+      });
+
+        $(span1).mouseout(function(){
+        $('#Listegrp').removeClass("run-animation");
+      });
+
+// surbrillance RÉPERTOIRE
+
+        var span2 = document.getElementById('results').getElementsByTagName('span2');
+        $(span2).mouseover(function(){
+        $('#logiciels').addClass("run-animation");
+      });
+
+        $(span2).mouseout(function(){
+        $('#logiciels').removeClass("run-animation");
+      });
+
+// surbrillance APPLIQUER
+
+        var span3 = document.getElementById('results').getElementsByTagName('span3');
+        $(span3).mouseover(function(){
+        $('.appliquer').addClass("run-animation");
+      });
+
+        $(span3).mouseout(function(){
+        $('.appliquer').removeClass("run-animation");
+      });
+       
     } 
+
 );
+
+// Sauvegarde de l'édition des fichiers xml
+
 jQuery.ajaxSettings.traditional = true;
   $(document).ready(function(){
     $("input#save").click(function(){
@@ -22,6 +60,8 @@ jQuery.ajaxSettings.traditional = true;
 
 $SCRIPT_ROOT = "";
 
+// Retoune les groupes présents dans le dossier /profile
+
 jQuery.ajaxSettings.traditional = true;
   $(document).ready(function(){
     $("select").change(function(){
@@ -32,26 +72,29 @@ jQuery.ajaxSettings.traditional = true;
         var text = document.getElementById('installed2');
         $('#addall').css('visibility','visible');
         $('.boutonadd').css('visibility','visible');
+        $('.boutonsupp').css('visibility','visible');
+        $('#allsupp').css('visibility','visible');
         $("#myTable input:checkbox").removeAttr('disabled');
         text.innerHTML='';
-        for(var i= 0; i < soft.length; i++)
+        for(var i= 0; i < soft.length ; i++)
         {
-          text.innerHTML ="<tr><td class='nomlogiciel'><label><span>" 
-          + soft[i-1] 
-          + "</span></label></td></tr>" 
-          + "<tr><td class='nomlogiciel'><label><span>" 
-          + soft[i] 
-          + "</span></label></td></td>";
+          text.innerHTML= text.innerHTML +"<tr><td class='nomlogiciel'><label class='prime'><span style='font-style: italic;'>" 
+          + soft[i]
+          + "</span></label><input class='boutonsupplogiciel'  type='submit' value='Supprimer'></td></tr>";
         };
       });
     });
   });
+
+// Ajoute les logiciels sélectionnés
 
 jQuery.ajaxSettings.traditional = true;
 $(document).ready(function(){
 var add = document.getElementsByClassName('boutonadd');
 var text = document.getElementById('installed2');
 $(add).click(function(){
+var installed = $("#installed2 span").text();
+var install= installed.split(" ");
 var logiciel = $("#myTable input:checked").next('span').text();
 var log= logiciel.split(" ");
   for(var i=1; i<log.length; i++){
@@ -63,10 +106,11 @@ var log= logiciel.split(" ");
 }
           $("#myTable input:checked").removeAttr("checked").attr('disabled', 'disabled');
           $("#addall input:checked").removeAttr("checked");
-          $('.boutonsupp').css('visibility','visible');
-          $('#allsupp').css('visibility','visible');
+          $(".appliquer").css('visibility','visible');
     });
   });
+
+// Supprime les logiciels sélectionnés
 
 jQuery.ajaxSettings.traditional = true;
 $(document).ready(function(){
@@ -79,9 +123,14 @@ for(var i=1; i<logsupp.length; i++){
   $("#"+logsupp[i]+"").removeAttr('disabled');
 }
 $("#allsupp input:checked").removeAttr("checked");
+$(".appliquer").css('visibility','visible');
 $("#Table2 input:checked").closest('tr').remove();
+  
+
 });
 });
+
+// Coche tout dans "logiciels installés"
 
 function suppcocher(etat) {
   var inputs = document.getElementById('Table2').getElementsByTagName('input');
@@ -90,6 +139,8 @@ function suppcocher(etat) {
       inputs[i].checked = etat;
   }
 }
+
+// Coche tout dans "Répertoire"
 
 function addcocher(etat) {
   var inputs = document.getElementById('myTable').getElementsByTagName('input');
