@@ -18,6 +18,8 @@ class User(UserMixin):
 class Anonymous(AnonymousUser):
     name = u"Anonymous"
 
+USERS = {    1: User(u"admin", 1)}
+USER_NAMES = dict((u.name, u) for u in USERS.itervalues())
 
 login_manager = LoginManager()
 
@@ -62,8 +64,9 @@ def login():
         if not function.login(request.form['username'],request.form['password']):
             error = 'Invalid credentials'
         else:
-            flash("Connecte en tant que : " + request.form['username'])
-            return redirect(url_for('home'))
+            if login_user(USER_NAMES[request.form['username']]):
+                flash("Connecte en tant que : " + request.form['username'])
+                return redirect(request.args.get("next") or url_for("accueil"))
     return render_template('login.html', error=error)
 
 
@@ -73,7 +76,7 @@ def reauth():
     if request.method == "POST":
         confirm_login()
         flash(u"Reauthenticated.")
-        return redirect(request.args.get("next") or url_for("index"))
+        return redirect(request.args.get("next") or url_for("accueil"))
     return render_template("reauth.html")
 
 
@@ -82,7 +85,7 @@ def reauth():
 def logout():
     logout_user()
     flash("Logged out.")
-    return redirect(url_for("index"))
+    return redirect(url_for("accueil"))
 
 
 
