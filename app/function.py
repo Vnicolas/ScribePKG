@@ -18,8 +18,7 @@ def get_group():
 def get_packages():
 	packs=[]
 	pack=[]
-	i=[]
-	global shortname, i
+	
 	import glob, os
 	pack = glob.glob('packages/*.xml')
 	for i in pack:
