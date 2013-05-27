@@ -64,10 +64,14 @@ $SCRIPT_ROOT = "";
 
 jQuery.ajaxSettings.traditional = true;
   $(document).ready(function(){
-    $("select").change(function(){
-      $.getJSON($SCRIPT_ROOT + '/_getprofiles', {
-      lgrp: $("select#Listegrp").val()
-      }, function(data){
+    $("select").change(function()
+    {
+      $.getJSON($SCRIPT_ROOT + '/_getprofiles', 
+      {
+        lgrp: $("select#Listegrp").val()
+      }, 
+      function(data)
+      {
         var soft = data.profile;
         var text = document.getElementById('installed2');
         $('#addall').css('visibility','visible');
@@ -78,10 +82,24 @@ jQuery.ajaxSettings.traditional = true;
         text.innerHTML='';
         for(var i= 0; i < soft.length ; i++)
         {
-          text.innerHTML= text.innerHTML +"<tr><td class='nomlogiciel'><label class='prime'><span style='font-style: italic;'>"
+          text.innerHTML= text.innerHTML +"<tr><td class='nomlogiciel'><label class='prime'><input type='checkbox' name='choixsupp' ><span style='font-style: italic;'>"
           + " "
           + soft[i]
-          + "</span></label><input class='boutonsupplogiciel'  type='submit' value='Supprimer'></td></tr>";
+          + "</span></label></td></tr>";
+        };
+        var pres = $("#Table2 span").text();
+        var present = pres.split(" ");
+        var listeapp = $("#myTable span").text();
+        var logapp = listeapp.split(" ");
+        for (var h=1 in logapp)
+        {
+          for (var k=1 in present) 
+          {
+            if (present[k]==logapp[h]) 
+            {
+              $("#"+logapp[h]+"").attr('disabled', 'disabled');
+            };
+          };
         };
       });
     });
@@ -91,8 +109,8 @@ jQuery.ajaxSettings.traditional = true;
 
 jQuery.ajaxSettings.traditional = true;
 $(document).ready(function(){
-var add = document.getElementsByClassName('boutonadd');
-var text = document.getElementById('installed2');
+  var add = document.getElementsByClassName('boutonadd');
+  var text = document.getElementById('installed2');
 $(add).click(function(){
   $.getJSON($SCRIPT_ROOT + '/_setprofile', {
       ids: $("#installed2 span").text() + $("#myTable input:checked").next('span').text(),
@@ -102,13 +120,14 @@ $(add).click(function(){
           var install= installed.split(" ");
           var logiciel = $("#myTable input:checked").next('span').text();
           var log= logiciel.split(" ");
-          for(var i=1; i<log.length; i++){
-          text.innerHTML = text.innerHTML 
-          +"<tr><td style='background-color:#4BB5C1;' class='nomlogiciel'><label><input type='checkbox' name='choixsupp' ><span>" 
-          + " " 
-          + log[i]
-          + "</span></label></td></tr>";
-          }   
+          for(var i=1; i<log.length; i++)
+          {
+            text.innerHTML = text.innerHTML 
+            +"<tr><td style='background-color:#4BB5C1;' class='nomlogiciel'><label><input type='checkbox' name='choixsupp' ><span>" 
+            + " " 
+            + log[i]
+            + "</span></label></td></tr>";
+          }
           $("#myTable input:checked").removeAttr("checked").attr('disabled', 'disabled');
           $("#addall input:checked").removeAttr("checked");
           $(".appliquer").css('visibility','visible');
@@ -128,11 +147,10 @@ var logsupp = logicielsupp.split(" ");
 for(var i=1; i<logsupp.length; i++){
   $("#"+logsupp[i]+"").removeAttr('disabled');
 }
-$("#allsupp input:checked").removeAttr("checked");
+$("#allsupp input:checked").attr('disabled', 'disabled');
 $(".appliquer").css('visibility','visible');
 $("#Table2 input:checked").closest('tr').remove();
   
-
 });
 });
 
