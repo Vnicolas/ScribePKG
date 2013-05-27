@@ -142,6 +142,10 @@ $(document).ready(function(){
 var supp = document.getElementsByClassName('boutonsupp');
 var text = document.getElementById('installed2');
 $(supp).click(function(){
+  $.getJSON($SCRIPT_ROOT + '/_setprofile', {
+      ids: $("#installed2 :input:not(:checked) + span").text(),
+      grp: $("select#Listegrp").val()
+      }, function(data){
 var logicielsupp = $("#Table2 input:checked").next('span').text();
 var logsupp = logicielsupp.split(" ");
 for(var i=1; i<logsupp.length; i++){
@@ -150,7 +154,7 @@ for(var i=1; i<logsupp.length; i++){
 $("#allsupp input:checked").attr('disabled', 'disabled');
 $(".appliquer").css('visibility','visible');
 $("#Table2 input:checked").closest('tr').remove();
-  
+  });
 });
 });
 
