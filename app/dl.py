@@ -3,7 +3,7 @@
 #inspiré de download_installer de Klaas tjebbes
 from StringIO import StringIO
 
-import os
+import os, traceback, urllib, zipfile, shutil
 
 from lxml import etree
 WPKG_PATH = '/home/wpkg'
@@ -25,35 +25,38 @@ def get_dls(pkgxml):
     
     dvars = dict()
     for vars in xml.getiterator('variable'):
-       dvars[vars.get('name').lower()] = vars.get('value').lower()
-    eole_dls = []
-    for eoledl in xml.getiterator('eoledl'):
-        eole_dl = {}
-        eole_dl['url'] = eoledl.get('dl')
-        if eole_dl['url'] != None:
-            for var, value in dvars.iteritems():
-                eole_dl['url'] = eole_dl['url'].replace('%' + var + '%', value)
-            eole_dl['dest'] = eoledl.get('destname')
-            if eole_dl['dest'] == None :
-                eole_dl['dest'] = SOFTWARE_PATH
-            else:
-                eole_dl['dest'] = eole_dl['dest'].replace('/','\\')
+       dvars[vars.get('name')] = vars.get('value')
+       eole_dls = []
+    if xml.getiterator('eoledl'):
+        for eoledl in xml.getiterator('eoledl'):
+            eole_dl = {}
+            eole_dl['url'] = eoledl.get('dl')
+            if eole_dl['url'] != None:
                 for var, value in dvars.iteritems():
-                    eole_dl['dest'] = eole_dl['dest'].replace('%' + var + '%', value)
-                path = os.path.dirname(SOFTWARE_PATH + '\\' + eole_dl['dest'])
-                if not os.path.exists(path):
-                    os.makedirs(path)
-            eole_dls.append(eole_dl)
+                    eole_dl['url'] = eole_dl['url'].replace('%' + var + '%', value)
+                eole_dl['dest'] = eoledl.get('destname')
+                eole_dl['zip'] = eoledl.get('unzip')
+                print eole_dl['url'], eole_dl['dest'], eole_dl['zip']
+                if eole_dl['dest'] == None :
+                    eole_dl['dest'] = SOFTWARE_PATH
+                else:
+                    for var, value in dvars.iteritems():
+                        eole_dl['dest'] = eole_dl['dest'].replace('%' + var + '%', value)
+                    path = os.path.dirname("/home/wpkg/softwares/" + eole_dl['dest'])
+                    if not os.path.exists(path):
+                        os.makedirs(path)
+                eole_dls.append(eole_dl)
+    else:
+        print "Ce fichier ne contient aucun lien de telechargement"
     return eole_dls
 
 def downloading(dl):
     FichierURL=dl['url']
-    dest=dl['dest']
+    dest=("/home/wpkg/softwares/" + dl['dest'])
     zip=dl['zip']
 
     try:
-        #print 'url ' + FichierURL
-        filename,msg = urllib.urlretrieve(FichierURL,reporthook = _hook)
+        filename,msg = urllib.urlretrieve(FichierURL)
         if zip == '1':
             sourceZip = zipfile.ZipFile(filename, 'r')
             for name in sourceZip.namelist():

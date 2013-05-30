@@ -21,11 +21,6 @@ $(document).ready(function(){
     <div id="block"></div>
     <div id="lien">&#128279;</div>
     <div id="lien2">&#58541;</div>
-    <div id="results"><span1>1) Sélectionner le groupe</span1><br><br>
-                        <span2>2) Cocher les logiciels à installer</span2><br><br>
-                        <span3>3) Confirmer les changements</span3><br><br>
-                        <label class="appliquer"><span class="icon">&#59256;</span>Appliquer</label>
-    </div>
     <div id="groupe">
     <div class="groupeicon">&#128101;</div><span class="texticon">GRP</span>
     <select size="25" id="Listegrp">
@@ -65,7 +60,7 @@ $(document).ready(function(){
             <tbody>
                 {% for shortname in packs %}
                 <tr>
-                    <td id="nomlogiciel{{ packs.index(shortname) }}" class="nomlogiciel"><label><input type="checkbox" disabled="false" name="choix "id="{{ shortname }}" ><span> {{ shortname }}</span></label><input type="button" class="boutonedit" id="{{ packs.index(shortname) }}" name="packages/{{ shortname }}.xml" value="XML" ></td>
+                    <td id="nomlogiciel{{ packs.index(shortname) }}" class="nomlogiciel"><label><input type="checkbox" disabled="false" name="choix "id="{{ shortname }}" ><span> {{ shortname }}</span></label><div class="down">&#9888;</div><input type="button" class="boutonedit" id="{{ packs.index(shortname) }}" name="/home/wpkg/packages/{{ shortname }}.xml" value="XML" ></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -82,8 +77,19 @@ $(document).ready(function(){
     
     <div id="editeur">
         <div id="dossier"></div>
-        <div id="editor" name="editor" >--> Editeur XML : cliquez sur le bouton " Editer " correspondant au logiciel que vous voulez modifier</div>
+        <div id="editor" name="editor" >
+
+
+
+
+
+
+
+        --> Editeur XML : cliquez sur le bouton " XML " correspondant au logiciel que vous voulez modifier</div>
+        <label id="dl"><span class="icon">&#59256;</span>Télécharger sur le serveur</label>
         <input id="save" class="boutonsave"  type="submit" value="Enregistrer">
+        
+
     </div>
 
     <div id="loader"><img src="{{ url_for('static', filename='img/ajax-loader.gif') }}"></div>
