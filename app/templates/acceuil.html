@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "layoutco.html" %}
 {% block content %}
 <script type="text/javascript">
 {% for i in pack %}
@@ -60,7 +60,7 @@ $(document).ready(function(){
             <tbody>
                 {% for shortname in packs %}
                 <tr>
-                    <td id="nomlogiciel{{ packs.index(shortname) }}" class="nomlogiciel"><label><input type="checkbox" disabled="false" name="choix "id="{{ shortname }}" ><span> {{ shortname }}</span></label><div class="down">&#9888;</div><input type="button" class="boutonedit" id="{{ packs.index(shortname) }}" name="/home/wpkg/packages/{{ shortname }}.xml" value="XML" ></td>
+                    <td id="nomlogiciel{{ packs.index(shortname) }}" class="nomlogiciel"><label><input type="checkbox" disabled="false" name="choix "id="{{ shortname }}" ><span> {{ shortname }}</span></label><truc class="down">&#9888;</truc><input type="button" class="boutonedit" id="{{ packs.index(shortname) }}" name="/home/wpkg/packages/{{ shortname }}.xml" value="XML" ></td>
                 </tr>
                 {% endfor %}
             </tbody>
