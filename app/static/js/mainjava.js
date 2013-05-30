@@ -1,44 +1,8 @@
-$(document).ready(function() 
-    { 
-        $("#myTable").tablesorter();
-        $("#Table2").tablesorter();
-
-// surbrillance GROUPE
-
-        var span1 = document.getElementById('results').getElementsByTagName('span1');
-        $(span1).mouseover(function(){
-        $('#Listegrp').addClass("run-animation");
-      });
-
-        $(span1).mouseout(function(){
-        $('#Listegrp').removeClass("run-animation");
-      });
-
-// surbrillance RÉPERTOIRE
-
-        var span2 = document.getElementById('results').getElementsByTagName('span2');
-        $(span2).mouseover(function(){
-        $('#logiciels').addClass("run-animation");
-      });
-
-        $(span2).mouseout(function(){
-        $('#logiciels').removeClass("run-animation");
-      });
-
-// surbrillance APPLIQUER
-
-        var span3 = document.getElementById('results').getElementsByTagName('span3');
-        $(span3).mouseover(function(){
-        $('.appliquer').addClass("run-animation");
-      });
-
-        $(span3).mouseout(function(){
-        $('.appliquer').removeClass("run-animation");
-      });
-       
-    } 
-
-);
+$(document).ready(function()
+{
+  $("#myTable").tablesorter();
+  $("#Table2").tablesorter(); 
+});
 
 // Sauvegarde de l'édition des fichiers xml
 
@@ -54,6 +18,21 @@ jQuery.ajaxSettings.traditional = true;
         $("#block").css('visibility','hidden');
         $("#loader").css('visibility','hidden');
         alert('Texte enregistré');
+      });
+    });
+  });
+
+  jQuery.ajaxSettings.traditional = true;
+  $(document).ready(function(){
+    $("#dl").click(function(){
+      $("#block").css('visibility','visible');
+      $("#loader").css('visibility','visible');
+      $.getJSON($SCRIPT_ROOT + '/_dl', {
+      xmlfile: $("#dossier").text()
+      }, function(data){
+        $("#block").css('visibility','hidden');
+        $("#loader").css('visibility','hidden');
+        alert('Fichier telechargé !');
       });
     });
   });
@@ -108,14 +87,19 @@ jQuery.ajaxSettings.traditional = true;
 // Ajoute les logiciels sélectionnés
 
 jQuery.ajaxSettings.traditional = true;
-$(document).ready(function(){
+$(document).ready(function()
+{
   var add = document.getElementsByClassName('boutonadd');
   var text = document.getElementById('installed2');
-$(add).click(function(){
-  $.getJSON($SCRIPT_ROOT + '/_setprofile', {
-      ids: $("#installed2 span").text() + $("#myTable input:checked").next('span').text(),
-      grp: $("select#Listegrp").val()
-      }, function(data){
+  $(add).click(function()
+    {
+      $.getJSON($SCRIPT_ROOT + '/_setprofile',
+        {
+          ids: $("#installed2 span").text() + $("#myTable input:checked").next('span').text(),
+          grp: $("select#Listegrp").val()
+        },
+        function(data)
+        {
           var installed = $("#installed2 span").text();
           var install= installed.split(" ");
           var logiciel = $("#myTable input:checked").next('span').text();
@@ -131,31 +115,37 @@ $(add).click(function(){
           $("#myTable input:checked").removeAttr("checked").attr('disabled', 'disabled');
           $("#addall input:checked").removeAttr("checked");
           $(".appliquer").css('visibility','visible');
+        });
     });
-  });
 });
 
 // Supprime les logiciels sélectionnés
 
 jQuery.ajaxSettings.traditional = true;
-$(document).ready(function(){
-var supp = document.getElementsByClassName('boutonsupp');
-var text = document.getElementById('installed2');
-$(supp).click(function(){
-  $.getJSON($SCRIPT_ROOT + '/_setprofile', {
-      ids: $("#installed2 :input:not(:checked) + span").text(),
-      grp: $("select#Listegrp").val()
-      }, function(data){
-var logicielsupp = $("#Table2 input:checked").next('span').text();
-var logsupp = logicielsupp.split(" ");
-for(var i=1; i<logsupp.length; i++){
-  $("#"+logsupp[i]+"").removeAttr('disabled');
-}
-$("#allsupp input:checked").attr('disabled', 'disabled');
-$(".appliquer").css('visibility','visible');
-$("#Table2 input:checked").closest('tr').remove();
-  });
-});
+$(document).ready(function()
+{
+  var supp = document.getElementsByClassName('boutonsupp');
+  var text = document.getElementById('installed2');
+  $(supp).click(function()
+    {
+      $.getJSON($SCRIPT_ROOT + '/_setprofile', 
+        {
+          ids: $("#installed2 :input:not(:checked) + span").text(),
+          grp: $("select#Listegrp").val()
+        },
+        function(data)
+        {
+          var logicielsupp = $("#Table2 input:checked").next('span').text();
+          var logsupp = logicielsupp.split(" ");
+          for(var i=1; i<logsupp.length; i++)
+            {
+              $("#"+logsupp[i]+"").removeAttr('disabled');
+            }
+            $("#allsupp input:checked").attr('disabled', 'disabled');
+            $(".appliquer").css('visibility','visible');
+            $("#Table2 input:checked").closest('tr').remove();
+          });
+    });
 });
 
 // Coche tout dans "logiciels installés"

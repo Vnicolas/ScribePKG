@@ -8,7 +8,7 @@ import grp
 def get_group():
 	grps=[]
 	from xml.etree.ElementTree import ElementTree
-	tree = ElementTree(file=open("grp_eole/ListeGM.xml"))
+	tree = ElementTree(file=open("/home/esu/Base/ListeGM.xml"))
 	root = tree.getroot()
 	for GM in root.getiterator('GM'):
 		grp = GM.get('nom')
@@ -20,7 +20,7 @@ def get_packages():
 	pack=[]
 	
 	import glob, os
-	pack = glob.glob('packages/*.xml')
+	pack = glob.glob('/home/wpkg/packages/*.xml')
 	for i in pack:
 		os.path.split(i)
 		(filepath, filename) = os.path.split(i)

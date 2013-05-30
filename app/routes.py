@@ -133,8 +133,8 @@ def set_profile():
     return jsonify(ids=function.set_profile(g, h))
 
 @app.route('/_dl')
-def dl():
-    xmlfile=request.args.get('xmlfile')
+def get_installers():
+    xmlfile = request.args.get('xmlfile')
     return jsonify(dl=dl.get_installers(xmlfile))
 
 
