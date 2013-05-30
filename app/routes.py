@@ -36,7 +36,7 @@ login_manager = LoginManager()
 
 login_manager.anonymous_user = Anonymous
 login_manager.login_view = "login"
-login_manager.login_message = u"Please log in to access this page."
+login_manager.login_message = u"Connectez-vous pour acceder a cette page."
 login_manager.refresh_view = "reauth"
 @login_manager.user_loader
 def load_user(id):
@@ -45,28 +45,14 @@ def load_user(id):
 
 login_manager.init_app(app)
 
-@app.route("/secret")
-@fresh_login_required
-def secret():
-    return render_template("secret.html")
-
-
 
 @app.route('/')
 def accueil():
 	if 'username' in session:
 		return 'Logged in as %s' % escape(session['username'])
-		return redirect(url_for('home'))
+		return redirect(url_for('acceuil'))
 	else:
 		return redirect(url_for('login'))
-
-@app.route('/about')
-def about():
-  return render_template('about.html')
-
-@app.route('/home')
-def home():
-	return render_template('home.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -77,7 +63,7 @@ def login():
         else:
             if login_user(USER_NAMES[request.form['username']],remember=True):
                 flash("Connecte en tant que : " + request.form['username'])
-                return redirect(request.args.get("next") or url_for("accueil"))
+                return redirect(request.args.get("next") or url_for("acceuil"))
     return render_template('login.html', error=error)
 
 
@@ -95,17 +81,15 @@ def reauth():
 @login_required
 def logout():
     logout_user()
-    flash("Logged out.")
+    flash("Deconnecte")
     return redirect(url_for("accueil"))
 
-
-
-@app.route('/test')
+@app.route('/acceuil')
 @login_required
-def test():
+def acceuil():
 	packs,shortname, i, pack = function.get_packages()
 	grps = function.get_group()
-	return render_template('test.html', grps=grps, packs=packs, shortname=shortname, i=i, pack=pack)
+	return render_template('acceuil.html', grps=grps, packs=packs, shortname=shortname, i=i, pack=pack)
 
 @app.route('/_getprofiles')
 def getprofiles():

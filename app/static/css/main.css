@@ -67,14 +67,14 @@ width: 940px;
 }  
 }
  
-h2 {
+.container .jumbo h2 {
   font-size: 3em;
   margin-top: 40px;
   text-align: center;
   letter-spacing: -2px;
 }
  
-h3 {
+.container .jumbo h3 {
   font-size: 1.7em;
   font-weight: 100;
   margin-top: 30px;
@@ -596,5 +596,23 @@ right: 0;
 background-color: #000;
 color: #fff;
 cursor: pointer;
+}
+
+.boutonlogin {
+padding: 6px;
+font: bold 13px Helvetica;
+background: #f5f5f5;
+color: #555;
+border-radius: 2px;
+width: 100px;
+border: 1px solid #ccc;
+cursor: pointer;
+margin-top: 3px;
+margin-bottom: 3px;
+}
+
+.boutonlogin:hover{
+  background-color: #000;
+  color: #fff;
 }
 

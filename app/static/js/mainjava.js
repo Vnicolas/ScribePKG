@@ -76,7 +76,7 @@ jQuery.ajaxSettings.traditional = true;
           {
             if (present[k]==logapp[h]) 
             {
-              $("#"+logapp[h]+"").attr('disabled', 'disabled');
+              $("#"+logapp[h]+"").attr('disabled', 'disabled')
             };
           };
         };

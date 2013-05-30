@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<profiles>
-<profile id="cdi">
-<package package-id="RealAlternative"/>
-<package package-id="Picaxe"/>
-<package package-id="Firefox-ESR"/>
-</profile>
-</profiles>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<profiles>
-<profile id="test">
-<package package-id="Modif_pass_compte_local"/>
-<package package-id="Creation_compte_local"/>
-</profile>
-</profiles>

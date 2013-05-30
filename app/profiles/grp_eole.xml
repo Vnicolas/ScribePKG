@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<profiles>
-<profile id="grp_eole">
-<package package-id="Picaxe"/>
-<package package-id="Modif_pass_compte_local"/>
-<package package-id="Creation_compte_local"/>
-<package package-id="Firefox"/>
-</profile>
-</profiles>
