@@ -1,19 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, json, jsonify, session, escape
 from flask.ext.login import (LoginManager, current_user, login_required, login_user, logout_user, UserMixin, AnonymousUser, confirm_login, fresh_login_required)
-import function, sys, os
+import function, sys, os, zipfile, shutil, dl
 from StringIO import StringIO
-import zipfile
-import shutil
-import os
-import dl
 from lxml import etree
 
-WPKG_PATH = '/home/wpkg'
-PACKAGES_PATH = os.path.join(WPKG_PATH, 'packages')
-SOFTWARE_PATH = os.path.join(WPKG_PATH, 'softwares')
+WPKG_PATH = '/home/wpkg' # Chemin vers wpkg
+PACKAGES_PATH = os.path.join(WPKG_PATH, 'packages') # Chemin vers wpkg/packages
+SOFTWARE_PATH = os.path.join(WPKG_PATH, 'softwares') # Chemin vers wpkg/softwares
+UPLOAD_FOLDER = '/root/flaskapp/app/packages' # Chemin vers les fichiers telecharges
 
-
-UPLOAD_FOLDER = '/root/flaskapp/app/packages'
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = 'some_secret'
@@ -49,7 +44,7 @@ login_manager.init_app(app)
 @app.route('/')
 def accueil():
 	if 'username' in session:
-		return 'Logged in as %s' % escape(session['username'])
+		return 'Connecte en tant que %s' % escape(session['username'])
 		return redirect(url_for('acceuil'))
 	else:
 		return redirect(url_for('login'))
@@ -95,6 +90,11 @@ def acceuil():
 def getprofiles():
     a = request.args.get('lgrp')
     return jsonify(profile=function.get_profile(a))
+
+@app.route('/_getstate')
+def getstate():
+    m = request.args.get('fic')
+    return jsonify(etat=function.get_state(m))
 
 @app.route('/_getxml')
 def getxml():

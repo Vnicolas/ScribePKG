@@ -1,6 +1,28 @@
 {% extends "layoutco.html" %}
 {% block content %}
 <script type="text/javascript">
+{% for shortname in packs %}
+jQuery.ajaxSettings.traditional = true;
+$(window).load(function ()  {
+  $.getJSON($SCRIPT_ROOT + '/_getstate', {
+      fic: "{{ shortname }}"
+      }, function(data){
+        var etat = data.etat;
+        $("#nomlogiciel20{{ packs.index(shortname) }}").parent().next().text(etat);
+        $("#myTable").tablesorter();
+        if (etat=="OUI"){
+            $("#nomlogiciel20{{ packs.index(shortname) }}").parent().next().css('background-color','rgb(52, 136, 228)').prop('title', 'Installateur présent sur le serveur.');
+        };
+        if (etat=="NON"){
+            $("#nomlogiciel20{{ packs.index(shortname) }}").parent().next().css('background-color','rgb(213, 70, 70)').prop('title', 'Installateur non présent sur le serveur.');
+        };
+        if (etat==""){
+            $("#nomlogiciel20{{ packs.index(shortname) }}").parent().next().text("// ! \\\\").css('color','#000').prop('title', 'Le lien de téléchargement est manquant. Rajoutez un lien de téléchargement <eoledl> dans le fichier XML.');
+        };
+      });
+ 
+});
+ {% endfor %}
 {% for i in pack %}
 $(document).ready(function(){
     $("input#{{pack.index(i)}}").click(function(){
@@ -11,10 +33,13 @@ $(document).ready(function(){
         editor.setValue(code);
         editor.gotoLine(1);
         $("#dossier").html('{{ i }}');
+        $('#dl').css('visibility','visible');
+        $('#save').css('visibility','visible');
       });
     });
   });
 {% endfor %}
+
 </script>
 
 <div class="jumbo">
@@ -55,12 +80,15 @@ $(document).ready(function(){
             <thead>
                 <tr>
                     <th>Noms</th>
+                    <th>Téléchargé</th>
                 </tr>
             </thead>
             <tbody>
                 {% for shortname in packs %}
                 <tr>
-                    <td id="nomlogiciel{{ packs.index(shortname) }}" class="nomlogiciel"><label><input type="checkbox" disabled="false" name="choix "id="{{ shortname }}" ><span> {{ shortname }}</span></label><truc class="down">&#9888;</truc><input type="button" class="boutonedit" id="{{ packs.index(shortname) }}" name="/home/wpkg/packages/{{ shortname }}.xml" value="XML" ></td>
+                    <td id="nomlogiciel{{ packs.index(shortname) }}" class="nomlogiciel"><label><input type="checkbox"  disabled="false" id="{{ shortname }}" ><span> {{ shortname }}</span></label><state id="nomlogiciel20{{ packs.index(shortname) }}"></state><input type="button" class="boutonedit" id="{{ packs.index(shortname) }}" name="/home/wpkg/packages/{{ shortname }}.xml" value="XML"></td>
+
+                    <td class="down"></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -70,7 +98,7 @@ $(document).ready(function(){
     <label class="boutonadd"><span class="icon">&oplus;</span>Ajouter</label>
     </div>
 
-    <div id="vuediteur">
+    <div id="vuediteur" title="Afficher / Masquer l'éditeur XML">
         <label id="radioedit">Afficher éditeur</label>
         <label id="radioedit2">Masquer éditeur</label>
     </div>
@@ -84,7 +112,6 @@ $(document).ready(function(){
 
 
 
-
         --> Editeur XML : cliquez sur le bouton " XML " correspondant au logiciel que vous voulez modifier</div>
         <label id="dl"><span class="icon">&#59256;</span>Télécharger sur le serveur</label>
         <input id="save" class="boutonsave"  type="submit" value="Enregistrer">
@@ -92,7 +119,8 @@ $(document).ready(function(){
 
     </div>
 
-    <div id="loader"><img src="{{ url_for('static', filename='img/ajax-loader.gif') }}"></div>
+    <div id="loader">Veuillez patienter, le serveur éxécute votre requête.<br>
+        S'il s'agit d'un téléchargement cela peut durer quelques minutes suivant la taille du fichier.<br><br><img src="{{ url_for('static', filename='img/ajax-loader.gif') }}"></div>
 
 
     <script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>

@@ -86,15 +86,16 @@ width: 940px;
 .menu {
   float: right;
   margin: 8px;
+  padding: 0;
 }
- 
+
 .menu li {
   display: inline;
   color: #FFF;
 }
  
 .menu li + li {
-  margin-left: 35px;
+  margin-left: 20px;
 }
  
 .menu li a {
@@ -104,6 +105,25 @@ text-decoration: none;
 
 .menu li a:hover {
 color: #FFF;
+}
+
+.howto {
+  float: left;
+  margin: 8px;
+}
+
+.howto li {
+  display: inline;
+  color: #FFF;
+}
+ 
+.howto li + li {
+  margin-left: 15px;
+}
+ 
+.howto li a {
+color: #999;
+text-decoration: none;
 }
 
 
@@ -166,6 +186,7 @@ text-indent: -15px;
 padding-top: 4px;
 font-size: 12px;
 font-weight:bold;
+color: #000;
 }
 
 #Listegrp{
@@ -198,12 +219,15 @@ margin-top: -18px;
 #loader{
 position: fixed;
 z-index: 10;
-margin-left: 28.7%;
+margin-left: 203px;
 top: 40%;
 padding: 20px;
 background-color: #FFF;
 border: 1px #000;
 border-style: solid;
+color: #000;
+text-align: center;
+font-size: 12px;
 visibility: hidden;
 }
 
@@ -219,6 +243,7 @@ margin-left: 45%;
 cursor: pointer;
 margin-top: 3px;
 margin-bottom: 3px;
+visibility: hidden;
 }
 
 .boutonsave:hover {
@@ -227,14 +252,11 @@ color: #FFF;
 }
 
 .down {
-font-family: "entypo";
-color: #000;
-font-size: 36px;
-line-height: 0px;
-float: right;
+text-align: center;
 font-weight: normal;
 margin-right: 55px;
-margin-top: -20px;
+font-weight: bold;
+color:#FFF;
 }
 
 .boutonedit {
@@ -365,7 +387,11 @@ visibility: hidden;
 }
 
 #myTable :checked + span {
-background-color: yellow;
+background-color: rgb(241, 241, 112);
+}
+
+#myTable :disabled + span {
+opacity: 0.5;
 }
 
 #installed {
@@ -413,18 +439,21 @@ display: inline-block;
 margin-top: 5px;
 margin-left: 34px;
 padding: 5px;
+width: 235px;
 }
 
 #add{
 display: inline-block;
-margin-left: 248px;
+margin-left: 40px;
 }
 
 input[type="checkbox"] {
 margin: 3px 3px 3px 4px;
 vertical-align: middle;
 display: inline;
+background:url("green.png")no-repeat; 
 }
+
 
 span {
 vertical-align: middle;
@@ -590,6 +619,7 @@ padding-left: 43px;
 margin: 3px;
 padding-right: 5px;
 right: 0;
+visibility: hidden;
 }
 
 #dl:hover{

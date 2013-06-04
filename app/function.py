@@ -1,13 +1,10 @@
-import os
+import glob, os, PAM, grp
 from xml.etree.ElementTree import ElementTree
 from lxml import etree
-import PAM
-import grp
-
+from StringIO import StringIO
 
 def get_group():
 	grps=[]
-	from xml.etree.ElementTree import ElementTree
 	tree = ElementTree(file=open("/home/esu/Base/ListeGM.xml"))
 	root = tree.getroot()
 	for GM in root.getiterator('GM'):
@@ -15,11 +12,32 @@ def get_group():
 		grps.append(grp)
 	return grps
 
+def get_state(nom):
+    f = open('/home/wpkg/packages/' + nom + '.xml')
+    xml = f.read()
+    f.close()
+    dvars = dict()
+    state =""
+    xml = etree.parse(StringIO(xml))
+    for vars in xml.getiterator('variable'):
+        dvars[vars.get('name')] = vars.get('value')
+    if xml.getiterator('eoledl'):
+        for eoledl in xml.getiterator('eoledl'):
+            eole_dl = {}
+            destnames = {}
+            destname = eoledl.get('destname')
+            for var, value in dvars.iteritems():
+                destname = destname.replace('%' + var + '%', value)
+            destname = ("/home/wpkg/softwares/" + destname)
+            if os.path.isfile(destname):
+                state = "OUI"
+            else:
+                state = "NON"
+    return state
+
 def get_packages():
 	packs=[]
 	pack=[]
-	
-	import glob, os
 	pack = glob.glob('/home/wpkg/packages/*.xml')
 	for i in pack:
 		os.path.split(i)
@@ -51,7 +69,7 @@ def get_profile(grp):
         for group in xml.getiterator('package'):
             profiles.append(group.get('package-id'))
     else:
-        set_profile(grp)
+        set_profile(grp, "no")
     return profiles
 
 def set_profile(ids, groupe):
