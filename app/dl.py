@@ -2,10 +2,9 @@
 # -*- coding: UTF-8 -*-
 #inspiré de download_installer de Klaas tjebbes
 from StringIO import StringIO
-
 import os, traceback, urllib, zipfile, shutil
-
 from lxml import etree
+
 WPKG_PATH = '/home/wpkg'
 PACKAGES_PATH = os.path.join(WPKG_PATH, 'packages')
 SOFTWARE_PATH = os.path.join(WPKG_PATH, 'softwares')
@@ -36,7 +35,6 @@ def get_dls(pkgxml):
                     eole_dl['url'] = eole_dl['url'].replace('%' + var + '%', value)
                 eole_dl['dest'] = eoledl.get('destname')
                 eole_dl['zip'] = eoledl.get('unzip')
-                print eole_dl['url'], eole_dl['dest'], eole_dl['zip']
                 if eole_dl['dest'] == None :
                     eole_dl['dest'] = SOFTWARE_PATH
                 else:
