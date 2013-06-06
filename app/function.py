@@ -36,17 +36,18 @@ def get_state(nom):
     return state
 
 def get_packages():
-	packs=[]
-	pack=[]
-	pack = glob.glob('/home/wpkg/packages/*.xml')
-	for i in pack:
+    packs=[]
+    pack=[]
+    pack = glob.glob('/home/wpkg/packages/*.xml')
+    shortname=""
+    i=0
+    for i in pack:
 		os.path.split(i)
 		(filepath, filename) = os.path.split(i)
 		(shortname, extension) = os.path.splitext(filename)
 		packs.append(shortname)
 		pack.index(i)
-
-	return packs, shortname, i, pack
+    return packs, shortname, i, pack
 
 def get_xml(xml):
 	global real

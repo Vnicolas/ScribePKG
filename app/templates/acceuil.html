@@ -86,7 +86,7 @@ $(document).ready(function(){
             <tbody>
                 {% for shortname in packs %}
                 <tr>
-                    <td id="nomlogiciel{{ packs.index(shortname) }}" class="nomlogiciel"><label><input type="checkbox"  disabled="false" id="{{ shortname }}" ><span> {{ shortname }}</span></label><state id="nomlogiciel20{{ packs.index(shortname) }}"></state><input type="button" class="boutonedit" id="{{ packs.index(shortname) }}" name="/home/wpkg/packages/{{ shortname }}.xml" value="XML"></td>
+                    <td id="nomlogiciel{{ packs.index(shortname) }}" class="nomlogiciel"><label><input type="checkbox"  disabled id="{{ shortname }}" ><span> {{ shortname }}</span></label><state id="nomlogiciel20{{ packs.index(shortname) }}"></state><input type="button" class="boutonedit" id="{{ packs.index(shortname) }}" name="/home/wpkg/packages/{{ shortname }}.xml" value="XML"></td>
 
                     <td class="down"></td>
                 </tr>
@@ -120,7 +120,7 @@ $(document).ready(function(){
     </div>
 
     <div id="loader">Veuillez patienter, le serveur éxécute votre requête.<br>
-        S'il s'agit d'un téléchargement cela peut durer quelques minutes suivant la taille du fichier.<br><br><img src="{{ url_for('static', filename='img/ajax-loader.gif') }}"></div>
+        S'il s'agit d'un téléchargement cela peut durer quelques minutes suivant la taille du fichier.<br><br><img src="{{ url_for('static', filename='img/ajax-loader.gif') }}" alt="loader"></div>
 
 
     <script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
