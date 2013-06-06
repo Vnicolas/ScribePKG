@@ -2,10 +2,10 @@
 # Makefile pour XXX-XXX
 ################################
 
-SOURCE=XXX-XXX
-VERSION=X.X
-EOLE_VERSION=2.3|2.4
-PKGAPPS=non|web|flask
+SOURCE=scribepkg
+VERSION=0.1
+EOLE_VERSION=2.3
+PKGAPPS=flask
 #FLASK_MODULE=<APPLICATION>
 
 ################################
