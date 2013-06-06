@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, json, jsonify, session, escape
 from flask.ext.login import (LoginManager, current_user, login_required, login_user, logout_user, UserMixin, AnonymousUser, confirm_login, fresh_login_required)
-import function, sys, os, zipfile, shutil, dl
+import lib, sys, os, zipfile, shutil, dl
 from StringIO import StringIO
 from lxml import etree
 
