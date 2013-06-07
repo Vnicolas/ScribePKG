@@ -7,7 +7,9 @@
     <script type=text/javascript src="{{ url_for('static', filename='js/jquery-1.9.1.min.js') }}"></script>
     <script type=text/javascript src="{{ url_for('static', filename='js/mainjava.js') }}"></script>
     <script type=text/javascript src="{{ url_for('static', filename='js/jquery.tablesorter.min.js') }}"></script>
-
+<script type=text/javascript>
+$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
   </head>
   <body>
     <header>
