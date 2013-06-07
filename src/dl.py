@@ -19,7 +19,6 @@ def get_dls(pkgxml):
     f = open(pkgxml)
     xml = f.read()
     f.close()
-    #xml = etree.fromstring(strxml)
     xml = etree.parse(StringIO(xml))
     
     dvars = dict()
