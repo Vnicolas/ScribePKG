@@ -7,11 +7,11 @@ from lxml import etree
 WPKG_PATH = '/home/wpkg' # Chemin vers wpkg
 PACKAGES_PATH = os.path.join(WPKG_PATH, 'packages') # Chemin vers wpkg/packages
 SOFTWARE_PATH = os.path.join(WPKG_PATH, 'softwares') # Chemin vers wpkg/softwares
-UPLOAD_FOLDER = '/root/flaskapp/app/packages' # Chemin vers les fichiers telecharges
+
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = 'some_secret'
+
 class User(UserMixin):
     def __init__(self, name, id, active=True):
         self.name = name
@@ -33,6 +33,7 @@ login_manager.anonymous_user = Anonymous
 login_manager.login_view = "login"
 login_manager.login_message = u"Connectez-vous pour acceder a cette page."
 login_manager.refresh_view = "reauth"
+
 @login_manager.user_loader
 def load_user(id):
     return USERS.get(int(id))
