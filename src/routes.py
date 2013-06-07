@@ -54,7 +54,7 @@ def accueil():
 def login():
     error = None
     if request.method == 'POST':
-        if not function.login(request.form['username'],request.form['password']):
+        if not lib.login(request.form['username'],request.form['password']):
             error = 'Invalid credentials'
         else:
             if login_user(USER_NAMES[request.form['username']],remember=True):
@@ -83,24 +83,24 @@ def logout():
 @app.route('/acceuil')
 @login_required
 def acceuil():
-	packs,shortname, i, pack = function.get_packages()
-	grps = function.get_group()
+	packs,shortname, i, pack = lib.get_packages()
+	grps = lib.get_group()
 	return render_template('acceuil.html', grps=grps, packs=packs, shortname=shortname, i=i, pack=pack)
 
 @app.route('/_getprofiles')
 def getprofiles():
     a = request.args.get('lgrp')
-    return jsonify(profile=function.get_profile(a))
+    return jsonify(profile=lib.get_profile(a))
 
 @app.route('/_getstate')
 def getstate():
     m = request.args.get('fic')
-    return jsonify(etat=function.get_state(m))
+    return jsonify(etat=lib.get_state(m))
 
 @app.route('/_getxml')
 def getxml():
     b = request.args.get('xml')
-    return jsonify(xml=function.get_xml(b))
+    return jsonify(xml=lib.get_xml(b))
 
 @app.route('/_savefile')
 def savefile():
@@ -115,7 +115,7 @@ def savefile():
 def set_profile():
     g = request.args.get('ids')
     h = request.args.get('grp')
-    return jsonify(ids=function.set_profile(g, h))
+    return jsonify(ids=lib.set_profile(g, h))
 
 @app.route('/_dl')
 def get_installers():
