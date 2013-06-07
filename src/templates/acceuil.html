@@ -1,6 +1,9 @@
 {% extends "layoutco.html" %}
 {% block content %}
 <script type="text/javascript">
+
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+
 {% for shortname in packs %}
 jQuery.ajaxSettings.traditional = true;
 $(window).load(function ()  {
