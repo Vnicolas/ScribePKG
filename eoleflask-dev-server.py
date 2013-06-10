@@ -18,7 +18,7 @@ src_dir = "src"
 modulename = 'scribepkg'
 top_dir = dirname(realpath(sys.argv[0]))
 sys.path.insert(0, "{0}".format(join(top_dir, src_dir)))
-
+print sys.path
 
 try:
     m = import_module(modulename)

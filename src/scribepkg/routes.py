@@ -45,7 +45,7 @@ login_manager.init_app(app)
 
 
 @app.route('/')
-def accueil():
+def index():
 	if 'username' in session:
 		return 'Connecte en tant que %s' % escape(session['username'])
 		return redirect(url_for('acceuil'))
