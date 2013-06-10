@@ -6,7 +6,7 @@ SOURCE=scribepkg
 VERSION=0.1
 EOLE_VERSION=2.3
 PKGAPPS=flask
-#FLASK_MODULE=<APPLICATION>
+FLASK_MODULE=scribepkg
 
 ################################
 # Début de zone à ne pas éditer
