@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, json, jsonify, session, escape
 from flask.ext.login import (LoginManager, current_user, login_required, login_user, logout_user, UserMixin, AnonymousUser, confirm_login, fresh_login_required)
-import lib, sys, os, zipfile, shutil, dl
+import sys, os, zipfile, shutil
 from StringIO import StringIO
 from lxml import etree
+from scribepkg import lib, dl
+
 
 WPKG_PATH = '/home/wpkg' # Chemin vers wpkg
 PACKAGES_PATH = os.path.join(WPKG_PATH, 'packages') # Chemin vers wpkg/packages
