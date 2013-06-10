@@ -3,7 +3,7 @@ from flask.ext.login import (LoginManager, current_user, login_required, login_u
 import sys, os, zipfile, shutil
 from StringIO import StringIO
 from lxml import etree
-from scribepkg import lib, dl
+from scribepkg import app, lib, dl
 
 
 WPKG_PATH = '/home/wpkg' # Chemin vers wpkg
@@ -11,8 +11,8 @@ PACKAGES_PATH = os.path.join(WPKG_PATH, 'packages') # Chemin vers wpkg/packages
 SOFTWARE_PATH = os.path.join(WPKG_PATH, 'softwares') # Chemin vers wpkg/softwares
 
 
-app = Flask(__name__)
-app.secret_key = 'some_secret'
+#app = Flask(__name__)
+#app.secret_key = 'some_secret'
 
 class User(UserMixin):
     def __init__(self, name, id, active=True):
