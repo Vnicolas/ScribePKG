@@ -1,7 +1,6 @@
 *****Installation sur serveur EOLE-SCRIBE*****
 
 apt-eole install eole-wpkg
-
 reconfigure
 
 Query-Auto -D
@@ -12,9 +11,13 @@ ln -s /home/wpkg/ /home/a/admin/perso/wpkg
 
 Télécharger les fichiers XML des logiciels dans le dossier U:\wpkg\packages
 
+Ensuite configurer le serveur:
+
 wpkg_gen_config
 
 Configurer le serveur : SendStatus sur "OUI"
+
+Enregistrer la configuration et quitter
 
 -> Si le poste n'est pas encore client wpkg:
 
@@ -25,4 +28,5 @@ chmod +x wpkg_ln.sh
 ./wpkg_ln.sh
 
 Installer le client sur poste XP
-*****FIN*****
+
+*****Fin*****
