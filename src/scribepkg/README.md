@@ -6,7 +6,7 @@ reconfigure
 
 Query-Auto -D
 
-apt-get install python-flask python-flask.ext.login python-werkzeug python-jinja2 libapache2-mod-wsgi
+apt-get install python-flask python-flask.ext.login python-werkzeug python-jinja2 
 
 git clone https://github.com/Vnicolas/ScribePKG.git; cd ScribePKG/; python eoleflask-dev-server.py
 
