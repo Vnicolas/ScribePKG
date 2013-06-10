@@ -16,7 +16,7 @@ wpkg_gen_config
 
 Configurer le serveur : SendStatus sur "OUI"
 
-Si le poste n'estpas encore client wpkg:
+-> Si le poste n'est pas encore client wpkg:
 
 wget https://raw.github.com/bristow/script_wpkg/master/wpkg_ln.sh
 
@@ -25,4 +25,4 @@ chmod +x wpkg_ln.sh
 ./wpkg_ln.sh
 
 Installer le client sur poste XP
-**********
+*****FIN*****
