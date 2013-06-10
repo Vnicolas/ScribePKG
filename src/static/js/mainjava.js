@@ -39,7 +39,7 @@ jQuery.ajaxSettings.traditional = true;
     });
   });
 
-$SCRIPT_ROOT = "";
+
 
 // Retourne les groupes présents dans le dossier /profile
 
