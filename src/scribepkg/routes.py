@@ -1,3 +1,14 @@
+# -*- coding: utf-8 -*-
+#
+##########################################################################
+# scribepkg
+# Christophe DEZE
+# Nicolas Vairaa
+#
+# License CeCILL:
+#  * in french: http://www.cecill.info/licences/Licence_CeCILL_V2-fr.html
+#  * in english http://www.cecill.info/licences/Licence_CeCILL_V2-en.html
+##########################################################################
 from flask import Flask, render_template, request, redirect, url_for, flash, json, jsonify, session, escape
 from flask.ext.login import (LoginManager, current_user, login_required, login_user, logout_user, UserMixin, AnonymousUser, confirm_login, fresh_login_required)
 import sys, os, zipfile, shutil
@@ -11,8 +22,7 @@ PACKAGES_PATH = os.path.join(WPKG_PATH, 'packages') # Chemin vers wpkg/packages
 SOFTWARE_PATH = os.path.join(WPKG_PATH, 'softwares') # Chemin vers wpkg/softwares
 
 
-#app = Flask(__name__)
-#app.secret_key = 'some_secret'
+
 
 class User(UserMixin):
     def __init__(self, name, id, active=True):
@@ -126,6 +136,10 @@ def get_installers():
 
 
 if __name__ == '__main__':
+	"""utile si l'on appelle ce script
+	python routes.py
+	on a alors un serveur de test
+	"""
 	app.run(host='0.0.0.0', debug=True)
 
 

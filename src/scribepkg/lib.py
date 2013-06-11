@@ -1,9 +1,26 @@
+# -*- coding: utf-8 -*-
+#
+##########################################################################
+# scribepkg
+# Christophe DEZE
+# Nicolas Vairaa
+#
+# License CeCILL:
+#  * in french: http://www.cecill.info/licences/Licence_CeCILL_V2-fr.html
+#  * in english http://www.cecill.info/licences/Licence_CeCILL_V2-en.html
+##########################################################################
+"""
+librairie de fonctions utiles a scribepkg
+"""
+
 import glob, os, PAM, grp
 from xml.etree.ElementTree import ElementTree
 from lxml import etree
 from StringIO import StringIO
 
 def get_group():
+    """recuperation des groupes ESU
+	"""
 	grps=[]
 	tree = ElementTree(file=open("/home/esu/Base/ListeGM.xml"))
 	root = tree.getroot()
@@ -13,11 +30,13 @@ def get_group():
 	return grps
 
 def get_state(nom):
+    """on verifie la presence de l'installeur dans software
+	"""
     f = open('/home/wpkg/packages/' + nom + '.xml')
     xml = f.read()
     f.close()
     dvars = dict()
-    state =""
+    state ="NON"
     xml = etree.parse(StringIO(xml))
     for vars in xml.getiterator('variable'):
         dvars[vars.get('name')] = vars.get('value')
@@ -36,6 +55,9 @@ def get_state(nom):
     return state
 
 def get_packages():
+    """on recupere la liste des packages
+	   code a reecrire
+	"""
     packs=[]
     pack=[]
     pack = glob.glob('/home/wpkg/packages/*.xml')
@@ -50,6 +72,8 @@ def get_packages():
     return packs, shortname, i, pack
 
 def get_xml(xml):
+    """ renvoit le contenu d'un fichier xml
+	"""
 	global real
 	ofi = open(xml, 'r')
 	real = ofi.read()
@@ -91,6 +115,9 @@ def set_profile(ids, groupe):
     xmlfp.close()
 
 def login(username,password):
+    """fonction qui renvoit true si l'on s'est bien connecte
+	en domainadmins
+	"""
     def pam_conv(auth, query_list, userData):
     #pam password authentification utility
         resp = []
