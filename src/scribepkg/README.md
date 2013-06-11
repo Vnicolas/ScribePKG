@@ -3,7 +3,7 @@
 apt-eole install eole-wpkg
 
 reconfigure
-
+#certains paquets ne sont dispo qu'en version developpement
 Query-Auto -D
 
 apt-get install python-flask python-flask.ext.login python-werkzeug python-jinja2 

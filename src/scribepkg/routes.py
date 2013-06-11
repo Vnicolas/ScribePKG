@@ -56,11 +56,11 @@ login_manager.init_app(app)
 
 @app.route('/')
 def index():
-	if 'username' in session:
-		return 'Connecte en tant que %s' % escape(session['username'])
-		return redirect(url_for('acceuil'))
-	else:
-		return redirect(url_for('login'))
+    if 'username' in session:
+        return 'Connecte en tant que %s' % escape(session['username'])
+        return redirect(url_for('acceuil'))
+    else:
+        return redirect(url_for('login'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -95,9 +95,9 @@ def logout():
 @app.route('/acceuil')
 @login_required
 def acceuil():
-	packs,shortname, i, pack = lib.get_packages()
-	grps = lib.get_group()
-	return render_template('acceuil.html', grps=grps, packs=packs, shortname=shortname, i=i, pack=pack)
+    packs,shortname, i, pack = lib.get_packages()
+    grps = lib.get_group()
+    return render_template('acceuil.html', grps=grps, packs=packs, shortname=shortname, i=i, pack=pack)
 
 @app.route('/_getprofiles')
 def getprofiles():
@@ -136,10 +136,10 @@ def get_installers():
 
 
 if __name__ == '__main__':
-	"""utile si l'on appelle ce script
-	python routes.py
-	on a alors un serveur de test
-	"""
-	app.run(host='0.0.0.0', debug=True)
+    """utile si l'on appelle ce script
+    python routes.py
+    on a alors un serveur de test
+    """
+    app.run(host='0.0.0.0', debug=True)
 
 

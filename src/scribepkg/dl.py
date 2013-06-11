@@ -59,8 +59,8 @@ def get_dls(pkgxml):
 
 def downloading(dl):
     """fonction qui telecharge le lien dl vers dest
-	    ca dezippe si besoin
-	"""
+        ca dezippe si besoin
+    """
     FichierURL=dl['url']
     dest=("/home/wpkg/softwares/" + dl['dest'])
     zip=dl['zip']
@@ -79,7 +79,7 @@ def downloading(dl):
 
 def _hook( nb_blocs, taille_bloc, taille_fichier):
     """ permet de connaitre l'avancement du dl
-	"""
+    """
     percent = min((nb_blocs*taille_bloc*100)/taille_fichier, 100)
     if percent >= 100:
         print "Le telechargement est termine !" , taille_fichier
@@ -92,8 +92,8 @@ def _hook( nb_blocs, taille_bloc, taille_fichier):
 
 def get_installers(xmlfile):
     """on recupere tous les liens a telecharger dans balises eoledl 
-	    dans un fichier xmlfile
-	"""
+        dans un fichier xmlfile
+    """
     for dl in get_dls(xmlfile):
         downloading(dl)
 

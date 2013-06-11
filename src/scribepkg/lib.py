@@ -20,18 +20,18 @@ from StringIO import StringIO
 
 def get_group():
     """recuperation des groupes ESU
-	"""
-	grps=[]
-	tree = ElementTree(file=open("/home/esu/Base/ListeGM.xml"))
-	root = tree.getroot()
-	for GM in root.getiterator('GM'):
-		grp = GM.get('nom')
-		grps.append(grp)
-	return grps
+    """
+    grps=[]
+    tree = ElementTree(file=open("/home/esu/Base/ListeGM.xml"))
+    root = tree.getroot()
+    for GM in root.getiterator('GM'):
+        grp = GM.get('nom')
+        grps.append(grp)
+    return grps
 
 def get_state(nom):
     """on verifie la presence de l'installeur dans software
-	"""
+    """
     f = open('/home/wpkg/packages/' + nom + '.xml')
     xml = f.read()
     f.close()
@@ -56,29 +56,29 @@ def get_state(nom):
 
 def get_packages():
     """on recupere la liste des packages
-	   code a reecrire
-	"""
+       code a reecrire
+    """
     packs=[]
     pack=[]
     pack = glob.glob('/home/wpkg/packages/*.xml')
     shortname=""
     i=0
     for i in pack:
-		os.path.split(i)
-		(filepath, filename) = os.path.split(i)
-		(shortname, extension) = os.path.splitext(filename)
-		packs.append(shortname)
-		pack.index(i)
+        os.path.split(i)
+        (filepath, filename) = os.path.split(i)
+        (shortname, extension) = os.path.splitext(filename)
+        packs.append(shortname)
+        pack.index(i)
     return packs, shortname, i, pack
 
 def get_xml(xml):
     """ renvoit le contenu d'un fichier xml
-	"""
-	global real
-	ofi = open(xml, 'r')
-	real = ofi.read()
-	xml = real.decode('utf-8', 'xmlcharrefreplace')
-	return xml
+    """
+    global real
+    ofi = open(xml, 'r')
+    real = ofi.read()
+    xml = real.decode('utf-8', 'xmlcharrefreplace')
+    return xml
 
 def get_profile(grp):
     """
@@ -87,7 +87,7 @@ def get_profile(grp):
     """
     profiles=[]
     if grp==None:
-    	return []
+        return []
     filename = u'/home/wpkg/profiles/' + grp + '.xml'
     if os.path.exists(filename):
         xml = etree.parse(filename)
@@ -116,8 +116,8 @@ def set_profile(ids, groupe):
 
 def login(username,password):
     """fonction qui renvoit true si l'on s'est bien connecte
-	en domainadmins
-	"""
+    en domainadmins
+    """
     def pam_conv(auth, query_list, userData):
     #pam password authentification utility
         resp = []
