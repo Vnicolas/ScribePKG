@@ -42,10 +42,10 @@ jQuery.ajaxSettings.traditional = true;
       }, function(data){
         jSuccess('<strong>'+logicieldl+'</strong> téléchargé.<br> L\'installateur est désormais présent sur le serveur.',
             {
-              autoHide : false, // added in v2.0
-              HorizontalPosition : 'right',
+              autoHide : false,
+              HorizontalPosition : 'center',
               VerticalPosition : 'top',
-              ShowOverlay : false
+              ShowOverlay : true
             });
       });
     });
