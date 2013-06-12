@@ -44,7 +44,7 @@ def get_state(nom):
         for eoledl in xml.getiterator('eoledl'):
             eole_dl = {}
             destnames = {}
-            destname = eoledl.get('destname')
+            destname = eoledl.get('destname').replace('\\','/')
             for var, value in dvars.iteritems():
                 destname = destname.replace('%' + var + '%', value)
             destname = ("/home/wpkg/softwares/" + destname)
