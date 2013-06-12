@@ -9,9 +9,13 @@ reconfigure
 
 Query-Auto -D
 
+apt-get install git-core
+
 apt-get install python-flask python-flask.ext.login python-werkzeug python-jinja2 
 
 git clone https://github.com/Vnicolas/ScribePKG.git; cd ScribePKG/; python eoleflask-dev-server.py
+
+Query-Auto
 
 
 puis ce rendre sur l'ip du serveur port 8080 à l'aide d'un navigateur
