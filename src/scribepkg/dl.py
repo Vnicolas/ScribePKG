@@ -34,7 +34,7 @@ def get_dls(pkgxml):
     dvars = dict()
     for vars in xml.getiterator('variable'):
        dvars[vars.get('name')] = vars.get('value')
-       eole_dls = []
+    eole_dls = []
     if xml.getiterator('eoledl'):
         for eoledl in xml.getiterator('eoledl'):
             eole_dl = {}
@@ -42,7 +42,7 @@ def get_dls(pkgxml):
             if eole_dl['url'] != None:
                 for var, value in dvars.iteritems():
                     eole_dl['url'] = eole_dl['url'].replace('%' + var + '%', value)
-                eole_dl['dest'] = eoledl.get('destname')
+                eole_dl['dest'] = eoledl.get('destname').replace('\\','/')
                 eole_dl['zip'] = eoledl.get('unzip')
                 if eole_dl['dest'] == None :
                     eole_dl['dest'] = SOFTWARE_PATH
@@ -62,7 +62,7 @@ def downloading(dl):
         ca dezippe si besoin
     """
     FichierURL=dl['url']
-    dest=("/home/wpkg/softwares/" + dl['dest'])
+    dest=("/home/wpkg/softwares/" + dl['dest'].replace('\\','/'))
     zip=dl['zip']
 
     try:
