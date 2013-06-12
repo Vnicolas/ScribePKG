@@ -35,7 +35,8 @@ $(document).ready(function(){
         var code = data.xml;
         editor.setValue(code);
         editor.gotoLine(1);
-        $("#dossier").html('{{ i }}');
+        var name =  $("input#{{pack.index(i)}}").prevAll('label').text();
+        $("#dossier").html('{{ i }}').attr('name', name);
         $('#dl').css('visibility','visible');
         $('#save').css('visibility','visible');
         $("#editeur").css('display','block');
@@ -110,7 +111,7 @@ $(document).ready(function(){
     </div>
     
     <div id="editeur">
-        <div id="dossier"></div>
+        <div id="dossier" name =""></div>
         <div id="editor" name="editor" >
 
 

@@ -23,17 +23,30 @@ jQuery.ajaxSettings.traditional = true;
     });
   });
 
+ // Notification de téléchargement
+
   jQuery.ajaxSettings.traditional = true;
   $(document).ready(function(){
     $("#dl").click(function(){
-      $("#block").css('visibility','visible');
-      $("#loader").css('visibility','visible');
+      var logicieldl = $("#dossier").attr("name");
+      jNotify('Le téléchargement de <strong>'+logicieldl+'</strong> à débuté,<br> vous serez prévenue une fois ce dernier terminé.',
+            {
+              autoHide : true, // added in v2.0
+              TimeShown : 4000,
+              HorizontalPosition : 'right',
+              VerticalPosition : 'center',
+              ShowOverlay : false
+            });
       $.getJSON($SCRIPT_ROOT + '/_dl', {
       xmlfile: $("#dossier").text()
       }, function(data){
-        $("#block").css('visibility','hidden');
-        $("#loader").css('visibility','hidden');
-        alert('Fichier telechargé !');
+        jSuccess('<strong>'+logicieldl+'</strong> téléchargé.<br> L\'installateur est désormais présent sur le serveur.',
+            {
+              autoHide : false, // added in v2.0
+              HorizontalPosition : 'right',
+              VerticalPosition : 'top',
+              ShowOverlay : false
+            });
       });
     });
   });
@@ -59,6 +72,7 @@ jQuery.ajaxSettings.traditional = true;
         $('#allsupp').css('visibility','visible');
         $("#myTable input:checkbox").removeAttr('disabled');
         text.innerHTML='';
+        // Création d'une ligne dans le tableau pour chaque logiciel installés
         for(var i= 0; i < soft.length ; i++)
         {
           text.innerHTML= text.innerHTML +"<tr><td class='nomlogiciel'><label class='prime'><input type='checkbox' name='choixsupp' ><span style='font-style: italic;'>"
@@ -71,7 +85,7 @@ jQuery.ajaxSettings.traditional = true;
         var present = pres.split(" ");
         var listeapp = $("#myTable span").text();
         var logapp = listeapp.split(" ");
-        for (var h=1 in logapp)
+        for (var h=1 in logapp) // Désactive les checkbox des logiciels dans l'encadré "Répertoire"
         {
           for (var k=1 in present) 
           {
@@ -116,8 +130,8 @@ $(document).ready(function()
             if (log.length == 2){
             jSuccess('Le logiciel <strong>'+log[i]+'</strong> a été ajouté dans le groupe \"<strong>'+groupe+'</strong>\"',
             {
-              autoHide : true, // added in v2.0
-              TimeShown : 3000,
+              autoHide : true,
+              TimeShown : 3000, // en milisecondes
               HorizontalPosition : 'right',
               VerticalPosition : 'top',
               ShowOverlay : false
@@ -125,8 +139,8 @@ $(document).ready(function()
             if (log.length > 2){
             jSuccess('Les logiciels ont été ajouté dans le groupe \"<strong>'+groupe+'</strong>\"',
             {
-              autoHide : true, // added in v2.0
-              TimeShown : 3000,
+              autoHide : true, 
+              TimeShown : 3000, // en milisecondes
               HorizontalPosition : 'right',
               VerticalPosition : 'top',
               ShowOverlay : false
@@ -136,7 +150,6 @@ $(document).ready(function()
           $("#myTable input:checked").removeAttr("checked").attr('disabled', 'disabled');
           $("#addall input:checked").removeAttr("checked");
           $(".appliquer").css('visibility','visible');
-          sort($("#Table2"));
         });
     });
 });
