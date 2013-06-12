@@ -92,7 +92,7 @@ def logout():
     flash("Deconnecte")
     return redirect(url_for("accueil"))
 
-@app.route('/acceuil')
+@app.route('/accueil')
 @login_required
 def accueil():
     packs,shortname, i, pack = lib.get_packages()
