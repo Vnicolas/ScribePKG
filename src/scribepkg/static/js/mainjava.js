@@ -29,7 +29,7 @@ jQuery.ajaxSettings.traditional = true;
   $(document).ready(function(){
     $("#dl").click(function(){
       var logicieldl = $("#dossier").attr("name");
-      jNotify('Le téléchargement de <strong>'+logicieldl+'</strong> à débuté,<br> vous serez prévenue une fois ce dernier terminé.',
+      jNotify('Le téléchargement de <strong>'+logicieldl+'</strong> a débuté,<br> vous serez prévenue une fois ce dernier terminé.',
             {
               autoHide : true, // added in v2.0
               TimeShown : 4000,

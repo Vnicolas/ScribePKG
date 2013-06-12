@@ -58,7 +58,7 @@ login_manager.init_app(app)
 def index():
     if 'username' in session:
         return 'Connecte en tant que %s' % escape(session['username'])
-        return redirect(url_for('acceuil'))
+        return redirect(url_for('accueil'))
     else:
         return redirect(url_for('login'))
 
@@ -71,7 +71,7 @@ def login():
         else:
             if login_user(USER_NAMES[request.form['username']],remember=True):
                 flash("Connecte en tant que : " + request.form['username'])
-                return redirect(request.args.get("next") or url_for("acceuil"))
+                return redirect(request.args.get("next") or url_for("accueil"))
     return render_template('login.html', error=error)
 
 
@@ -94,10 +94,10 @@ def logout():
 
 @app.route('/acceuil')
 @login_required
-def acceuil():
+def accueil():
     packs,shortname, i, pack = lib.get_packages()
     grps = lib.get_group()
-    return render_template('acceuil.html', grps=grps, packs=packs, shortname=shortname, i=i, pack=pack)
+    return render_template('accueil.html', grps=grps, packs=packs, shortname=shortname, i=i, pack=pack)
 
 @app.route('/_getprofiles')
 def getprofiles():
