@@ -38,3 +38,24 @@ chmod +x wpkg_ln.sh
 Installer le client sur poste XP
 
 *****Fin*****
+
+
+
+setfacl -R -m g:www-data:rwx /home/wpkg/
+
+
+
+root@scribe23:/home# cat /etc/apache2/sites-enabled/scribepkg
+    ServerName example.com
+    ScriptAlias /scribepkg  /var/www/html/scribepkg/src/scribepkg.fcgi/
+
+
+
+root@scribe23:/home# cat /var/www/html/scribepkg/src/scribepkg.fcgi
+#!/usr/bin/python
+from flup.server.fcgi import WSGIServer
+from scribepkg import app
+
+if __name__ == '__main__':
+    WSGIServer(app).run()
+
