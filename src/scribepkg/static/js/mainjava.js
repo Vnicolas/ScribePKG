@@ -2,8 +2,7 @@ $(document).ready(function()
 {
   $("#myTable").tablesorter();
   $('.down').tipsy({ gravity: 'w'});
-  $('#vuediteur').tipsy({ gravity: 'w'});
-  $('#mytable input:checked').parent().parent().parent().css('background-color','#4BB5C1');
+  $('#vuediteur').tipsy({ gravity: 'n'});
 });
 
 // Sauvegarde de l'édition des fichiers xml
@@ -38,7 +37,6 @@ jQuery.ajaxSettings.traditional = true;
       });
     });
   });
-
 
 
 // Retourne les groupes présents dans le dossier /profile
