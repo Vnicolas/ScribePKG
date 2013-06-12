@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 #
 ##########################################################################
-# eole-genconfig -- configuration of EOLE server
-# Copyright © 2013 Pôle de compétences EOLE <eole@ac-dijon.fr>
+# scribepkg
+# Christophe DEZE
+# Nicolas Vairaa
 #
 # License CeCILL:
 #  * in french: http://www.cecill.info/licences/Licence_CeCILL_V2-fr.html

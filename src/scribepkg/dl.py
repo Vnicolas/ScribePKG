@@ -1,6 +1,16 @@
-#!/usr/bin/env python
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
+#
+##########################################################################
+# scribepkg
+# Christophe DEZE
+# Nicolas Vairaa
+#
+# License CeCILL:
+#  * in french: http://www.cecill.info/licences/Licence_CeCILL_V2-fr.html
+#  * in english http://www.cecill.info/licences/Licence_CeCILL_V2-en.html
+##########################################################################
 #inspiré de download_installer de Klaas tjebbes
+
 from StringIO import StringIO
 import os, traceback, urllib, zipfile, shutil
 from lxml import etree
@@ -48,6 +58,9 @@ def get_dls(pkgxml):
     return eole_dls
 
 def downloading(dl):
+    """fonction qui telecharge le lien dl vers dest
+        ca dezippe si besoin
+    """
     FichierURL=dl['url']
     dest=("/home/wpkg/softwares/" + dl['dest'])
     zip=dl['zip']
@@ -65,6 +78,8 @@ def downloading(dl):
         traceback.print_exc()
 
 def _hook( nb_blocs, taille_bloc, taille_fichier):
+    """ permet de connaitre l'avancement du dl
+    """
     percent = min((nb_blocs*taille_bloc*100)/taille_fichier, 100)
     if percent >= 100:
         print "Le telechargement est termine !" , taille_fichier
@@ -76,6 +91,9 @@ def _hook( nb_blocs, taille_bloc, taille_fichier):
     print percent
 
 def get_installers(xmlfile):
+    """on recupere tous les liens a telecharger dans balises eoledl 
+        dans un fichier xmlfile
+    """
     for dl in get_dls(xmlfile):
         downloading(dl)
 
