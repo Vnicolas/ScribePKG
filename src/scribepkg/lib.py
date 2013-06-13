@@ -54,23 +54,39 @@ def get_state(nom):
                 state = "NON"
     return state
 
-def get_packages():
-    """on recupere la liste des packages
-       code a reecrire
+    
+def get_package_description(filename):
+    """on verifie la presence de l'installeur dans software
     """
-    packs=[]
-    pack=[]
+    xml = etree.parse(filename)
+    desc = ""
+    dvars = dict()
+    for vars in xml.getiterator('variable'):
+        dvars[vars.get('name')] = vars.get('value')
+        
+    for p in xml.getiterator('package'):
+        desc = p.get('name')   
+    for var, value in dvars.iteritems():
+        desc = desc.replace('%' + var + '%', value)        
+    return desc    
+        
+def get_packages():
+    """on recupere la liste des packages           
+    """
     pack = glob.glob('/home/wpkg/packages/*.xml')
-    shortname=""
-    i=0
+    packages = []
     for i in pack:
+        package = dict()
         os.path.split(i)
         (filepath, filename) = os.path.split(i)
         (shortname, extension) = os.path.splitext(filename)
-        packs.append(shortname)
-        pack.index(i)
-    return packs, shortname, i, pack
 
+        package['desc']=(get_package_description(i))
+        package['shortname']=shortname
+        package['longname']=i
+        packages.append(package)
+
+    return packages
 def get_xml(xml):
     """ renvoit le contenu d'un fichier xml
     """

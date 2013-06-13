@@ -1,3 +1,6 @@
+jQuery.ajaxSettings.traditional = true;
+
+
 $(document).ready(function()
 {
   $("#myTable").tablesorter();
@@ -7,7 +10,6 @@ $(document).ready(function()
 
 // Sauvegarde de l'édition des fichiers xml
 
-jQuery.ajaxSettings.traditional = true;
   $(document).ready(function(){
     $("input#save").click(function(){
       $("#block").css('visibility','visible');
@@ -25,7 +27,6 @@ jQuery.ajaxSettings.traditional = true;
 
  // Notification de téléchargement
 
-  jQuery.ajaxSettings.traditional = true;
   $(document).ready(function(){
     $("#dl").click(function(){
       var logicieldl = $("#dossier").attr("name");
@@ -54,7 +55,6 @@ jQuery.ajaxSettings.traditional = true;
 
 // Retourne les groupes présents dans le dossier /profile
 
-jQuery.ajaxSettings.traditional = true;
   $(document).ready(function(){
     $("select").change(function()
     {
@@ -101,7 +101,6 @@ jQuery.ajaxSettings.traditional = true;
 
 // Ajoute les logiciels sélectionnés
 
-jQuery.ajaxSettings.traditional = true;
 $(document).ready(function()
 {
   var add = document.getElementsByClassName('boutonadd');
@@ -156,7 +155,6 @@ $(document).ready(function()
 
 // Supprime les logiciels sélectionnés
 
-jQuery.ajaxSettings.traditional = true;
 $(document).ready(function()
 {
   var supp = document.getElementsByClassName('boutonsupp');

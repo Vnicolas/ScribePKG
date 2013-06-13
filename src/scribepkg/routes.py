@@ -95,9 +95,10 @@ def logout():
 @app.route('/accueil')
 @login_required
 def accueil():
-    packs,shortname, i, pack = lib.get_packages()
+    packages = lib.get_packages()
+    #print packages
     grps = lib.get_group()
-    return render_template('accueil.html', grps=grps, packs=packs, shortname=shortname, i=i, pack=pack)
+    return render_template('accueil.html', grps=grps, packages=packages)
 
 @app.route('/_getprofiles')
 def getprofiles():
