@@ -77,7 +77,6 @@ def get_packages():
     packages = []
     for i in pack:
         package = dict()
-        os.path.split(i)
         (filepath, filename) = os.path.split(i)
         (shortname, extension) = os.path.splitext(filename)
 

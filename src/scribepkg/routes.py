@@ -123,7 +123,9 @@ def getxml():
 def savefile():
     c = request.args.get('code')
     d = request.args.get('path')
-    f = open(os.path.join(PACKAGES_PATH, d), 'w')
+    #on ne peut ecrire que dans /home/wpkg/packages
+    (filepath, filename) = os.path.split(d)
+    f = open(os.path.join(PACKAGES_PATH, filename), 'w')
     f.write(c.encode('utf-8'))
     f.close
     return '0'
