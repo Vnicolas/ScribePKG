@@ -9,14 +9,14 @@ font-size: 35px;">Connectez-vous pour continuer.</h2>
   		<table>
           	<tr>
           		<td>Login : </td>
-          		<td><input type="text" name="username" value="{{request.form.username }}" size="15" /></td>
+          		<td><input type="text" name="username" value="{{request.form.username }}" size="15" required ></td>
           </tr>
           <tr>
           		<td>Mot de passe : </td>
           		<td><input type="password" name="password" size="15" /></td>
           </tr>
           <tr>
-          	<td colspan="2"><center><input type="submit" class="boutonlogin" value="Connexion"></center></td>
+          	<td colspan="2"><center><input type="submit" class="boutonlogin" value="Connexion" required></center></td>
           </tr>
       </table>
   </center>
