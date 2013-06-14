@@ -28,15 +28,15 @@ $(window).load(function ()  {
  {% endfor %}
 {% for package in packages %}
 $(document).ready(function(){
-    $("input#{{ package.shortname }}").click(function(){
+    $("input#Btn{{ package.shortname }}").click(function(){
       $.getJSON($SCRIPT_ROOT + '/_getxml', {
-      xml: $("input#{{ package.shortname }}").attr("name")
+      xml: $("input#Btn{{ package.shortname }}").attr("name")
       }, function(data){
         var code = data.xml;
         editor.setValue(code);
         editor.gotoLine(1);
-        var name =  $("input#{{ package.shortname }}").prevAll('label').text();
-        $("#dossier").html('{{ package.shortname }}').attr('name', name);
+        var name =  $("input#Btn{{ package.shortname }}").prevAll('label').text();
+        $("#dossier").html('{{ package.longname }}').attr('name', name);
         $('#dl').css('visibility','visible');
         $('#save').css('visibility','visible');
         $("#editeur").css('display','block');
@@ -93,7 +93,7 @@ $(document).ready(function(){
             <tbody>
                 {% for package in packages %}
                 <tr>
-                    <td id="nomlogiciel{{ loop.index }}" title="{{ package.desc }}"  class="nomlogiciel"><label><input type="checkbox"  disabled id="{{ package.shortname }}" ><span> {{ package.shortname }}</span></label><state id="nomlogiciel20{{ loop.index }}"></state><input type="button" class="boutonedit" id="{{ package.shortname }}" name="/home/wpkg/packages/{{ package.shortname }}.xml" value="XML"></td>
+                    <td id="nomlogiciel{{ loop.index }}" title="{{ package.desc }}"  class="nomlogiciel"><label><input type="checkbox"  disabled id="{{ package.shortname }}" ><span> {{ package.shortname }}</span></label><state id="nomlogiciel20{{ loop.index }}"></state><input type="button" class="boutonedit" id="Btn{{ package.shortname }}" name="/home/wpkg/packages/{{ package.shortname }}.xml" value="XML"></td>
 
                     <td class="down"></td>
                 </tr>
