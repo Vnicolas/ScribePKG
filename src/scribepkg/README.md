@@ -2,16 +2,17 @@
 
 apt-eole install eole-wpkg
 
+git clone --depth 0 http://dev-eole.ac-dijon.fr/git/wpkg-package /home/wpkg/packages
+
 reconfigure
 
 
-****#certains paquets ne sont dispo qu'en version developpement
+****#certains paquets ne sont dispo qu'en version developpement (pensez a faire un export http_proxy et https_proxy si besoin 
 
 Query-Auto -D
 
-apt-get install git-core
+apt-get install git-corepython-flask python-flask.ext.login python-werkzeug python-jinja2 
 
-apt-get install python-flask python-flask.ext.login python-werkzeug python-jinja2 
 
 git clone https://github.com/Vnicolas/ScribePKG.git; cd ScribePKG/; python eoleflask-dev-server.py
 
