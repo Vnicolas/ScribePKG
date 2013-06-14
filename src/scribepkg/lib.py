@@ -36,7 +36,7 @@ def get_state(nom):
     xml = f.read()
     f.close()
     dvars = dict()
-    state ="NON"
+    state =""
     xml = etree.parse(StringIO(xml))
     for vars in xml.getiterator('variable'):
         dvars[vars.get('name')] = vars.get('value')
