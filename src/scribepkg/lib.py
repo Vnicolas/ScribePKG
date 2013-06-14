@@ -58,16 +58,20 @@ def get_state(nom):
 def get_package_description(filename):
     """on verifie la presence de l'installeur dans software
     """
-    xml = etree.parse(filename)
     desc = ""
-    dvars = dict()
-    for vars in xml.getiterator('variable'):
-        dvars[vars.get('name')] = vars.get('value')
+    try:
+        xml = etree.parse(filename)
         
-    for p in xml.getiterator('package'):
-        desc = p.get('name')   
-    for var, value in dvars.iteritems():
-        desc = desc.replace('%' + var + '%', value)        
+        dvars = dict()
+        for vars in xml.getiterator('variable'):
+            dvars[vars.get('name')] = vars.get('value')
+            
+        for p in xml.getiterator('package'):
+            desc = p.get('name')   
+        for var, value in dvars.iteritems():
+            desc = desc.replace('%' + var + '%', value)   
+    except:
+        pass      
     return desc    
         
 def get_packages():

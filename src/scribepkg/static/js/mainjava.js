@@ -12,18 +12,22 @@ $(document).ready(function()
 
   $(document).ready(function(){
     $("input#save").click(function(){
-      $("#block").css('visibility','visible');
-      $("#loader").css('visibility','visible');
       $.getJSON($SCRIPT_ROOT + '/_savefile', {
       code: editor.getValue(),
       path: $("#dossier").text()
       }, function(data){
-        $("#block").css('visibility','hidden');
-        $("#loader").css('visibility','hidden');
-        alert('Texte enregistré');
+        jNotify('Fichier enregistré.',
+            {
+              autoHide : true, // added in v2.0
+              TimeShown : 4000,
+              HorizontalPosition : 'right',
+              VerticalPosition : 'top',
+              ShowOverlay : false
+            });
       });
     });
   });
+
 
  // Notification de téléchargement
 
@@ -222,3 +226,32 @@ function addcocher(etat) {
       inputs[i].checked = etat;
   }
 }
+
+  $(document).ready(function(){
+  $("label#newxml").click(function(){
+    editor.setValue("");
+    editor.gotoLine(1);
+    var options = {
+      buttons: {
+      confirm: {
+        text: 'Ok',
+        className: 'blue',
+        action: function(e) {
+          $('#dossier').html('/home/wpkg/packages/' + e.input + '.xml');
+          Apprise('close');
+          var fichier = e.input;
+          var codexml = "";
+          codexml.html("<?xml version='1.0' encoding='UTF-8'?><br><!-- OpenSource --><package <br>id="+fichier+"");
+          editor.getSession().setMode("ace/mode/html");
+          editor.setValue(codexml);
+          var editeurTopPosition = jQuery('#editeur').offset().top;
+          jQuery('html, body').animate({scrollTop:editeurTopPosition}, 'slow');
+        }
+        },
+      },
+  input: true,
+};
+Apprise('Nom du fichier :', options);
+
+ });
+});
