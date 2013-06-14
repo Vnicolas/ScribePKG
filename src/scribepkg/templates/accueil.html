@@ -28,14 +28,14 @@ $(window).load(function ()  {
  {% endfor %}
 {% for package in packages %}
 $(document).ready(function(){
-    $("input#{{loop.index}}").click(function(){
+    $("input#{{ package.shortname }}").click(function(){
       $.getJSON($SCRIPT_ROOT + '/_getxml', {
-      xml: $("input#{{ loop.index }}").attr("name")
+      xml: $("input#{{ package.shortname }}").attr("name")
       }, function(data){
         var code = data.xml;
         editor.setValue(code);
         editor.gotoLine(1);
-        var name =  $("input#{{loop.index}}").prevAll('label').text();
+        var name =  $("input#{{ package.shortname }}").prevAll('label').text();
         $("#dossier").html('{{ package.shortname }}').attr('name', name);
         $('#dl').css('visibility','visible');
         $('#save').css('visibility','visible');
