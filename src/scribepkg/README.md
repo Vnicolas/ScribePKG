@@ -2,6 +2,8 @@
 
 apt-eole install eole-wpkg
 
+git clone --depth 0 http://dev-eole.ac-dijon.fr/git/wpkg-package /home/wpkg/packages
+
 reconfigure
 
 
