@@ -101,36 +101,42 @@ def accueil():
     return render_template('accueil.html', grps=grps, packages=packages)
 
 @app.route('/_getprofiles')
+@login_required
 def getprofiles():
     a = request.args.get('lgrp')
     return jsonify(profile=lib.get_profile(a))
 
 @app.route('/_getstate')
+@login_required
 def getstate():
     m = request.args.get('fic')
     return jsonify(etat=lib.get_state(m))
 
 @app.route('/_getxml')
+@login_required
 def getxml():
     b = request.args.get('xml')
     return jsonify(xml=lib.get_xml(b))
 
 @app.route('/_savefile')
+@login_required
 def savefile():
     c = request.args.get('code')
     d = request.args.get('path')
-    f = open(d, 'w')
+    f = open(os.path.join(PACKAGES_PATH, d), 'w')
     f.write(c.encode('utf-8'))
     f.close
     return '0'
 
 @app.route('/_setprofile')
+@login_required
 def set_profile():
     g = request.args.get('ids')
     h = request.args.get('grp')
     return jsonify(ids=lib.set_profile(g, h))
 
 @app.route('/_dl')
+@login_required
 def get_installers():
     xmlfile = request.args.get('xmlfile')
     return jsonify(dl=dl.get_installers(xmlfile))
