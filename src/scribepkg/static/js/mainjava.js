@@ -240,10 +240,7 @@ function addcocher(etat) {
           $('#dossier').html('/home/wpkg/packages/' + e.input + '.xml');
           Apprise('close');
           var fichier = e.input;
-          var codexml = "";
-          codexml.html("<?xml version='1.0' encoding='UTF-8'?><br><!-- OpenSource --><package <br>id="+fichier+"");
-          editor.getSession().setMode("ace/mode/html");
-          editor.setValue(codexml);
+          editor.setValue("");
           var editeurTopPosition = jQuery('#editeur').offset().top;
           jQuery('html, body').animate({scrollTop:editeurTopPosition}, 'slow');
         }
