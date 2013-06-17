@@ -120,18 +120,19 @@ def set_profile(ids, groupe):
     """
     creation fichiers contenant les applis pour un group
     """
-    if not os.path.exists('/home/wpkg/profiles/'):
-        os.makedirs('/home/wpkg/profiles/')
-    filename = u'/home/wpkg/profiles/' + groupe + '.xml'
-    xmlfp = open(filename, "w")
-    xmlfp.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-    xmlfp.write('<profiles>\n')
-    xmlfp.write('<profile id="' + groupe + '">\n')
-    for id in ids.strip().split(" "):
-        xmlfp.write('<package package-id="' + id + '"/>\n')
-    xmlfp.write('</profile>\n')
-    xmlfp.write('</profiles>\n')
-    xmlfp.close()
+    for element in groupe.strip().split(" "):
+        if not os.path.exists('/home/wpkg/profiles/'):
+            os.makedirs('/home/wpkg/profiles/')
+        filename = u'/home/wpkg/profiles/' + element + '.xml'
+        xmlfp = open(filename, "w")
+        xmlfp.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+        xmlfp.write('<profiles>\n')
+        xmlfp.write('<profile id="' + element + '">\n')
+        for id in ids.strip().split(" "):
+            xmlfp.write('<package package-id="' + id + '"/>\n')
+        xmlfp.write('</profile>\n')
+        xmlfp.write('</profiles>\n')
+        xmlfp.close()
 
 def login(username,password):
     """fonction qui renvoit true si l'on s'est bien connecte

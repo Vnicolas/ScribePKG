@@ -302,6 +302,26 @@ background:rgb(22, 124, 18);
 color: #FFF;
 }
 
+.boutonaddall{
+font: bold 12px Helvetica;
+background: #f5f5f5;
+color: #555;
+cursor: pointer;
+margin-left: 89px;
+margin-top: 400px;
+padding-left: 50px;
+padding-right: 10px;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: rgb(22, 124, 18);
+visibility: hidden;
+position: absolute;
+}
+.boutonaddall:hover {
+background:rgb(22, 124, 18);
+color: #FFF;
+}
+
 #vuediteur{
 width: 110px;
 display: block;
