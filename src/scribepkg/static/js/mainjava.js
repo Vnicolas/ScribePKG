@@ -157,7 +157,7 @@ $(document).ready(function()
     });
 });
 
-// Ajoute à tout les groupes
+// Ajoute à tous les groupes
 
 $(document).ready(function()
 {
@@ -165,49 +165,54 @@ $(document).ready(function()
   var text = document.getElementById('installed2');
   $(addall).click(function()
     {
-      $.getJSON($SCRIPT_ROOT + '/_setprofile',
+      $.getJSON($SCRIPT_ROOT + '/_setallprofile',
         {
-          ids: $("#installed2 span").text() + $("#myTable input:checked").next('span').text(),
-          grp: $("select#Listegrp option").text()
+          softs: $("#myTable input:checked").next('span').text(),
+          allgroups : $("select#Listegrp option").text()
         },
         function(data)
         {
+          var softs = data.profile;
           var installed = $("#installed2 span").text();
           var install= installed.split(" ");
           var logiciel = $("#myTable input:checked").next('span').text();
           var log= logiciel.split(" ");
           for(var i=1; i<log.length; i++)
-          {
-            text.innerHTML = text.innerHTML 
-            +"<tr><td style='background-color:#4BB5C1;' class='nomlogiciel'><label><input type='checkbox' name='choixsupp' ><span>" 
-            + " " 
-            + log[i]
-            + "</span></label></td></tr>";
-            if (log.length == 2){
-            jSuccess('Le logiciel <strong>'+log[i]+'</strong> a été ajouté dans <strong>tous les groupes</strong>\"',
             {
-              autoHide : true,
-              TimeShown : 3000, // en milisecondes
-              HorizontalPosition : 'right',
-              VerticalPosition : 'top',
-              ShowOverlay : false
-            });}
-            if (log.length > 2){
-            jSuccess('Les logiciels ont été ajouté dans <strong>tous les groupes</strong>\"',
-            {
-              autoHide : true, 
-              TimeShown : 3000, // en milisecondes
-              HorizontalPosition : 'right',
-              VerticalPosition : 'top',
-              ShowOverlay : false
-            });}
-          }
-          
-          $("#myTable input:checked").removeAttr("checked").attr('disabled', 'disabled');
-          $("#addall input:checked").removeAttr("checked");
-        });
-    });
+              text.innerHTML = text.innerHTML 
+              +"<tr><td style='background-color:#4BB5C1;' class='nomlogiciel'><label><input type='checkbox' name='choixsupp' ><span>" 
+              + " " 
+              + log[i]
+              + "</span></label></td></tr>";
+              if (log.length == 2)
+                {
+                  jSuccess('Le logiciel <strong>'+log[i]+'</strong> a été ajouté dans <strong>tous les groupes</strong>\"',
+                {
+                  autoHide : true,
+                  TimeShown : 3000, // en milisecondes
+                  HorizontalPosition : 'right',
+                  VerticalPosition : 'top',
+                  ShowOverlay : false
+                });
+                }
+                if (log.length > 2)
+                {
+                  jSuccess('Les logiciels ont été ajouté dans <strong>tous les groupes</strong>\"',
+                    {
+                      autoHide : true,
+                      TimeShown : 3000, // en milisecondes
+                      HorizontalPosition : 'right',
+                      VerticalPosition : 'top',
+                      ShowOverlay : false
+                    });
+                }
+              }
+              $("#myTable input:checked").removeAttr("checked").attr('disabled', 'disabled');
+              $("#addall input:checked").removeAttr("checked");
+            });
 });
+});
+
 
 // Supprime les logiciels sélectionnés
 
@@ -251,10 +256,9 @@ $(document).ready(function()
             });}
             }
 
-            $("#allsupp input:checked").attr('disabled', 'disabled');
+            $("#allsupp input:checked").removeAttr("checked");
             $(".appliquer").css('visibility','visible');
             $("#Table2 input:checked").closest('tr').remove();
-            sort($("#Table2"));
           });
     });
 });

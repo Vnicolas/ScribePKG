@@ -57,7 +57,7 @@ $(document).ready(function(){
     <div id="lien2">&#58541;</div>
     <div id="groupe">
     <div class="groupeicon">&#128101;</div><span class="texticon">GRP</span>
-    <select size="25" id="Listegrp" multiple="multiple">
+    <select size="25" id="Listegrp">
         {% for grp in grps %}
         <option value="{{ grp }}" name="{{ grp }}"> {{ grp }}</option>
         {% endfor %}
@@ -104,7 +104,7 @@ $(document).ready(function(){
         </table>
     </div>
     <label id="addall"><input type="checkbox" onclick="addcocher(this.checked)"></label>
-    <label class="boutonaddall"><span class="icon">&oplus;</span>Ajouter à tous les groupes</label>
+    <label class="boutonaddall"><span class="icon">&#128101;</span>Ajouter à tous les groupes</label>
     <label class="boutonadd"><span class="icon">&oplus;</span>Ajouter</label>
     </div>
 

@@ -137,6 +137,13 @@ def set_profile():
     h = request.args.get('grp')
     return jsonify(ids=lib.set_profile(g, h))
 
+@app.route('/_setallprofile')
+@login_required
+def set_allprofile():
+    z = request.args.get('softs')
+    v = request.args.get('allgroups')
+    return jsonify(softs=lib.set_allprofile(z, v))
+
 @app.route('/_dl')
 @login_required
 def get_installers():

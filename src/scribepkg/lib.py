@@ -134,6 +134,25 @@ def set_profile(ids, groupe):
         xmlfp.write('</profiles>\n')
         xmlfp.close()
 
+def set_allprofile(listesofts, allgrp):
+    """
+    Ajoute les logiciels a tous les groupes
+    """
+    for vrp in allgrp.strip().split(" "):
+        fichier=u'/home/wpkg/profiles/'+vrp+'.xml'
+        tree = etree.parse(fichier)
+        root = tree.getroot()
+        profile = root.find("profile")
+        listeids =  [child.get('package-id') for child in profile]
+        for soft_checked in listesofts.strip().split(" "):
+            if soft_checked in listeids:
+                break
+            else:
+                profile.append(etree.Element("package", {"package-id":soft_checked}))
+        tree.write(fichier)
+                    
+                    
+
 def login(username,password):
     """fonction qui renvoit true si l'on s'est bien connecte
     en domainadmins
