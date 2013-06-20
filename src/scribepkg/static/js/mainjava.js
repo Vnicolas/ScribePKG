@@ -283,7 +283,9 @@ function addcocher(etat) {
   }
 }
 
-  $(document).ready(function(){
+// Ajout d'un fichier XML 
+
+$(document).ready(function(){
   $("label#newxml").click(function(){
     editor.setValue("");
     editor.gotoLine(1);
@@ -305,6 +307,7 @@ function addcocher(etat) {
   input: true,
 };
 Apprise('Nom du fichier :', options);
+$('#save').css('visibility','visible');
 
  });
 });
