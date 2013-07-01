@@ -19,5 +19,7 @@ n'oubliez pas de faire un ouvre.firewall sur le scribe
 puis ce rendre sur l'ip du serveur port 8080 à l'aide d'un navigateur
 
 
+faire un start.firewall pour remettre le pare-feu dans son etat initial
+
 
 
