@@ -1,69 +1,23 @@
-*****Installation sur serveur EOLE-SCRIBE*****
+**Attention, si vous testez cette application sur un serveur en production (ce qui est déconseillé), sauvegardez auparavant le dossier /home/wpkg**
 
-apt-eole install eole-wpkg
+On part du principe que wpkg est fonctionnel sur le serveur
 
-git clone --depth 0 http://dev-eole.ac-dijon.fr/git/wpkg-package /home/wpkg/packages
-
-reconfigure
+*certains paquets ne sont dispo qu'en version developpement (pensez a faire un export http_proxy et https_proxy si besoin*
 
 
-****#certains paquets ne sont dispo qu'en version developpement (pensez a faire un export http_proxy et https_proxy si besoin 
+> Query-Auto -D
 
-Query-Auto -D
-
-apt-get install git-corepython-flask python-flask.ext.login python-werkzeug python-jinja2 
+> apt-get install git-corepython-flask python-flask.ext.login python-werkzeug python-jinja2 
 
 
-git clone https://github.com/Vnicolas/ScribePKG.git; cd ScribePKG/; python eoleflask-dev-server.py
+> git clone https://github.com/Vnicolas/ScribePKG.git; cd ScribePKG/; python eoleflask-dev-server.py
 
-Query-Auto
+> Query-Auto
 
+n'oubliez pas de faire un ouvre.firewall sur le scribe
 
 puis ce rendre sur l'ip du serveur port 8080 à l'aide d'un navigateur
 
 
 
-ln -s /home/wpkg/ /home/a/admin/perso/wpkg
-
-Télécharger les fichiers XML des logiciels dans le dossier U:\wpkg\packages
-
-Ensuite configurer le serveur:
-
-wpkg_gen_config
-
-Configurer le serveur : SendStatus sur "OUI"
-
-Enregistrer la configuration et quitter
-
--> Si le poste n'est pas encore client wpkg:
-
-wget https://raw.github.com/bristow/script_wpkg/master/wpkg_ln.sh
-
-chmod +x wpkg_ln.sh
-
-./wpkg_ln.sh
-
-Installer le client sur poste XP
-
-*****Fin*****
-
-
-
-setfacl -R -m g:www-data:rwx /home/wpkg/
-
-
-
-root@scribe23:/home# cat /etc/apache2/sites-enabled/scribepkg
-    ServerName example.com
-    ScriptAlias /scribepkg  /var/www/html/scribepkg/src/scribepkg.fcgi/
-
-
-
-root@scribe23:/home# cat /var/www/html/scribepkg/src/scribepkg.fcgi
-#!/usr/bin/python
-from flup.server.fcgi import WSGIServer
-from scribepkg import app
-
-if __name__ == '__main__':
-    WSGIServer(app).run()
 
